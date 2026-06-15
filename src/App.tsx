@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Loader from "./components/Loader";
+import Navbar from "./components/Navbar";
+
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -17,19 +19,14 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading) {
-    return (
-      <div className={fade ? "fade-out" : ""}>
-        <Loader />
-      </div>
-    );
-  }
+ return (
+    <>
+      <Navbar />
 
-  return (
-    <div className="hero">
-      <h1>Mi Portfolio</h1>
-      <p>Bienvenido a mi web</p>
-    </div>
+      <div className="hero">
+        <h1>Mi Portfolio</h1>
+      </div>
+    </>
   );
 }
 
