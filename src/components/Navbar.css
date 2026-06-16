@@ -1,5 +1,5 @@
 .navbar {
-  padding: 10px 40px; /* antes 18px */
+  padding: 6px 40px; /* antes 18px */
   font-family: "Space Mono", monospace;
   background-color: #f5f0e6;
   display: flex;
@@ -15,11 +15,11 @@
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 14px;
 }
 
 .logo img {
-  height: 22px;   /* ajusta según tu diseño */
+  height: 18px;  
   width: auto;
   display: block;
 }
@@ -38,7 +38,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 12px;
   opacity: 0.8;
 }
 
@@ -60,14 +60,14 @@
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 18px;
 }
 
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 25px;
-  font-size: 13px;
+  gap: 18px;
+  font-size: 12px;
 }
 
 .nav-links li {
@@ -121,7 +121,7 @@
 
 @media (max-width: 768px) {
   .navbar {
-    padding: 15px 20px;
+    padding: 10px 20px;
   }
 
   .nav-links {

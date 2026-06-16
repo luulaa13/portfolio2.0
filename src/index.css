@@ -43,37 +43,90 @@ html, body {
   transition: opacity 0.8s ease;
 }
 
-
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-
+.hero {
+  min-height: 100vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-
-  padding: 20px 40px;
-
-  background: rgba(245, 240, 230, 0.8);
-  backdrop-filter: blur(10px);
-
-  z-index: 1000;
+  padding: 0 2rem;
+  background: #f5f0e6;
 }
 
+.hero-container {
+  text-align: center;
+  max-width: 1200px;
+}
 
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+.hero-label {
+  display: block;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  font-family: "Space Mono", monospace;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  color: #6f675f;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: 120px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  line-height: 0.9;
+  font-weight: 700;
+  color: #111;
+}
+
+.hero-description {
+  margin: 2rem auto 0;
+  max-width: 400px;
+  font-family: "Hanken Grotesk", monospace;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #6f675f;
+}
+
+.hero-link {
+  display: inline-flex;
   align-items: center;
-  padding: 20px 40px;
-  background: rgba(245, 240, 230, 0.8);
-  backdrop-filter: blur(10px);
+  gap: 8px;
+  margin-top: 20px;
+  background: #111;
+  color: #d8cbb2;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-family: "Space Mono", monospace;
+  font-size: 13px;
+  text-decoration: none;
+  width: 260px;            
+  justify-content: center;   
 
-  z-index: 1000;
+  white-space: nowrap;      
+}
+
+.word-wrapper {
+  display: inline-block;
+  height: 1.2em;        
+  line-height: 1.2em;  
+  overflow: hidden;
+  position: relative;
+  vertical-align: bottom;
+   width: 140px; 
+}
+
+.word {
+  display: inline-block;
+  color: #3b82f6;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* sale hacia abajo */
+.word.out {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+/* entra desde arriba */
+.word.in {
+  transform: translateY(0%);
+  opacity: 1;
 }
