@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+@media (pointer: fine) {
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
+}
 
 body {
   background: #f5f0e6;
@@ -33,18 +40,45 @@ html, body {
 .loader {
   position: fixed;
   inset: 0;
-  background-color: #FAF6F3;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  opacity: 1;
-  transition: opacity 0.8s ease;
+  background: radial-gradient(
+    circle at center,
+    #1a1a1a 0%,
+    #000 70%
+  );
+
+  z-index: 9999;
+   transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.loader img {
+  width: min(80vw, 1000px);
+  height: auto;
+
+  filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.15));
+}
+.loader::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: white;
+  filter: blur(80px);
+  opacity: 0.08;
+}
+
+.loader.hide {
+  opacity: 0;
+  transform: scale(1.1);
 }
 
 .hero {
-  min-height: 100vh;
+  min-height: 92vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +88,7 @@ html, body {
 
 .hero-container {
   text-align: center;
-  max-width: 1200px;
+  width: 100%;
 }
 
 .hero-label {
@@ -62,15 +96,15 @@ html, body {
   margin-top: 3rem;
   margin-bottom: 2rem;
   font-family: "Space Mono", monospace;
-  font-size: 14px;
+  font-size: clamp(0.75rem, 1vw, 1rem);
   letter-spacing: 0.3em;
   color: #6f675f;
 }
 
 .hero-title {
-  margin: 0;
-  font-size: 120px;
   font-family: 'Bricolage Grotesque', sans-serif;
+  margin: 0;
+  font-size: clamp(4rem, 10vw, 11rem);
   line-height: 0.9;
   font-weight: 700;
   color: #111;
@@ -78,10 +112,10 @@ html, body {
 
 .hero-description {
   margin: 2rem auto 0;
-  max-width: 400px;
+  max-width: 650px;
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  line-height: 1.7;
   font-family: "Hanken Grotesk", monospace;
-  font-size: 1.1rem;
-  line-height: 1.8;
   color: #6f675f;
 }
 
@@ -92,15 +126,14 @@ html, body {
   margin-top: 20px;
   background: #111;
   color: #d8cbb2;
-  padding: 10px 20px;
   border-radius: 999px;
   font-family: "Space Mono", monospace;
-  font-size: 13px;
-  text-decoration: none;
-  width: 260px;            
+  text-decoration: none;         
   justify-content: center;   
-
-  white-space: nowrap;      
+  white-space: nowrap;  
+  width: 320px;
+  padding: 14px 24px;
+  font-size: 14px;    
 }
 
 .word-wrapper {
@@ -129,4 +162,83 @@ html, body {
 .word.in {
   transform: translateY(0%);
   opacity: 1;
+}
+
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 0 1.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(3.5rem, 15vw, 5rem);
+    line-height: 0.95;
+  }
+
+  .hero-description {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+
+  .hero-link {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .hero-label {
+    letter-spacing: 0.15em;
+  }
+}
+
+ @media (min-width: 769px) and (max-width: 1024px) {
+  .hero-title {
+    font-size: clamp(5rem, 10vw, 8rem);
+  }
+}
+
+.skills-banner {
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.skills-track {
+  display: flex;
+  width: max-content;
+
+  animation: marquee 25s linear infinite;
+}
+
+.skills-row {
+  display: flex;
+  align-items: center;
+
+  white-space: nowrap;
+}
+
+.skills-row span {
+  padding-right: 2rem;
+
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(1.2rem, 1.5vw, 2rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+
+  color: #111;
+}
+
+.skills-row .accent {
+  color: #4f6df5;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }

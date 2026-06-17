@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 
 
-const words = ["research", "diseño", "código", "prototipos", "deploy"];
+const words = [
+  "research",
+  "interfaces",
+  "productos",
+  "prototipos",
+  "frontend",
+  "experiencias",
+  "conversiones"
+];
 
 function Hero() {
     const [index, setIndex] = useState(0);
@@ -32,12 +40,12 @@ function Hero() {
     <h1 className="hero-title">
       De la idea
       <br />
-      al producto.
+      al impacto.
     </h1>
 
     <p className="hero-description">
-      Soy Lucía. Diseño, programo y diseño productos digitales
-      de principio a fin.
+     Research, UX/UI, frontend y marketing digital
+     para construir productos de principio a fin.
     </p>
     <a href="#projects" className="hero-link">
       hoy construyo:&nbsp;

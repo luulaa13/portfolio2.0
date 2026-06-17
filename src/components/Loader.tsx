@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
-import faceGif from "../assets/face.gif";
+import faceDesktop from "../assets/face2.gif";
+import faceMobile from "../assets/face1.gif";
 
 function Loader() {
-  const [show, setShow] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // pequeño delay para entrada más cinematográfica
-    const t = setTimeout(() => setShow(true), 100);
+    const check = () => setIsMobile(window.innerWidth <= 768);
 
-    return () => clearTimeout(t);
+    check();
+    window.addEventListener("resize", check);
+
+    return () => window.removeEventListener("resize", check);
   }, []);
 
   return (
-    <div className={`loader ${show ? "show" : ""}`}>
-      <img src={faceGif} alt="loading" />
+    <div className="loader">
+      <img src={isMobile ? faceMobile : faceDesktop} alt="loading" />
     </div>
   );
 }

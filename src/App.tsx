@@ -2,28 +2,60 @@ import { useEffect, useState } from "react";
 
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Loader from "./components/Loader";
+import CustomCursor from "./components/CustomCursor";
 
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [fade, setFade] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setFade(true);
+const [hide, setHide] = useState(false);
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setHide(true);
 
       setTimeout(() => {
         setLoading(false);
-      }, 600);
-    }, 2500);
+      }, 800);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
 
+  if (loading) {
+    return <Loader />;
+  }
  return (
     <>
+     <CustomCursor />
       <Navbar />
       <Hero/>
+       <section className="skills-banner">
+      <div className="skills-track">
+        <div className="skills-row">
+          <span>✦ RESEARCH</span>
+          <span className="accent">✦ DISEÑO</span>
+          <span>✦ FRONTEND</span>
+          <span className="accent">✦ BRANDING</span>
+          <span>✦ UX/UI</span>
+          <span className="accent">✦ MARKETING</span>
+          <span>✦ PRODUCTS</span>
+          <span className="accent">✦ STRATEGY</span>
+        </div>
+
+        <div className="skills-row">
+          <span>✦ RESEARCH</span>
+          <span className="accent">✦ DISEÑO</span>
+          <span>✦ FRONTEND</span>
+          <span className="accent">✦ BRANDING</span>
+          <span>✦ UX/UI</span>
+          <span className="accent">✦ MARKETING</span>
+          <span>✦ PRODUCTS</span>
+          <span className="accent">✦ STRATEGY</span>
+        </div>
+      </div>
+    </section>
      
     </>
   );
