@@ -3,15 +3,11 @@
   top: 0;
   left: 0;
   width: 100%;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 20px 40px;
   z-index: 1000;
-
-  backdrop-filter: blur(10px);
 }
 
 .nav-left {
@@ -29,11 +25,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 18px;
-  opacity: 0.8;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
-body.dark .status {
-  color: rgba(255,255,255,0.75);
+
+.status:hover {
+  opacity: 0.8;
 }
 
 .dot {
@@ -174,13 +172,6 @@ body.dark .status {
 }
 
 
-body.dark .cmd-btn {
-  color: white;
-  border: 1px solid rgba(255,255,255,0.15);
-}
-body.dark .theme-btn{
-   color: white;
-}
 
 .menu-btn {
   display: flex;

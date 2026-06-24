@@ -1,11 +1,10 @@
-import "./Navbar.css";
+import "./style/Navbar.css";
 import logo from "../assets/avatar.ico";
 
 import { useEffect, useState } from "react";
-import { Menu, Moon, Sun } from "lucide-react";
+import { Menu} from "lucide-react";
 
 function Navbar() {
-  const [darkMode, setDarkMode] = useState(false);
   const [commandOpen, setCommandOpen] = useState(false);
   const [query, setQuery] = useState("");
 
@@ -20,13 +19,6 @@ function Navbar() {
   handleNavigate(match.target);
 };
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
-  useEffect(() => {
-    document.body.classList.toggle("dark", darkMode);
-  }, [darkMode]);
 
   // ⌨️ Keyboard shortcut ⌘K
   useEffect(() => {
@@ -47,7 +39,6 @@ function Navbar() {
 
   const actions = [
     { label: "Proyectos", target: "#projects" },
-    { label: "Sobre mí", target: "#about" },
     { label: "Stack", target: "#stack" },
     { label: "Contacto", target: "#contact" },
   ];
@@ -77,10 +68,17 @@ function Navbar() {
         </div>
 
         <div className="nav-right">
-           <div className="status">
+         
+            <a
+            href="https://www.linkedin.com/in/luciauxui/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="status"
+          >
             <span className="dot"></span>
             <span>Disponible</span>
-          </div>
+          </a>
+        
         <button
           className="menu-btn"
           onClick={() => setCommandOpen(true)}
@@ -92,9 +90,6 @@ function Navbar() {
           <span className="menu-shortcut">⌘K</span>
         </button>
 
-          <button className="theme-btn" onClick={toggleDarkMode}>
-            {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
         </div>
       </nav>
 

@@ -82,7 +82,8 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 2rem;
+
+  padding: 20px 2rem 40px;
   background: #f5f0e6;
 }
 
@@ -167,7 +168,10 @@ html, body {
 
 @media (max-width: 768px) {
   .hero {
-    padding: 0 1.5rem;
+    min-height: auto;
+    padding: 150px 1.5rem 150px;
+
+    align-items: flex-start;
   }
 
   .hero-title {
@@ -199,7 +203,7 @@ html, body {
 .skills-banner {
   width: 100%;
   overflow: hidden;
-  padding: 2rem 0;
+  padding: 1rem 0;
   border-top: 1px solid rgba(17, 17, 17, 0.08);
   border-bottom: 1px solid rgba(17, 17, 17, 0.08);
 }

@@ -1,0 +1,190 @@
+.what-i-do {
+  padding: 80px 4rem;
+  background: inherit;
+}
+
+.what-i-do-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ───────── HEADER ───────── */
+
+.section-label {
+  font-family: "Space Mono", monospace;
+  font-size: 16px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #b8933e;
+  margin-bottom: 28px;
+}
+
+.section-title {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 80px;
+  color: #111;
+  max-width: 900px;
+}
+
+/* ───────── GRID ───────── */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+/* ───────── CARD BASE ───────── */
+
+.card {
+  position: relative;
+  padding: 44px 36px 36px;
+  border-radius: 6px;
+
+  background: #f0ede6;
+  border: 1px solid rgba(13, 13, 13, 0.08);
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  height: 100%;
+  min-height: 340px;
+  overflow: hidden;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+              border-color 0.3s ease,
+              box-shadow 0.35s ease;
+}
+
+/* hover físico */
+.card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(13, 13, 13, 0.18);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+}
+
+/* ───────── GHOST NUMBER ───────── */
+
+.card__num {
+  position: absolute;
+  top: -28px;
+  right: -10px;
+
+  font-size: 150px;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+
+  color: rgba(13, 13, 13, 0.04);
+
+  pointer-events: none;
+  user-select: none;
+
+  transition: transform 0.5s ease, color 0.4s ease;
+}
+
+.card:hover .card__num {
+  transform: scale(1.05) translateY(-6px);
+  color: rgba(184, 147, 62, 0.08);
+}
+
+/* ───────── ACCENT LINE ───────── */
+
+.card__line {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 2px;
+  height: 0%;
+
+  background: #b8933e;
+
+  transition: height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card:hover .card__line {
+  height: 100%;
+}
+
+/* ───────── TAG ───────── */
+
+.card__tag {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #b8933e;
+  margin-bottom: 14px;
+}
+
+/* ───────── TITLE ───────── */
+
+.card__title {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #111;
+  margin: 0;
+  margin-bottom: 5px;
+  min-height: 56px; 
+}
+
+/* ───────── BODY ───────── */
+
+.card__body {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+  color: rgba(90, 85, 73, 0.9);
+}
+
+/* ───────── SKILLS ───────── */
+
+.card__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.skill-pill {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  
+  background: rgba(147, 148, 75, 0.06);
+  color: #7a7268;
+  transition: all 0.25s ease;
+}
+
+.card:hover .skill-pill {
+  background: rgba(184, 147, 62, 0.12);
+  color: #8a6b28;
+}
+
+/* ───────── RESPONSIVE ───────── */
+
+@media (max-width: 900px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .what-i-do {
+    padding: 50px 1.5rem;
+  }
+}
+
+

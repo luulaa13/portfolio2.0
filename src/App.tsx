@@ -4,7 +4,9 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Loader from "./components/Loader";
 import CustomCursor from "./components/CustomCursor";
-
+import WhatIDo from "./components/WhatIDo";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -31,7 +33,7 @@ useEffect(() => {
      <CustomCursor />
       <Navbar />
       <Hero/>
-       <section className="skills-banner">
+      <section className="skills-banner">
       <div className="skills-track">
         <div className="skills-row">
           <span>✦ RESEARCH</span>
@@ -56,6 +58,9 @@ useEffect(() => {
         </div>
       </div>
     </section>
+    <WhatIDo/>
+    <Contact/>
+    <Footer/>
      
     </>
   );
