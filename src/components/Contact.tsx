@@ -98,8 +98,8 @@ useEffect(() => {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  {/* Glow */}
-                  <ellipse cx="40" cy="38" rx="22" ry="22" fill="#FFF6C8" opacity="0.6" />
+                  
+                 
                   {/* Rays */}
                   <line x1="40" y1="4" x2="40" y2="12" stroke="#D4A017" strokeWidth="2" strokeLinecap="round" />
                   <line x1="62" y1="10" x2="57" y2="17" stroke="#D4A017" strokeWidth="2" strokeLinecap="round" />
@@ -127,13 +127,12 @@ useEffect(() => {
             </span>
             ?
           </h1>
-          <h1 className="contact-headline">I'd love to hear</h1>
-          <h1 className="contact-headline">about it.</h1>
+          <h1 className="contact-headline">I'd love to hear about it.</h1>
         </div>
  
         <p className="contact-description">
-          Frontend development, UX/UI design<br />
-          and product thinking for founders,<br />
+          Frontend development, UX/UI design
+          and product thinking <br/>for founders,
           startups and ambitious teams.
         </p>
       </div>

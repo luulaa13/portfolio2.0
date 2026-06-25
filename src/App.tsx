@@ -7,6 +7,8 @@ import CustomCursor from "./components/CustomCursor";
 import WhatIDo from "./components/WhatIDo";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Proyect from "./components/Proyect";
+
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -59,6 +61,7 @@ useEffect(() => {
       </div>
     </section>
     <WhatIDo/>
+    <Proyect/>
     <Contact/>
     <Footer/>
      
