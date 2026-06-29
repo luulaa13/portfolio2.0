@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Baumans&display=swap');
+
 .navbar {
   position: fixed;
   top: 0;
@@ -16,9 +18,8 @@
   gap: 15px;
 }
 
-.logo img {
-  width: 32px;
-  height: 32px;
+.logo p{
+  font-family: 'Baumans', sans-serif;
 }
 
 .status {
