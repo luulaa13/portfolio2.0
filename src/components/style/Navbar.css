@@ -18,8 +18,37 @@
   gap: 15px;
 }
 
-.logo p{
-  font-family: 'Baumans', sans-serif;
+.logo {
+  cursor: pointer;
+}
+
+.logo p {
+  position: relative;
+  display: inline-block;
+  font-family: 'Baumans',sans-serif;
+  font-size: 22px;
+}
+
+.logo p::after {
+  content: "_";
+  position: absolute;
+  right: -14px;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  color: #ff00bf; /* o el color de acento */
+}
+
+.logo:hover p::after {
+  opacity: 1;
+  transform: translateX(0);
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 .status {
@@ -29,6 +58,7 @@
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  font-family: 'Bricolage Grotesque', sans-serif;
 }
 
 .status:hover {
@@ -208,6 +238,7 @@
   font-size: 13px;
   font-weight: 500;
   color: #fff;
+  font-family: 'Bricolage Grotesque', sans-serif;
 }
 
 /* ⌘K (más sutil) */

@@ -85,7 +85,7 @@ function Navbar() {
         >
           <Menu size={16} />
 
-          <span className="menu-text">Menu</span>
+          <span className="menu-text">Menú</span>
 
           <span className="menu-shortcut">⌘K</span>
         </button>

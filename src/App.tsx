@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
+import {Hero} from "./components/Hero";
 import Loader from "./components/Loader";
 import CustomCursor from "./components/CustomCursor";
 import WhatIDo from "./components/WhatIDo";

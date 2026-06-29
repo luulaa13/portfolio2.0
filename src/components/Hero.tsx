@@ -1,64 +1,140 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { tween, wait, easings } from './animation'
+import './style/Hero.css'
 
-
-const words = [
-  "research",
-  "interfaces",
-  "productos",
-  "prototipos",
-  "frontend",
-  "experiencias",
-  "conversiones"
-];
-
-function Hero() {
-    const [index, setIndex] = useState(0);
-   const [animating, setAnimating] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimating(true);
-
-      setTimeout(() => {
-        setIndex((prev) => (prev + 1) % words.length);
-        setAnimating(false);
-      }, 300); // duración animación
-
-    }, 1800);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-   <section className="hero">
-  <div className="hero-container">
-
-    <span className="hero-label">
-      PRODUCT BUILDER — END TO END
-    </span>
-
-    <h1 className="hero-title">
-      De la idea
-      <br />
-      al impacto.
-    </h1>
-
-    <p className="hero-description">
-     Research, UX/UI, frontend y marketing digital
-     para construir productos de principio a fin.
-    </p>
-    <a href="#projects" className="hero-link">
-      hoy construyo:&nbsp;
-
-      <span className="word-wrapper">
-        <span className={`word ${animating ? "out" : "in"}`}>
-          {words[index]}
-        </span>
-      </span>
-    </a>
-  </div>
-</section>
-  );
+interface LineState {
+  opacity: number
+  translateY: number
 }
 
-export default Hero;
+interface NameState {
+  opacity: number
+  translateY: number
+}
+
+export function Hero() {
+  const l1Ref = useRef<HTMLParagraphElement>(null)
+  const l2Ref = useRef<HTMLParagraphElement>(null)
+  const l3Ref = useRef<HTMLParagraphElement>(null)
+
+  const [phaseOneOpacity, setPhaseOneOpacity] = useState(1)
+  const [l1, setL1] = useState<LineState>({ opacity: 0, translateY: 30 })
+  const [l2, setL2] = useState<LineState>({ opacity: 0, translateY: 30 })
+  const [l3, setL3] = useState<LineState>({ opacity: 0, translateY: 30 })
+
+  const [finalOpacity, setFinalOpacity] = useState(0)
+  const [bridgeOpacity, setBridgeOpacity] = useState(0)
+  const [nameBlockOpacity, setNameBlockOpacity] = useState(0)
+  const [dividerWidth, setDividerWidth] = useState(0)
+  const [nameState, setNameState] = useState<NameState>({ opacity: 0, translateY: 16 })
+  const [roleOpacity, setRoleOpacity] = useState(0)
+  const [cornerOpacity, setCornerOpacity] = useState(0)
+
+  const ran = useRef(false)
+
+  useEffect(() => {
+    if (ran.current) return
+    ran.current = true
+    document.fonts.ready.then(runSequence)
+  }, [])
+
+  async function runSequence() {
+    await wait(400)
+
+    // Lines appear
+    const setters = [setL1, setL2, setL3]
+    for (let i = 0; i < setters.length; i++) {
+      if (i > 0) await wait(150)
+      const set = setters[i]
+      tween(700, easings.outExpo, (t) => {
+        set({ opacity: t, translateY: 30 * (1 - t) })
+      })
+      await wait(200)
+    }
+
+    await wait(2000)
+
+    // Measure for convergence
+    const r1 = l1Ref.current?.getBoundingClientRect()
+    const r2 = l2Ref.current?.getBoundingClientRect()
+    const r3 = l3Ref.current?.getBoundingClientRect()
+    const mid = r2 ? r2.top + r2.height / 2 : 0
+    const d1 = r1 ? mid - (r1.top + r1.height / 2) : 0
+    const d3 = r3 ? mid - (r3.top + r3.height / 2) : 0
+
+    setFinalOpacity(1)
+    setBridgeOpacity(0)
+
+    // Converge + crossfade
+    await tween(850, easings.inOutQuart, (t, rawT) => {
+      const lineOpacity = 1 - Math.max(0, (rawT - 0.35) / 0.65)
+      const bridgeProg  = Math.max(0, (rawT - 0.4) / 0.6)
+      setL1({ opacity: lineOpacity, translateY: d1 * t })
+      setL2({ opacity: lineOpacity, translateY: 0 })
+      setL3({ opacity: lineOpacity, translateY: d3 * t })
+      setBridgeOpacity(bridgeProg)
+    })
+
+    setPhaseOneOpacity(0)
+
+    await wait(1800)
+
+    // Name block reveals
+    setNameBlockOpacity(1)
+    tween(650, easings.outExpo, (t) => setDividerWidth(260 * t))
+    await wait(100)
+    await tween(800, easings.outExpo, (t) => {
+      setNameState({ opacity: t, translateY: 16 * (1 - t) })
+    })
+    tween(600, easings.outExpo, (t) => setRoleOpacity(t))
+
+    // Corners staggered
+    ;[0, 80, 160, 240].forEach((delay) => {
+      setTimeout(() => {
+        tween(600, easings.outQuart, (t) => setCornerOpacity(t * 0.5))
+      }, delay)
+    })
+  }
+
+  const lineStyle = (s: LineState): CSSProperties => ({
+    opacity: s.opacity,
+    transform: `translateY(${s.translateY}px)`,
+  })
+
+  return (
+    <div className="hero">
+    
+      {/* Phase 1 */}
+      <div className="phase-one" style={{ opacity: phaseOneOpacity }}>
+        <p ref={l1Ref} className="line" style={lineStyle(l1)}>
+          <span className="keyword">Design</span> solves problems.
+        </p>
+        <p ref={l2Ref} className="line" style={lineStyle(l2)}>
+          <span className="keyword">Code</span> makes it real.
+        </p>
+        <p ref={l3Ref} className="line" style={lineStyle(l3)}>
+          <span className="keyword">Marketing</span> makes it grow.
+        </p>
+      </div>
+
+      {/* Phase final */}
+      <div className="phase-final" style={{ opacity: finalOpacity }}>
+        <p className="bridge" style={{ opacity: bridgeOpacity }}>
+          That's how I build products.
+        </p>
+        <div className="name-block" style={{ opacity: nameBlockOpacity }}>
+          <div className="divider" style={{ width: dividerWidth }} />
+          <h1
+            className="name"
+            style={{ opacity: nameState.opacity, transform: `translateY(${nameState.translateY}px)` }}
+          >
+            Lucia Garcia
+          </h1>
+          <p className="role" style={{ opacity: roleOpacity }}>
+            Product Builder
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}

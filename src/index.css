@@ -13,22 +13,9 @@
 }
 
 body {
-  background: #f5f0e6;
+  background: #ffffff;
   color: black;
   transition: all 0.4s ease;
-}
-
-body.dark {
-  background: #121212;
-  color: #f5f0e6;
-}
-
-body.dark .navbar {
-  background-color: rgba(18, 18, 18, 0.9);
-}
-
-body.dark .navbar::after {
-  background: rgba(245, 240, 230, 0.15);
 }
 
 html, body {
@@ -77,128 +64,6 @@ html, body {
   transform: scale(1.1);
 }
 
-.hero {
-  min-height: 92vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 20px 2rem 40px;
-  background: #f5f0e6;
-}
-
-.hero-container {
-  text-align: center;
-  width: 100%;
-}
-
-.hero-label {
-  display: block;
-  margin-top: 3rem;
-  margin-bottom: 2rem;
-  font-family: "Space Mono", monospace;
-  font-size: clamp(0.75rem, 1vw, 1rem);
-  letter-spacing: 0.3em;
-  color: #6f675f;
-}
-
-.hero-title {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  margin: 0;
-  font-size: clamp(4rem, 10vw, 11rem);
-  line-height: 0.9;
-  font-weight: 700;
-  color: #111;
-}
-
-.hero-description {
-  margin: 2rem auto 0;
-  max-width: 650px;
-  font-size: clamp(1rem, 1.5vw, 1.4rem);
-  line-height: 1.7;
-  font-family: "Hanken Grotesk", monospace;
-  color: #6f675f;
-}
-
-.hero-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 20px;
-  background: #111;
-  color: #d8cbb2;
-  border-radius: 999px;
-  font-family: "Space Mono", monospace;
-  text-decoration: none;         
-  justify-content: center;   
-  white-space: nowrap;  
-  width: 320px;
-  padding: 14px 24px;
-  font-size: 14px;    
-}
-
-.word-wrapper {
-  display: inline-block;
-  height: 1.2em;        
-  line-height: 1.2em;  
-  overflow: hidden;
-  position: relative;
-  vertical-align: bottom;
-   width: 140px; 
-}
-
-.word {
-  display: inline-block;
-  color: #3b82f6;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-/* sale hacia abajo */
-.word.out {
-  transform: translateY(100%);
-  opacity: 0;
-}
-
-/* entra desde arriba */
-.word.in {
-  transform: translateY(0%);
-  opacity: 1;
-}
-
-
-@media (max-width: 768px) {
-  .hero {
-    min-height: auto;
-    padding: 150px 1.5rem 150px;
-
-    align-items: flex-start;
-  }
-
-  .hero-title {
-    font-size: clamp(3.5rem, 15vw, 5rem);
-    line-height: 0.95;
-  }
-
-  .hero-description {
-    max-width: 100%;
-    font-size: 1rem;
-  }
-
-  .hero-link {
-    width: 100%;
-    max-width: 320px;
-  }
-
-  .hero-label {
-    letter-spacing: 0.15em;
-  }
-}
-
- @media (min-width: 769px) and (max-width: 1024px) {
-  .hero-title {
-    font-size: clamp(5rem, 10vw, 8rem);
-  }
-}
 
 .skills-banner {
   width: 100%;

@@ -1,0 +1,120 @@
+/* ── Fonts ── */
+/* Add to your index.html or global CSS:
+   @import url('https://fonts.googleapis.com/css2?family=Baumans&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500&display=swap');
+*/
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* ── Corners ── */
+.corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+.corner.tl { top: 2rem;    left: 2rem;  border-top:    1px solid #ccc; border-left:   1px solid #ccc; }
+.corner.tr { top: 2rem;    right: 2rem; border-top:    1px solid #ccc; border-right:  1px solid #ccc; }
+.corner.bl { bottom: 2rem; left: 2rem;  border-bottom: 1px solid #ccc; border-left:   1px solid #ccc; }
+.corner.br { bottom: 2rem; right: 2rem; border-bottom: 1px solid #ccc; border-right:  1px solid #ccc; }
+
+/* ── Phase 1: three lines ── */
+.phase-one {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  pointer-events: none;
+}
+
+.line {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #0a0a0a;
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+
+.line .keyword {
+  font-weight: 600;
+}
+
+/* ── Phase final: bridge + name ── */
+.phase-final {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.bridge {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: #0a0a0a;
+  white-space: nowrap;
+}
+
+.name-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 3rem;
+}
+
+.divider {
+  height: 1px;
+  background: #cccccc;
+}
+
+.name {
+  font-family: 'Baumans', sans-serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: #0a0a0a;
+  line-height: 1;
+  text-transform: uppercase;
+  will-change: transform, opacity;
+}
+
+.role {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(0.7rem, 1.1vw, 0.9rem);
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  color: #999999;
+  text-transform: uppercase;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .line,
+  .bridge,
+  .name,
+  .role,
+  .divider,
+  .corner {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
