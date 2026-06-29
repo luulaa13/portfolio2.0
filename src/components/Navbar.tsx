@@ -61,7 +61,7 @@ function Navbar() {
       <nav className="navbar">
         <div className="nav-left">
           <div className="logo">
-            <img src={logo} alt="Logo" />
+            <p>LUCIA GARCIA</p>
           </div>
 
          
