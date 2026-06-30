@@ -2,7 +2,7 @@
   width: 100vw;
   padding: 20px 0; /* solo vertical */
   margin: 0;
-  background-color: #f5f0e6;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
 }
@@ -119,6 +119,38 @@ body {
   transition: transform 0.6s ease;
   z-index: 0;
   
+}
+/* botón esquina */
+.project-action {
+  position: absolute;
+  right: 50px;
+  bottom: 18px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #c9951a;
+  backdrop-filter: blur(10px);
+  color: white;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(8px) scale(0.9);
+  transition: all 0.25s ease;
+  z-index: 5;
+}
+
+/* hover */
+.project-card:hover .project-action {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* hover micro feedback */
+.project-action:hover {
+  transform: scale(1.05);
+  background: rgba(175, 144, 3, 0.25);
 }
 
 .project-card::after {

@@ -1,0 +1,86 @@
+{
+  "projects": {
+    "title": "TRABAJOS SELECCIONADOS",
+    "project": "PROYECTO",
+    "count": "2 TRABAJOS SELECCIONADOS",
+    "behance": "EXPLORAR EN BEHANCE",
+    "tags": {
+      "uxui": "UX/UI",
+      "branding": "Branding",
+      "react": "React",
+      "research": "Investigación"
+    },
+    "items": {
+      "artmus": "Artmus app",
+      "next": "NEXT app"
+    }
+  },
+  "whatIDo": {
+    "label": "Qué hago",
+    "title": "Diseño, construyo y hago crecer productos digitales",
+    "cards": [
+      {
+        "tag": "Diseño",
+        "headline": "Interfaces intuitivas",
+        "description": "Diseño interfaces y experiencias de usuario intuitivas centradas en claridad y conversión.",
+        "skills": ["Investigación UX", "Figma", "Design Systems"]
+      },
+      {
+        "tag": "Desarrollo",
+        "headline": "Frontends rápidos y escalables",
+        "description": "Desarrollo aplicaciones frontend rápidas, escalables y accesibles.",
+        "skills": ["React", "TypeScript", "Next.js"]
+      },
+      {
+        "tag": "Crecimiento",
+        "headline": "Estrategia e impacto",
+        "description": "Pienso en estrategia de producto, analítica e impacto en negocio.",
+        "skills": ["Analítica", "CRO", "Product Thinking"]
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "© 2026",
+    "madeBy": "Diseñado y desarrollado por Lucia."
+  },
+  "contact": {
+    "label": "CONTACTO",
+    "headline1": "¿Tienes una ",
+    "headline2": "Me encantaría conocerla.",
+    "description": "Desarrollo frontend, diseño UX/UI y pensamiento de producto para fundadores, startups y equipos ambiciosos.",
+    "location": "Madrid, España · GMT+2",
+    "email": "Correo"
+  },
+   "hero": {
+    "lines": [
+      {
+        "keyword": "Diseño",
+        "text": "resuelve problemas."
+      },
+      {
+        "keyword": "Código",
+        "text": "lo hace realidad."
+      },
+      {
+        "keyword": "Marketing",
+        "text": "hace que crezca."
+      }
+    ],
+    "bridge": "Así es como construyo productos.",
+    "name": "Lucia Garcia",
+    "role": "Constructora de producto"
+  },
+  "nav": {
+    "available": "Disponible",
+    "menu": "Menú",
+    "search": "Buscar o navegar...",
+    "noResults": "Sin resultados",
+    "hint": "ESC para cerrar • ⌘K para abrir",
+    "actions": {
+      "projects": "Proyectos",
+      "stack": "Stack",
+      "about": "Sobre mí",
+      "contact": "Contacto"
+    }
+  }
+}

@@ -1,19 +1,20 @@
 import { useRef, useEffect, type JSX } from "react";
+import { useTranslation } from "react-i18next";
 import "./style/Projects.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import artmusImg from "../assets/artmus2.png";
 import nextImg from "../assets/next.png";
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Proyect(): JSX.Element {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
-    const ctx = gsap.context((self) => {
-
+    const ctx = gsap.context(() => {
       const section = sectionRef.current;
-
       if (!section) return;
 
       gsap.from(section.querySelector(".projects-label"), {
@@ -38,7 +39,6 @@ export default function Proyect(): JSX.Element {
         duration: 1,
         ease: "power3.out",
       });
-
     }, sectionRef);
 
     return () => ctx.revert();
@@ -48,64 +48,80 @@ export default function Proyect(): JSX.Element {
     <section className="projects-section" id="projects" ref={sectionRef}>
       
       <div className="projects-label">
-        SELECTED WORK
+        {t("projects.title")}
       </div>
 
       {/* PROJECT 1 */}
       <div className="project-card project-1">
-         <div
-            className="project-bg"
-            style={{ backgroundImage: `url(${artmusImg})` }}
+        <div
+          className="project-bg"
+          style={{ backgroundImage: `url(${artmusImg})` }}
         />
-        <div className="project-content">
 
-          <span className="project-meta">01 — PROJECT</span>
-          Artmus app 
+        <div className="project-content">
+          <span className="project-meta">
+            01 — {t("projects.project")}
+          </span>
+
+          {t("projects.items.artmus")}
+
           <div className="project-tags">
-            <span>UX/UI</span>
-            <span>Branding</span>
-            <span>React</span>
-            <span>Research</span>
+            <span>{t("projects.tags.uxui")}</span>
+            <span>{t("projects.tags.branding")}</span>
+            <span>{t("projects.tags.react")}</span>
+            <span>{t("projects.tags.research")}</span>
           </div>
+        </div>
+
+        <div className="project-action">
+          <span>↗</span>
         </div>
       </div>
 
       {/* PROJECT 2 */}
       <div className="project-card project-2">
-         <div
-            className="project-bg"
-            style={{ backgroundImage: `url(${nextImg})` }}
+        <div
+          className="project-bg"
+          style={{ backgroundImage: `url(${nextImg})` }}
         />
+
         <div className="project-content">
-          <span className="project-meta">02 — PROJECT</span>
-          NEXT app
+          <span className="project-meta">
+            02 — {t("projects.project")}
+          </span>
+
+          {t("projects.items.next")}
+
           <div className="project-tags">
-            <span>UX/UI</span>
-            <span>Branding</span>
-            <span>React</span>
-            <span>Research</span>
+            <span>{t("projects.tags.uxui")}</span>
+            <span>{t("projects.tags.branding")}</span>
+            <span>{t("projects.tags.react")}</span>
+            <span>{t("projects.tags.research")}</span>
           </div>
         </div>
-      </div>
-      <div className="projects-footer">
 
+        <div className="project-action">
+          <span>↗</span>
+        </div>
+      </div>
+
+      <div className="projects-footer">
         <span className="projects-count">
-            2 SELECTED WORK
+          {t("projects.count")}
         </span>
 
         <a
-        href="https://www.behance.net/luciagarcia73"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="projects-cta"
-      >
-        EXPLORE ON BEHANCE
-        <span>↗</span>
-      </a>
+          href="https://www.behance.net/luciagarcia73"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="projects-cta"
+        >
+          {t("projects.behance")}
+          <span>↗</span>
+        </a>
+      </div>
 
-        </div>
       <div className="projects-divider"></div>
-
     </section>
   );
 }

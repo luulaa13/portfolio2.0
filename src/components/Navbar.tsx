@@ -1,26 +1,53 @@
 import "./style/Navbar.css";
 import logo from "../assets/avatar.ico";
 
-import { useEffect, useState } from "react";
-import { Menu} from "lucide-react";
+import { useEffect, useState, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import { Menu } from "lucide-react";
+import LanguageSwitch from "./LanguageSwitch";
 
 function Navbar() {
+  const { t } = useTranslation();
+
   const [commandOpen, setCommandOpen] = useState(false);
   const [query, setQuery] = useState("");
 
- const handleEnter = () => {
-  if (filtered.length === 0) return;
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScroll = useRef(0);
 
-  const match =
-    filtered.find((a) =>
-      a.label.toLowerCase() === query.toLowerCase()
-    ) || filtered[0];
+  // 🌍 actions ahora dependen de idioma
+  const actions = [
+    { label: t("nav.actions.projects"), target: "#projects" },
+    { label: t("nav.actions.stack"), target: "#stack" },
+    { label: t("nav.actions.about"), target: "#about" },
+    { label: t("nav.actions.contact"), target: "#contact" },
+  ];
 
-  handleNavigate(match.target);
-};
+  const filtered = actions.filter((a) =>
+    a.label.toLowerCase().includes(query.toLowerCase())
+  );
 
+  const handleNavigate = (target: string) => {
+    document.querySelector(target)?.scrollIntoView({
+      behavior: "smooth",
+    });
+    setCommandOpen(false);
+    setQuery("");
+  };
 
-  // ⌨️ Keyboard shortcut ⌘K
+  const handleEnter = () => {
+    if (filtered.length === 0) return;
+
+    const match =
+      filtered.find(
+        (a) => a.label.toLowerCase() === query.toLowerCase()
+      ) || filtered[0];
+
+    handleNavigate(match.target);
+  };
+
+  // ⌨️ Keyboard shortcut
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
@@ -37,58 +64,57 @@ function Navbar() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const actions = [
-    { label: "Proyectos", target: "#projects" },
-    { label: "Stack", target: "#stack" },
-    { label: "Contacto", target: "#contact" },
-  ];
+  // scroll behavior
+  useEffect(() => {
+    const onScroll = () => {
+      const current = window.scrollY;
 
-  const filtered = actions.filter((a) =>
-    a.label.toLowerCase().includes(query.toLowerCase())
-  );
+      setScrolled(current > 30);
 
-  const handleNavigate = (target: string) => {
-    document.querySelector(target)?.scrollIntoView({
-      behavior: "smooth",
-    });
-    setCommandOpen(false);
-    setQuery("");
-  };
+      if (current > lastScroll.current && current > 100) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+
+      lastScroll.current = current;
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
-      {/* NAVBAR MINIMAL */}
-      <nav className="navbar">
+      {/* NAVBAR */}
+      <nav className={`navbar ${scrolled ? "scrolled" : ""} ${hidden ? "hidden" : ""}`}>
+
         <div className="nav-left">
           <div className="logo">
             <p>LUCIA GARCIA</p>
           </div>
-
-         
         </div>
 
         <div className="nav-right">
-         
-            <a
+          <a
             href="https://www.linkedin.com/in/luciauxui/"
             target="_blank"
             rel="noopener noreferrer"
             className="status"
           >
             <span className="dot"></span>
-            <span>Disponible</span>
+            <span>{t("nav.available")}</span>
           </a>
-        
-        <button
-          className="menu-btn"
-          onClick={() => setCommandOpen(true)}
-        >
-          <Menu size={16} />
 
-          <span className="menu-text">Menú</span>
-
-          <span className="menu-shortcut">⌘K</span>
-        </button>
+          <button
+            className="menu-btn"
+            onClick={() => setCommandOpen(true)}
+          >
+            <Menu size={16} />
+            <span className="menu-text">{t("nav.menu")}</span>
+            <span className="menu-shortcut">⌘K</span>
+          </button>
+          <LanguageSwitch />
 
         </div>
       </nav>
@@ -97,19 +123,19 @@ function Navbar() {
       {commandOpen && (
         <div className="cmd-overlay" onClick={() => setCommandOpen(false)}>
           <div className="cmd-box" onClick={(e) => e.stopPropagation()}>
-            
-          <input
-            autoFocus
-            className="cmd-input"
-            placeholder="Search or jump to..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleEnter();
-              }
-            }}
-          />
+
+            <input
+              autoFocus
+              className="cmd-input"
+              placeholder={t("nav.search")}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleEnter();
+                }
+              }}
+            />
 
             <div className="cmd-list">
               {filtered.length > 0 ? (
@@ -123,12 +149,14 @@ function Navbar() {
                   </div>
                 ))
               ) : (
-                <div className="cmd-empty">No results</div>
+                <div className="cmd-empty">
+                  {t("nav.noResults")}
+                </div>
               )}
             </div>
 
             <div className="cmd-hint">
-              Press ESC to close • ⌘K to open
+              {t("nav.hint")}
             </div>
 
           </div>

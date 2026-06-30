@@ -1,11 +1,7 @@
-/* ── Fonts ── */
-/* Add to your index.html or global CSS:
-   @import url('https://fonts.googleapis.com/css2?family=Baumans&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500&display=swap');
-*/
-
 .hero {
   width: 100%;
-  height: 90vh;
+  min-height: 100vh;
+  min-height: 100svh; /* mejor en mobile moderno */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,20 +9,12 @@
   position: relative;
   background: #ffffff;
   overflow: hidden;
+  cursor: default;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
-/* ── Corners ── */
-.corner {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-}
-.corner.tl { top: 2rem;    left: 2rem;  border-top:    1px solid #ccc; border-left:   1px solid #ccc; }
-.corner.tr { top: 2rem;    right: 2rem; border-top:    1px solid #ccc; border-right:  1px solid #ccc; }
-.corner.bl { bottom: 2rem; left: 2rem;  border-bottom: 1px solid #ccc; border-left:   1px solid #ccc; }
-.corner.br { bottom: 2rem; right: 2rem; border-bottom: 1px solid #ccc; border-right:  1px solid #ccc; }
-
-/* ── Phase 1: three lines ── */
+/* ── PHASE ONE ── */
 .phase-one {
   position: absolute;
   width: 100%;
@@ -35,86 +23,156 @@
   align-items: center;
   gap: 0.25rem;
   pointer-events: none;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .line {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-size: clamp(1.6rem, 5vw, 4.5rem);
   font-weight: 300;
   letter-spacing: -0.02em;
   color: #0a0a0a;
-  white-space: nowrap;
-  will-change: transform, opacity;
+
+  text-align: center;
+  max-width: 100%;
+  word-break: break-word;
 }
 
-.line .keyword {
-  font-weight: 600;
-}
-
-/* ── Phase final: bridge + name ── */
+/* ── FINAL PHASE ── */
 .phase-final {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .bridge {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(2.2rem, 5vw, 4.5rem);
-  font-weight: 300;
+  font-size: clamp(1.8rem, 5.5vw, 5rem);
+  font-weight: 400;
   letter-spacing: -0.01em;
   color: #0a0a0a;
-  white-space: nowrap;
+  text-align: center;
+  max-width: 100%;
 }
 
+/* ── NAME BLOCK ── */
 .name-block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  margin-top: 3rem;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  max-width: 100%;
 }
 
 .divider {
+  width: 60px;
   height: 1px;
   background: #cccccc;
+  opacity: 0.8;
 }
 
 .name {
   font-family: 'Baumans', sans-serif;
-  font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+  font-size: clamp(0.85rem, 2vw, 1.3rem);
   font-weight: 400;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   color: #0a0a0a;
-  line-height: 1;
   text-transform: uppercase;
-  will-change: transform, opacity;
+  text-align: center;
 }
 
 .role {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(0.7rem, 1.1vw, 0.9rem);
+  font-size: clamp(0.65rem, 1.5vw, 0.8rem);
   font-weight: 400;
   letter-spacing: 0.3em;
   color: #999999;
   text-transform: uppercase;
+  text-align: center;
 }
 
-/* ── Reduced motion ── */
+/* ── STAGE (FIXED / SAFE) ── */
+.stage {
+  display: flex;
+  gap: 10px;
+  font-size: clamp(24px, 6vw, 48px);
+  font-weight: 300;
+  font-family: Inter, system-ui;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.word {
+  display: inline-block;
+  will-change: transform, opacity, filter, letter-spacing;
+}
+
+/* ── MOBILE TWEAKS ── */
+@media (max-width: 768px) {
+  .name-block {
+    margin-top: 1.5rem;
+  }
+
+  .line {
+    font-size: clamp(1.4rem, 6vw, 3rem);
+  }
+
+  .bridge {
+    font-size: clamp(1.6rem, 6vw, 3.2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 0 16px;
+  }
+
+  .name-block {
+    margin-top: 1.2rem;
+    gap: 0.35rem;
+  }
+
+  .divider {
+    width: 40px;
+  }
+
+  .line {
+    font-size: 1.3rem;
+  }
+
+  .bridge {
+    font-size: 1.4rem;
+  }
+
+  .name {
+    font-size: 0.85rem;
+  }
+
+  .role {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+  }
+}
+
+/* ── SAFETY: REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   .line,
   .bridge,
   .name,
   .role,
   .divider,
-  .corner {
+  .stage,
+  .word {
     transition: none !important;
     animation: none !important;
   }
 }
-

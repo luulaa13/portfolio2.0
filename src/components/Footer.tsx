@@ -1,4 +1,5 @@
 import type { JSX } from "react";
+import { useTranslation } from "react-i18next";
 import {
   FaGithub,
   FaLinkedin,
@@ -7,12 +8,15 @@ import {
 import "./style/Footer.css";
 
 export default function Footer(): JSX.Element {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer">
       <div className="footer-container">
+
         <div className="footer-left">
-          <span>© 2026</span>
-          <span>Designed & developed by Lucia.</span>
+          <span>{t("footer.copyright")}</span>
+          <span>{t("footer.madeBy")}</span>
         </div>
 
         <div className="footer-right">
@@ -22,7 +26,7 @@ export default function Footer(): JSX.Element {
             rel="noopener noreferrer"
             aria-label="GitHub"
           >
-            <FaGithub/>
+            <FaGithub />
           </a>
 
           <a
@@ -40,9 +44,10 @@ export default function Footer(): JSX.Element {
             rel="noopener noreferrer"
             aria-label="Behance"
           >
-           <FaBehance />
+            <FaBehance />
           </a>
         </div>
+
       </div>
     </footer>
   );

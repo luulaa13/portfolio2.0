@@ -1,0 +1,86 @@
+{
+  "projects": {
+    "title": "SELECTED WORK",
+    "project": "PROJECT",
+    "count": "2 SELECTED WORK",
+    "behance": "EXPLORE ON BEHANCE",
+    "tags": {
+      "uxui": "UX/UI",
+      "branding": "Branding",
+      "react": "React",
+      "research": "Research"
+    },
+    "items": {
+      "artmus": "Artmus app",
+      "next": "NEXT app"
+    }
+  },
+  "whatIDo": {
+    "label": "What I do",
+    "title": "I design, build and grow digital products",
+    "cards": [
+      {
+        "tag": "Design",
+        "headline": "Intuitive interfaces",
+        "description": "I design intuitive interfaces and user experiences focused on clarity and conversion.",
+        "skills": ["UX Research", "Figma", "Design Systems"]
+      },
+      {
+        "tag": "Build",
+        "headline": "Fast, scalable frontends",
+        "description": "I develop fast, scalable and accessible frontend applications.",
+        "skills": ["React", "TypeScript", "Next.js"]
+      },
+      {
+        "tag": "Grow",
+        "headline": "Strategy & impact",
+        "description": "I think in product strategy, analytics and business impact.",
+        "skills": ["Analytics", "CRO", "Product Thinking"]
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "© 2026",
+    "madeBy": "Designed & developed by Lucia."
+  },
+   "contact": {
+    "label": "CONTACT",
+    "headline1": "Have an ",
+    "headline2": "I'd love to hear about it.",
+    "description": "Frontend development, UX/UI design and product thinking for founders, startups and ambitious teams.",
+    "location": "Madrid, Spain · GMT+2",
+    "email": "Email"
+  },
+   "hero": {
+    "lines": [
+      {
+        "keyword": "Design",
+        "text": "solves problems."
+      },
+      {
+        "keyword": "Code",
+        "text": "makes it real."
+      },
+      {
+        "keyword": "Marketing",
+        "text": "makes it grow."
+      }
+    ],
+    "bridge": "That's how I build products.",
+    "name": "Lucia Garcia",
+    "role": "Product Builder"
+  },
+    "nav": {
+    "available": "Available",
+    "menu": "Menu",
+    "search": "Search or jump to...",
+    "noResults": "No results",
+    "hint": "ESC to close • ⌘K to open",
+    "actions": {
+      "projects": "Projects",
+      "stack": "Stack",
+      "about": "About me",
+      "contact": "Contact"
+    }
+  }
+}
