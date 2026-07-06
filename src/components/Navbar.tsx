@@ -3,11 +3,14 @@ import logo from "../assets/avatar.ico";
 
 import { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 import { Menu } from "lucide-react";
 import LanguageSwitch from "./LanguageSwitch";
 
 function Navbar() {
   const { t } = useTranslation();
+  const location = useLocation();
+  const isProjectPage = location.pathname.startsWith("/projects/");
 
   const [commandOpen, setCommandOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -87,7 +90,7 @@ function Navbar() {
   return (
     <>
       {/* NAVBAR */}
-      <nav className={`navbar ${scrolled ? "scrolled" : ""} ${hidden ? "hidden" : ""}`}>
+      <nav className={`navbar ${scrolled ? "scrolled" : ""} ${(hidden || isProjectPage) ? "hidden" : ""}`}>
 
         <div className="nav-left">
           <div className="logo">

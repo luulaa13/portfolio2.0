@@ -1,0 +1,48 @@
+.project-page{
+    background:#fff;
+    color:#111;
+}
+
+.project-hero{
+    min-height:100vh;
+}
+
+.project-overview{
+    min-height:55vh;
+}
+
+.project-statement{
+    min-height:80vh;
+}
+
+.project-challenge{
+    min-height:80vh;
+}
+
+.project-image{
+    height:100vh;
+}
+
+.project-research{
+    min-height:100vh;
+}
+
+.project-design{
+    min-height:100vh;
+}
+
+.project-showcase{
+    min-height:120vh;
+}
+
+.project-development{
+    min-height:80vh;
+}
+
+.project-reflection{
+    min-height:70vh;
+}
+
+.project-next{
+    min-height:100vh;
+}

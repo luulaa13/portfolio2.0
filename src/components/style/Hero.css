@@ -1,7 +1,7 @@
 .hero {
   width: 100%;
-  min-height: 100vh;
-  min-height: 100svh; /* mejor en mobile moderno */
+  min-height: 95vh;
+  min-height: 95svh; /* mejor en mobile moderno */
   display: flex;
   flex-direction: column;
   align-items: center;

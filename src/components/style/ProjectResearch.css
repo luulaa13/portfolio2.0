@@ -1,0 +1,87 @@
+.project-research {
+  background: #ffffff;
+}
+
+.project-research-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 64px 40px 120px;
+}
+
+.project-research-label {
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #b8933e;
+  margin-bottom: 28px;
+}
+
+.project-research-question {
+  margin: 0 0 24px;
+  max-width: 720px;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: #111;
+}
+
+.project-research-intro {
+  margin: 0 0 56px;
+  max-width: 700px;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #3a3a35;
+}
+
+.project-research-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.project-research-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-research-stat::before {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 1px;
+  margin-bottom: 24px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.project-research-stat-value {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1;
+  color: #b8933e;
+}
+
+.project-research-stat-label {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #3a3a35;
+}
+
+@media (max-width: 900px) {
+  .project-research-stats {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-research-inner {
+    padding: 40px 24px 80px;
+  }
+}

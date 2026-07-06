@@ -82,5 +82,123 @@
       "about": "About me",
       "contact": "Contact"
     }
+  },
+  "about": {
+    "label": "About",
+
+    "title": {
+      "line1": "It all started with",
+      "accent": "code."
+    },
+
+    "text": {
+      "0": "I've always been the kind of person who opens a code editor before a presentation. I enjoy building, testing, failing and starting over.",
+      "1": "Over time I realized that a great product isn't just about writing good code. It's about understanding why it exists, who it's for and how to create something people genuinely enjoy using. That's why I expanded into design and marketing.",
+      "2": "What truly motivates me is creating something from scratch. That moment when nothing is decided yet and everything is still possible. That's where I feel I can contribute the most."
+    },
+
+    "journey": [
+      {
+        "label": "Code",
+        "description": "The starting point. Build, test, break and build again."
+      },
+      {
+        "label": "Perspective",
+        "description": "Design and marketing as a way of understanding the why, not just the how."
+      },
+      {
+        "label": "Creation",
+        "description": "Where I bring the most value: when everything is still full of possibilities."
+      }
+    ],
+
+    "name": "Lucía García",
+    "location": "Madrid, Spain",
+    "photoAlt": "Portrait of Lucía García"
+  },
+  "caseStudies": {
+    "scroll": "Scroll to explore",
+    "overview": {
+      "label": "Project overview"
+    },
+    "challenge": {
+      "label": "The challenge"
+    },
+    "research": {
+      "label": "Research"
+    },
+    "meta": {
+      "year": "Year",
+      "duration": "Duration",
+      "role": "Role",
+      "tools": "Tools",
+      "months": "months"
+    },
+    "artmus": {
+      "title": "ArtMus",
+      "subtitle": "Every museum. Every exhibition. One place to plan your visit",
+      "statement": "ArtMus makes discovering museums and exhibitions feel like one experience instead of a scattered search across apps and websites. <br> A single platform brings each city's cultural offer together into something clear and visual.",
+      "challenge": {
+        "question": "How could we help museum visitors easily discover what they're about to see and plan their visit quickly and intuitively?",
+        "points": [
+          {
+            "title": "Not enough detail",
+            "body": "Users don't know which artworks or artists they'll find in each exhibition."
+          },
+          {
+            "title": "Confusing navigation",
+            "body": "Important information is scattered and hard to find."
+          },
+          {
+            "title": "Inefficient planning",
+            "body": "Booking and organizing a visit requires too many steps or different tools."
+          }
+        ]
+      },
+      "research": {
+        "question": "How did we approach research?",
+        "intro": "We looked at how people discover and plan cultural visits today, combining short interviews with a competitive analysis of museum apps and websites.",
+        "stats": [
+          { "value": "12", "label": "Interviews with museum visitors" },
+          { "value": "6", "label": "Museum apps and websites analyzed" },
+          { "value": "3", "label": "Cities covered in the research" }
+        ]
+      }
+    },
+    "next": {
+      "title": "NEXT",
+      "subtitle": "One goal. One action a day. Progress you can actually see.",
+      "statement": "NEXT turns big goals into small daily actions. The focus is reducing the friction between setting an intention and actually following through, with an interface that prioritizes clarity over data density.",
+      "challenge": {
+        "question": "How many times have you started something with excitement and dropped it halfway through?",
+        "intro": "We talked to 32 people to understand what gets in the way between them and their goals. Three patterns kept coming up.",
+        "points": [
+          {
+            "title": "They don't know what to do next",
+            "body": "45% of users get stuck on a regular basis. It's not a lack of motivation — it's a lack of structure. Without a clear next step, the intention to act turns into paralysis.",
+            "quote": "\"I don't know where to start\" · \"I don't know what the next step is\""
+          },
+          {
+            "title": "They don't see the progress they've already made",
+            "body": "Users give up when they feel like they're not moving forward. But when they look back, they do see it. The problem isn't a lack of progress — it's that no one is showing it to them.",
+            "quote": "\"When I look back I can actually see I've made progress, and that motivates me\""
+          },
+          {
+            "title": "Motivation fades before the result arrives",
+            "body": "Meaningful goals take months. Initial motivation runs out in weeks. Without small rewards along the way, dropping off becomes almost inevitable.",
+            "quote": "\"I lack motivation\" · \"Not seeing results makes me quit\""
+          }
+        ]
+      },
+      "research": {
+        "question": "How did we approach research?",
+        "intro": "Beyond the initial 32 interviews, we analyzed real usage of existing habit apps to understand where and when people dropped off.",
+        "stats": [
+          { "value": "32", "label": "People interviewed" },
+          { "value": "5", "label": "Habit apps analyzed" },
+          { "value": "68%", "label": "Drop off within the first two weeks" }
+        ]
+      }
+    }
   }
 }

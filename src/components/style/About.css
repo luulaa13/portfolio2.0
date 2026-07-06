@@ -1,0 +1,210 @@
+.about-section {
+  --about-bg: #ffffff;
+  --about-ink: #111111;
+  --about-ink-soft: #6b6b63;
+  --about-gold: #c69a3c;
+  --about-line: #e9e7e0;
+  --about-card: #f4f2ec;
+
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 140px 40px 160px;
+  background: var(--about-bg);
+  color: var(--about-ink);
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 96px;
+  align-items: start;
+}
+
+.about-label {
+  font-family: "Space Mono", monospace;
+  font-size: 16px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #b8933e;
+
+  margin-bottom: 60px;
+}
+
+.about-heading {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(3rem, 5vw, 4.8rem);
+  font-weight: 700;
+  line-height: .95;
+  letter-spacing: -.04em;
+
+  margin-bottom: 42px;
+
+  color: #111;
+}
+
+.about-accent {
+  color: var(--about-gold);
+}
+
+.about-lede {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  line-height: 1.75;
+  color: #3a3a35;
+  max-width: 560px;
+}
+
+.about-lede p {
+  margin-bottom: 22px;
+}
+
+.about-lede p:last-child {
+  margin-bottom: 0;
+}
+
+.about-journey {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--about-line);
+  padding-top: 32px;
+}
+
+.about-journey-step {
+  padding-right: 24px;
+  position: relative;
+}
+
+
+.about-journey-num {
+  font-family: "Space Mono", monospace;
+  font-size: 13px;
+  letter-spacing: .12em;
+  color: #c9951a;
+  margin-bottom: 14px;
+}
+
+.about-journey-label {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.about-journey-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #666;
+}
+
+.about-photo-wrap {
+  position: relative;
+  margin-top: 100px;
+}
+
+.about-photo-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--about-card);
+}
+
+.about-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1.5px dashed #cfcabb;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: #a39f8f;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 24px;
+}
+
+.about-placeholder-icon {
+  width: 32px;
+  height: 32px;
+  opacity: 0.5;
+}
+
+.about-photo-dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--about-gold);
+  bottom: -7px;
+  left: 32px;
+  box-shadow: 0 0 0 6px var(--about-bg);
+}
+
+.about-photo-caption {
+  margin-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--about-line);
+  padding-top: 16px;
+}
+
+.about-photo-name {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--about-ink);
+}
+
+.about-photo-loc {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--about-ink-soft);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 860px) {
+  .about-section {
+    padding: 90px 24px 100px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .about-journey {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+}
+
+.about-photo-frame {
+  overflow: hidden;
+}
+
+.about-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .8s cubic-bezier(.22,1,.36,1);
+}
+
+.about-photo-frame:hover .about-photo-img {
+  transform: scale(1.03);
+}

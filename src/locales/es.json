@@ -82,5 +82,123 @@
       "about": "Sobre mí",
       "contact": "Contacto"
     }
+  },
+   "about": {
+    "label": "Sobre mí",
+
+    "title": {
+      "line1": "Todo empezó con el",
+      "accent": "código."
+    },
+
+    "text": {
+      "0": "Siempre he sido de abrir un editor antes que una presentación. Me gusta construir, probar, equivocarme y volver a empezar.",
+      "1": "Con el tiempo entendí que un buen producto no depende solo de una buena implementación. También importa saber por qué existe, para quién se crea y cómo hacer que alguien quiera usarlo. Por eso terminé aprendiendo diseño y marketing, porque cada nuevo reto me obligaba a mirar el producto desde otra perspectiva.",
+      "2": "Lo que realmente me motiva es crear algo desde cero. Ese momento en el que todavía no hay respuestas, solo posibilidades. Es ahí donde siento que puedo aportar más."
+    },
+
+    "journey": [
+      {
+        "label": "Código",
+        "description": "El punto de partida. Construir, probar, romper y volver a empezar."
+      },
+      {
+        "label": "Perspectiva",
+        "description": "Diseño y marketing como forma de entender el porqué, no solo el cómo."
+      },
+      {
+        "label": "Creación",
+        "description": "Donde más aporto: el momento en que todo es aún posibilidad."
+      }
+    ],
+
+    "name": "Lucía García",
+    "location": "Madrid, España",
+    "photoAlt": "Retrato de Lucía García"
+  },
+  "caseStudies": {
+    "scroll": "Desliza para explorar",
+    "overview": {
+      "label": "Resumen del proyecto"
+    },
+    "challenge": {
+      "label": "El reto"
+    },
+    "research": {
+      "label": "Investigación"
+    },
+    "meta": {
+      "year": "Año",
+      "duration": "Duración",
+      "role": "Rol",
+      "tools": "Herramientas",
+      "months": "meses"
+    },
+    "artmus": {
+      "title": "ArtMus",
+      "subtitle": "Todos los museos. Todas las exposiciones. Un solo lugar para planificar tu visita.",
+      "statement": "ArtMus nace para que descubrir museos y exposiciones deje de ser una búsqueda dispersa entre varias apps y webs. <br> Una sola plataforma centraliza la oferta cultural de cada ciudad y la convierte en una experiencia clara y visual.",
+      "challenge": {
+        "question": "¿Cómo podríamos ayudar a los visitantes del museo a descubrir fácilmente qué van a ver y planificar su visita de forma rápida e intuitiva?",
+        "points": [
+          {
+            "title": "Información poco detallada",
+            "body": "Los usuarios no saben qué obras o artistas encontrarán en cada exposición."
+          },
+          {
+            "title": "Experiencia de navegación confusa",
+            "body": "La información importante está dispersa y cuesta localizarla."
+          },
+          {
+            "title": "Planificación poco eficiente",
+            "body": "Reservar y organizar una visita requiere demasiados pasos o herramientas diferentes."
+          }
+        ]
+      },
+      "research": {
+        "question": "¿Cómo lo investigamos?",
+        "intro": "Analizamos cómo la gente descubre y planifica visitas culturales hoy, combinando entrevistas cortas con un análisis competitivo de apps y webs de museos.",
+        "stats": [
+          { "value": "12", "label": "Entrevistas con visitantes de museos" },
+          { "value": "6", "label": "Apps y webs de museos analizadas" },
+          { "value": "3", "label": "Ciudades cubiertas en la investigación" }
+        ]
+      }
+    },
+    "next": {
+      "title": "NEXT",
+      "subtitle": "Un objetivo. Una acción al día. Un progreso que realmente puedes ver.",
+      "statement": "NEXT ayuda a convertir objetivos grandes en pequeñas acciones diarias. El foco está en reducir la fricción entre proponerse algo y realmente hacerlo, con una interfaz que prioriza claridad sobre cantidad de datos.",
+      "challenge": {
+        "question": "¿Cuántas veces has empezado algo con ganas y lo has dejado a medias?",
+        "intro": "Hablamos con 32 personas para entender qué se interpone entre sus objetivos y ellas. Tres patrones aparecieron una y otra vez.",
+        "points": [
+          {
+            "title": "No saben qué hacer a continuación",
+            "body": "El 45% de los usuarios se bloquea con regularidad. No es falta de motivación — es falta de estructura. Sin un siguiente paso claro, la intención de actuar se convierte en parálisis.",
+            "quote": "\"No sé por dónde empezar\" · \"No sé cuál es el siguiente paso\""
+          },
+          {
+            "title": "No ven el progreso que ya han hecho",
+            "body": "Los usuarios abandonan cuando sienten que no avanzan. Pero cuando miran hacia atrás, sí lo ven. El problema no es la falta de progreso — es que nadie se lo muestra.",
+            "quote": "\"Si miro hacia atrás sí que veo que he avanzado, y eso me motiva\""
+          },
+          {
+            "title": "La motivación desaparece antes de que llegue el resultado",
+            "body": "Los objetivos importantes tardan meses. La motivación inicial se agota en semanas. Sin pequeñas recompensas en el camino, el abandono es casi inevitable.",
+            "quote": "\"Me falta motivación\" · \"No ver resultados hace que lo deje\""
+          }
+        ]
+      },
+      "research": {
+        "question": "¿Cómo lo investigamos?",
+        "intro": "Además de las 32 entrevistas iniciales, analizamos el uso real de apps de hábitos existentes para entender dónde y cuándo se producía el abandono.",
+        "stats": [
+          { "value": "32", "label": "Personas entrevistadas" },
+          { "value": "5", "label": "Apps de hábitos analizadas" },
+          { "value": "68%", "label": "Abandona en las dos primeras semanas" }
+        ]
+      }
+    }
   }
 }

@@ -13,7 +13,7 @@ interface NameState {
   translateY: number
 }
 
-export function Hero() {
+export default function Hero() {
   const { t } = useTranslation()
 
   const lines = t("hero.lines", { returnObjects: true }) as Array<{
@@ -37,7 +37,6 @@ export function Hero() {
   const [dividerWidth, setDividerWidth] = useState(0)
   const [nameState, setNameState] = useState<NameState>({ opacity: 0, translateY: 16 })
   const [roleOpacity, setRoleOpacity] = useState(0)
-  const [cornerOpacity] = useState(0)
 
   const ran = useRef(false)
 

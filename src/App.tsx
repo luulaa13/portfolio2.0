@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import {Hero} from "./components/Hero";
 import Loader from "./components/Loader";
 import CustomCursor from "./components/CustomCursor";
-import WhatIDo from "./components/WhatIDo";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import Proyect from "./components/Proyect";
-
+import Home from "./pages/Home";
+import ProjectPage from "./pages/ProjectPage";
+import { ProjectTransitionProvider } from "./components/projects/ProjectTransition";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -31,41 +29,14 @@ useEffect(() => {
     return <Loader />;
   }
  return (
-    <>
+    <ProjectTransitionProvider>
      <CustomCursor />
       <Navbar />
-      <Hero/>
-      <section className="skills-banner">
-      <div className="skills-track">
-        <div className="skills-row">
-          <span>✦ RESEARCH</span>
-          <span className="accent">✦ DISEÑO</span>
-          <span>✦ FRONTEND</span>
-          <span className="accent">✦ BRANDING</span>
-          <span>✦ UX/UI</span>
-          <span className="accent">✦ MARKETING</span>
-          <span>✦ PRODUCTS</span>
-          <span className="accent">✦ STRATEGY</span>
-        </div>
-
-        <div className="skills-row">
-          <span>✦ RESEARCH</span>
-          <span className="accent">✦ DISEÑO</span>
-          <span>✦ FRONTEND</span>
-          <span className="accent">✦ BRANDING</span>
-          <span>✦ UX/UI</span>
-          <span className="accent">✦ MARKETING</span>
-          <span>✦ PRODUCTS</span>
-          <span className="accent">✦ STRATEGY</span>
-        </div>
-      </div>
-    </section>
-    <WhatIDo/>
-    <Proyect/>
-    <Contact/>
-    <Footer/>
-     
-    </>
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/projects/:slug" element={<ProjectPage />} />
+      </Routes>
+    </ProjectTransitionProvider>
   );
 }
 

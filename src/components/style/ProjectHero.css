@@ -1,0 +1,107 @@
+.project-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+.project-hero-image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  filter: brightness(.75) contrast(1.05);
+
+  z-index: 0;
+}
+
+.project-hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.65) 0%,
+    rgba(0,0,0,.25) 45%,
+    rgba(0,0,0,.10) 100%
+  );
+
+  z-index: 1;
+}
+
+.project-hero-content {
+  position: absolute;
+  left: 80px;
+  right: 80px;
+  bottom: 80px;
+  z-index: 2;
+}
+
+.project-hero-meta {
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 16px;
+}
+
+.project-hero-title {
+  margin: 0 0 16px;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  color: white;
+}
+
+.project-hero-subtitle {
+  margin: 0;
+  max-width: 560px;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.project-hero-scroll {
+  position: absolute;
+  right: 80px;
+  bottom: 40px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+
+  z-index: 2;
+}
+
+.project-hero-scroll .scroll-arrow {
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .project-hero-content {
+    left: 24px;
+    right: 24px;
+    bottom: 100px;
+  }
+
+  .project-hero-scroll {
+    right: 24px;
+    bottom: 32px;
+  }
+}
