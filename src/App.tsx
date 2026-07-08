@@ -5,8 +5,8 @@ import Navbar from "./components/Navbar";
 import Loader from "./components/Loader";
 import CustomCursor from "./components/CustomCursor";
 import Home from "./pages/Home";
-import ProjectPage from "./pages/ProjectPage";
-import { ProjectTransitionProvider } from "./components/projects/ProjectTransition";
+import ArtMusPage from "./pages/artmus/ArtMusPage";
+import NextPage from "./pages/next/NextPage";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -29,14 +29,22 @@ useEffect(() => {
     return <Loader />;
   }
  return (
-    <ProjectTransitionProvider>
+   <>
      <CustomCursor />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/projects/:slug" element={<ProjectPage />} />
+        <Route
+          path="/projects/artmus"
+          element={<ArtMusPage />}
+        />
+
+        <Route
+          path="/projects/next"
+          element={<NextPage />}
+        />
       </Routes>
-    </ProjectTransitionProvider>
+   </>
   );
 }
 

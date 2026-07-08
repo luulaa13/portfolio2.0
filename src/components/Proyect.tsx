@@ -1,40 +1,24 @@
-import { useRef, useEffect, type JSX, type MouseEvent } from "react";
+import { useRef, useEffect,useState, type JSX } from "react";
 import { useTranslation } from "react-i18next";
 import "./style/Projects.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Link } from "react-router-dom";
-import { projects } from "../data/projects";
-import { useProjectTransition } from "./projects/projectTransitionContext";
+import artmusImg from "../assets/artmus2.png";
+import nextImg from "../assets/next.png";
+import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Proyect(): JSX.Element {
   const sectionRef = useRef<HTMLElement | null>(null);
   const { t } = useTranslation();
-  const { startTransition } = useProjectTransition();
 
-  const handleProjectClick = (
-    event: MouseEvent<HTMLAnchorElement>,
-    slug: string,
-    image: string
-  ) => {
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) {
-      return;
-    }
+  const navigate = useNavigate();
 
-    const bg = event.currentTarget.querySelector(
-      ".project-bg"
-    ) as HTMLElement | null;
-    if (!bg) return;
 
-    event.preventDefault();
-    startTransition({
-      slug,
-      image,
-      rect: bg.getBoundingClientRect(),
-    });
-  };
+  const openProject = (slug: "artmus" | "next") => {
+  navigate(`/projects/${slug}`);
+};
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -75,41 +59,65 @@ export default function Proyect(): JSX.Element {
         {t("projects.title")}
       </div>
 
-      {projects.map((project, index) => (
-        <Link
-          key={project.slug}
-          to={`/projects/${project.slug}`}
-          className={`project-card project-${index + 1}`}
-          onClick={(event) =>
-            handleProjectClick(event, project.slug, project.heroImage)
-          }
+      {/* PROJECT 1 */}
+      <div
+          className="project-card project-1"
+          onClick={() => openProject("artmus")}
         >
-          <img
-            src={project.heroImage}
-            alt={t(project.titleKey)}
-            className="project-bg"
-            data-project={project.slug}
-          />
+        <div
+          className="project-bg"
+          style={{ backgroundImage: `url(${artmusImg})` }}
+        />
 
-          <div className="project-content">
-            <span className="project-meta">
-              {project.number} — {t("projects.project")}
-            </span>
+        <div className="project-content">
+          <span className="project-meta">
+            01 — {t("projects.project")}
+          </span>
 
-            {t(project.titleKey)}
+          {t("projects.items.artmus")}
 
-            <div className="project-tags">
-              {project.role.map((role) => (
-                <span key={role}>{role}</span>
-              ))}
-            </div>
+          <div className="project-tags">
+            <span>{t("projects.tags.uxui")}</span>
+            <span>{t("projects.tags.branding")}</span>
+            <span>{t("projects.tags.react")}</span>
+            <span>{t("projects.tags.research")}</span>
           </div>
+        </div>
 
-          <div className="project-action">
-            <span>↗</span>
+        <div className="project-action">
+          <span>↗</span>
+        </div>
+      </div>
+
+      {/* PROJECT 2 */}
+      <div
+          className="project-card project-2"
+          onClick={() => openProject("next")}
+        >
+        <div
+          className="project-bg"
+          style={{ backgroundImage: `url(${nextImg})` }}
+        />
+
+        <div className="project-content">
+          <span className="project-meta">
+            02 — {t("projects.project")}
+          </span>
+
+          {t("projects.items.next")}
+
+          <div className="project-tags">
+            <span>{t("projects.tags.uxui")}</span>
+            <span>{t("projects.tags.branding")}</span>
+            <span>{t("projects.tags.react")}</span>
+            <span>{t("projects.tags.research")}</span>
           </div>
-        </Link>
-      ))}
+        </div>
+
+        <div className="project-action">
+          <span>↗</span>
+        </div>
+      </div>
 
       <div className="projects-footer">
         <span className="projects-count">
