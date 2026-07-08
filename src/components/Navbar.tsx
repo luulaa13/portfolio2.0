@@ -21,24 +21,33 @@ function Navbar() {
 
   // 🌍 actions ahora dependen de idioma
   const actions = [
-    { label: t("nav.actions.projects"), target: "#projects" },
-    { label: t("nav.actions.stack"), target: "#stack" },
-    { label: t("nav.actions.about"), target: "#about" },
-    { label: t("nav.actions.contact"), target: "#contact" },
+    { label: t("nav.actions.projects"), href: "#projects" },
+    { label: t("nav.actions.stack"), href: "#stack" },
+    { label: t("nav.actions.about"), href: "#about" },
+    {
+    label: "Newsletter",
+    href: "https://luciauxui.substack.com/",
+    external: true,
+    },
+    { label: t("nav.actions.contact"), href: "#contact"},
   ];
 
   const filtered = actions.filter((a) =>
     a.label.toLowerCase().includes(query.toLowerCase())
   );
 
-  const handleNavigate = (target: string) => {
-    document.querySelector(target)?.scrollIntoView({
+const handleNavigate = (item: (typeof actions)[number]) => {
+  if (item.external) {
+    window.open(item.href, "_blank", "noopener,noreferrer");
+  } else {
+    document.querySelector(item.href)?.scrollIntoView({
       behavior: "smooth",
     });
-    setCommandOpen(false);
-    setQuery("");
-  };
+  }
 
+  setCommandOpen(false);
+  setQuery("");
+};
   const handleEnter = () => {
     if (filtered.length === 0) return;
 
@@ -47,7 +56,7 @@ function Navbar() {
         (a) => a.label.toLowerCase() === query.toLowerCase()
       ) || filtered[0];
 
-    handleNavigate(match.target);
+    handleNavigate(match);
   };
 
   // ⌨️ Keyboard shortcut
@@ -146,7 +155,7 @@ function Navbar() {
                   <div
                     key={item.label}
                     className="cmd-item"
-                    onClick={() => handleNavigate(item.target)}
+                    onClick={() => handleNavigate(item)}
                   >
                     {item.label}
                   </div>

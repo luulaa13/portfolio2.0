@@ -5,6 +5,8 @@ import ProjectHero from "../components/projects/ProjectHero";
 import ProjectOverview from "../components/projects/ProjectOverview";
 import ProjectChallenge from "../components/projects/ProjectChallenge";
 import ProjectResearch from "../components/projects/ProjectResearch";
+import ProjectShowcaseImage from "../components/projects/ProjectShowcaseImage";
+import { t } from "i18next";
 
 export default function ProjectPage() {
   const { slug } = useParams();
@@ -19,6 +21,10 @@ export default function ProjectPage() {
       <ProjectOverview project={project} />
       <ProjectChallenge project={project} />
       <ProjectResearch project={project} />
+      <ProjectShowcaseImage
+        src={project.images.showcase}
+        alt={t(project.titleKey)}
+      />
     </main>
   );
 }

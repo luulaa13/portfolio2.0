@@ -1,5 +1,8 @@
 import artmusHero from "../assets/artmus2.png";
+import artmusShowcase from "../assets/next-showcase.png";
+
 import nextHero from "../assets/next.png";
+import nextShowcase from "../assets/next-showcase.png";
 
 export interface Project {
   slug: string;
@@ -7,6 +10,10 @@ export interface Project {
   number: string;
 
   heroImage: string;
+
+  images: {
+    showcase: string;
+  };
 
   titleKey: string;
   subtitleKey: string;
@@ -32,6 +39,10 @@ export const projects: Project[] = [
     number: "01",
 
     heroImage: artmusHero,
+
+    images: {
+      showcase: artmusShowcase,
+    },
 
     titleKey: "caseStudies.artmus.title",
     subtitleKey: "caseStudies.artmus.subtitle",
@@ -66,6 +77,10 @@ export const projects: Project[] = [
     number: "02",
 
     heroImage: nextHero,
+
+    images: {
+      showcase: nextShowcase,
+    },
 
     titleKey: "caseStudies.next.title",
     subtitleKey: "caseStudies.next.subtitle",
