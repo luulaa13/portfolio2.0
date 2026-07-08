@@ -168,6 +168,9 @@
     "next": {
       "title": "NEXT",
       "subtitle": "One goal. One action a day. Progress you can actually see.",
+      "intro": {
+        "tagline": "START WITH WHAT'S NEXT"
+      },
       "statement": "NEXT turns big goals into small daily actions. The focus is reducing the friction between setting an intention and actually following through, with an interface that prioritizes clarity over data density.",
       "challenge": {
         "question": "How many times have you started something with excitement and dropped it halfway through?",

@@ -1,23 +1,152 @@
-import type { JSX } from "react";
+import { useState, type JSX } from "react";
+import NextIntro from "./NextIntro";
+import CaseStudyNavbar from "./CaseStudyNavbar";
+import nextLogo from "../../assets/next-logo.png";
+import phoneHero from "../../assets/phoneHero-next.png";
+import "../../components/style/ProjectPage.css";
 
 export default function NextPage(): JSX.Element {
+  const [introDone, setIntroDone] = useState(false);
+
   return (
     <main className="project-page">
-      {/* Hero */}
+      <NextIntro onDone={() => setIntroDone(true)} />
+      <CaseStudyNavbar visible={introDone} />
 
-      {/* Statement */}
+      <section className="case-section next-hero" data-section="1">
+        <div className="hero-meta">
+          <div className="hero-meta-tags">
+            <span>PRODUCT DESIGN</span>
+            <span className="hero-meta-dot">·</span>
+            <span>2026</span>
+            <span className="hero-meta-dot">·</span>
+            <span>UX RESEARCH → BRAND → UI</span>
+          </div>
 
-      {/* Challenge */}
+          <span className="hero-meta-case">CASE STUDY 02</span>
+        </div>
 
-      {/* Research */}
+        <div className="hero-logo-wrap">
+          <img src={nextLogo} alt="NEXT" className="hero-logo" />
+        </div>
 
-      {/* Showcase */}
+        <div className="hero-statement">
+          <p className="hero-statement-headline">
+            Progress starts with{" "}
+            <span className="hero-statement-highlight">what&apos;s next</span>.
+          </p>
+          <p className="hero-statement-body">
+            Una app que convierte cualquier <br/>
+            meta en una acción diaria con <br/>
+            progreso visible.
+          </p>
+        </div>
 
-      {/* Design */}
+        <div className="hero-scroll">
+          <svg
+            className="hero-scroll-chevron"
+            width="10"
+            height="13"
+            viewBox="0 0 14 18"
+            fill="none"
+          >
+            <path
+              d="M2 2 L11 9 L2 16"
+              stroke="currentColor"
+              strokeWidth="2.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span>SCROLL — TU PRIMER PASO</span>
+        </div>
 
-      {/* Reflection */}
+        <div className="hero-phone-wrap">
+          <img
+            src={phoneHero}
+            alt="Pantalla de la app NEXT mostrando el progreso diario"
+            className="hero-phone"
+          />
+          <div className="hero-phone-shadow" aria-hidden="true" />
+        </div>
+      </section>
 
-      {/* Next Project */}
+      <section className="case-section meta-section" data-section="2">
+        <div className="chapter-divider"></div>
+        <div className="chapter-heading">
+          <span className="chapter-number">01/08</span>
+          <div className="chapter-heading-text">
+            <h2 className="chapter-title">LA META</h2>
+            <p className="chapter-eyebrow">EL BRIEF</p>
+          </div>
+        </div>
+
+        <div className="chapter-columns">
+          <p className="chapter-col">
+            Diseñar un producto para el problema más universal del
+            desarrollo personal: perder el impulso a mitad de camino. Las
+            metas grandes no se pierden de golpe — se pierden un día sin
+            avance tras otro.
+          </p>
+
+          <div className="chapter-meta-list">
+            <div className="chapter-meta-item">
+              <span className="chapter-meta-label">ROL</span>
+              <span className="chapter-meta-value">
+                Research, brand &amp; product design
+              </span>
+            </div>
+
+            <div className="chapter-meta-item">
+              <span className="chapter-meta-label">INVESTIGACIÓN</span>
+              <span className="chapter-meta-value">
+                Encuesta n=29 · junio 2026
+              </span>
+            </div>
+
+            <div className="chapter-meta-item">
+              <span className="chapter-meta-label">ENTREGABLES</span>
+              <span className="chapter-meta-value">
+                Brand book · PRD · UI · Prototipo
+              </span>
+            </div>
+
+            <div className="chapter-meta-item">
+              <span className="chapter-meta-label">TERRITORIO</span>
+              <span className="chapter-meta-value">El siguiente paso</span>
+            </div>
+          </div>
+        </div>
+       
+      </section>
+
+      <section className="case-section" data-section="3">
+        {/* Paisaje */}
+      </section>
+
+      <section className="case-section" data-section="4">
+        {/* Siguiente paso */}
+      </section>
+
+      <section className="case-section" data-section="5">
+        {/* Identidad */}
+      </section>
+
+      <section className="case-section" data-section="6">
+        {/* Transformación */}
+      </section>
+
+      <section className="case-section" data-section="7">
+        {/* En construcción */}
+      </section>
+
+      <section className="case-section" data-section="8">
+        {/* Mira hacia atrás */}
+      </section>
+
+      <section className="case-section" data-section="9">
+        {/* Extra */}
+      </section>
     </main>
   );
 }

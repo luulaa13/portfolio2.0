@@ -1,0 +1,74 @@
+.case-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+
+  padding: 20px 40px;
+}
+
+.case-navbar-back {
+  font-family: "Baumans", sans-serif;
+  font-size: 20px;
+  color: #F2F1E9;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.case-navbar-progress {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.case-navbar-progress--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.case-chevron {
+  color: rgba(242, 241, 233, 0.25);
+  transition: color 0.35s ease;
+}
+
+.case-chevron--active {
+  color: #B3FF00;
+}
+
+.case-navbar .lang-toggle {
+  color: #F2F1E9;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+@media (max-width: 768px) {
+  .case-navbar {
+    padding: 16px 20px;
+    gap: 12px;
+  }
+
+  .case-navbar-back {
+    font-size: 16px;
+  }
+
+  .case-navbar-progress {
+    gap: 3px;
+  }
+
+  .case-chevron {
+    width: 8px;
+    height: 12px;
+  }
+}

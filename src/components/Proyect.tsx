@@ -15,10 +15,34 @@ export default function Proyect(): JSX.Element {
 
   const navigate = useNavigate();
 
+  const [zooming, setZooming] = useState(false);
+  const zoomOverlayRef = useRef<HTMLDivElement | null>(null);
 
   const openProject = (slug: "artmus" | "next") => {
-  navigate(`/projects/${slug}`);
-};
+    if (slug === "next") {
+      setZooming(true);
+      return;
+    }
+    navigate(`/projects/${slug}`);
+  };
+
+  useEffect(() => {
+    if (!zooming) return;
+    const overlay = zoomOverlayRef.current;
+    if (!overlay) return;
+
+    gsap.fromTo(
+      overlay,
+      { opacity: 0, scale: 1.15 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        ease: "power2.inOut",
+        onComplete: () => navigate("/projects/next"),
+      }
+    );
+  }, [zooming, navigate]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -136,6 +160,8 @@ export default function Proyect(): JSX.Element {
       </div>
 
       <div className="projects-divider"></div>
+
+      {zooming && <div className="project-zoom-overlay" ref={zoomOverlayRef} />}
     </section>
   );
 }

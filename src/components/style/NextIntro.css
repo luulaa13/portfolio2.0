@@ -1,0 +1,40 @@
+.next-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+
+  background: #17191A;
+  will-change: transform;
+}
+
+.next-intro-chevron {
+  display: block;
+}
+
+.next-intro-text {
+  margin: 0;
+  font-family: "Space Mono", monospace;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #F2F1E9;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .next-intro-chevron {
+    width: 84px;
+    height: 84px;
+  }
+
+  .next-intro-text {
+    font-size: 11px;
+    padding: 0 24px;
+  }
+}

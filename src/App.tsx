@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Loader from "./components/Loader";
@@ -7,6 +7,16 @@ import CustomCursor from "./components/CustomCursor";
 import Home from "./pages/Home";
 import ArtMusPage from "./pages/artmus/ArtMusPage";
 import NextPage from "./pages/next/NextPage";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -32,6 +42,7 @@ useEffect(() => {
    <>
      <CustomCursor />
       <Navbar />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route

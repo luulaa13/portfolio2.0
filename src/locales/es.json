@@ -168,6 +168,9 @@
     "next": {
       "title": "NEXT",
       "subtitle": "Un objetivo. Una acción al día. Un progreso que realmente puedes ver.",
+      "intro": {
+        "tagline": "EMPIEZA POR LO SIGUIENTE"
+      },
       "statement": "NEXT ayuda a convertir objetivos grandes en pequeñas acciones diarias. El foco está en reducir la fricción entre proponerse algo y realmente hacerlo, con una interfaz que prioriza claridad sobre cantidad de datos.",
       "challenge": {
         "question": "¿Cuántas veces has empezado algo con ganas y lo has dejado a medias?",
