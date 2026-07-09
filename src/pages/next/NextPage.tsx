@@ -34,11 +34,91 @@ const caidaCards = [
   },
 ];
 
+const paisajeCards = [
+  {
+    title: "Duolingo",
+    subtitle: "DOMINA",
+    phrase: "Gamificación, rachas y hábito diario. Retención excelente.",
+    footer: "LE FALTA",
+    detail: "No te lleva hacia tu meta personal. Un solo dominio.",
+  },
+  {
+    title: "Notion",
+    subtitle: "DOMINA",
+    phrase: "Organización y estructura flexible. Todo cabe.",
+    footer: "LE FALTA",
+    detail: "Estructura sin impulso ni constancia. Nadie te empuja.",
+  },
+  {
+    title: "Habitica",
+    subtitle: "DOMINA",
+    phrase:
+      "Recompensa y mecánica de juego. Muy adictivo para cierto perfil.",
+    footer: "LE FALTA",
+    detail: "El juego tapa el progreso real. Puede sentirse infantil.",
+  },
+  {
+    title: "Streaks",
+    subtitle: "DOMINA",
+    phrase: "Constancia y registro de rachas. Simplicidad radical.",
+    footer: "LE FALTA",
+    detail: "Registrar no es lo mismo que avanzar. Sin rumbo",
+  },
+  {
+    title: "NEXT",
+    subtitle: "INTEGRA TODO",
+    phrase:
+      "Acción diaria + evidencia + momentum + comunidad, en torno a tu meta.",
+    footer: "LA PIEZA QUE NADIE REÚNE",
+    detail: "El siguiente paso, con rumbo.",
+  },
+];
+
+const siguientePasoLines = [
+  { text: "“No abandono por" },
+  { text: "falta de ganas." },
+  { text: "Abandono porque" },
+  { text: "dejo de ver avance", accent: true },
+  { text: "y ya no sé cuál es" },
+  { text: "el siguiente paso.”", accent: true },
+];
+
+const siguientePasoCards = [
+  {
+    number: "01",
+    title: "PROGRESS",
+    detail:
+      "Una acción diaria, clara y única, hacia tu meta principal. Una pantalla, una acción.",
+  },
+  {
+    number: "02",
+    title: "EVIDENCE",
+    detail:
+      "XP, porcentaje e hitos. Prueba visible de que avanzas, no solo la sensación.",
+  },
+  {
+    number: "03",
+    title: "MOMENTUM",
+    detail:
+      "Rachas y consistencia. El impulso que hace que mañana cueste menos que hoy.",
+  },
+  {
+    number: "04",
+    title: "COMMUNITY",
+    detail:
+      "Ligas y amigos. Mecanismos sociales que sostienen la constancia cuando flaquea.",
+  },
+];
+
 export default function NextPage(): JSX.Element {
   const [introDone, setIntroDone] = useState(false);
   const metaSectionRef = useRef<HTMLElement | null>(null);
   const caidaSectionRef = useRef<HTMLElement | null>(null);
   const caidaCardsRef = useRef<HTMLDivElement | null>(null);
+  const paisajeSectionRef = useRef<HTMLElement | null>(null);
+  const paisajeTrackRef = useRef<HTMLDivElement | null>(null);
+  const siguientePasoSectionRef = useRef<HTMLElement | null>(null);
+  const siguientePasoStatementRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -52,6 +132,7 @@ export default function NextPage(): JSX.Element {
           start: "bottom bottom",
           end: "bottom top",
           scrub: true,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -121,13 +202,120 @@ export default function NextPage(): JSX.Element {
           );
         });
       }
+
+      // Crossfade del fondo/texto al pasar de LA CAÍDA a EL PAISAJE
+      gsap.to(caidaSectionRef.current, {
+        backgroundColor: "#17191A",
+        color: "#F2F1E9",
+        ease: "none",
+        scrollTrigger: {
+          trigger: caidaSectionRef.current,
+          start: "bottom bottom",
+          end: "bottom top",
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // Entrada del encabezado de EL PAISAJE
+      gsap.fromTo(
+        paisajeSectionRef.current?.querySelectorAll(
+          ".chapter-divider, .chapter-heading"
+        ) ?? [],
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: paisajeSectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
+
+      // Scroll horizontal pineado de las tarjetas de EL PAISAJE
+      // (solo en desktop; en mobile es un carrusel táctil nativo, ver CSS)
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 769px)", () => {
+        if (!paisajeSectionRef.current || !paisajeTrackRef.current) return;
+        const track = paisajeTrackRef.current;
+
+        gsap.to(track, {
+          x: () => -(track.scrollWidth - window.innerWidth),
+          ease: "none",
+          scrollTrigger: {
+            trigger: paisajeSectionRef.current,
+            start: "top top",
+            end: () => "+=" + (track.scrollWidth - window.innerWidth),
+            scrub: 1,
+            pin: true,
+            invalidateOnRefresh: true,
+          },
+        });
+      });
+
+      mm.add("(max-width: 768px)", () => {
+        if (!paisajeTrackRef.current) return;
+        gsap.set(paisajeTrackRef.current, { clearProps: "x" });
+      });
+
+      // Entrada del encabezado de EL SIGUIENTE PASO
+      gsap.fromTo(
+        siguientePasoSectionRef.current?.querySelectorAll(
+          ".chapter-divider, .chapter-heading"
+        ) ?? [],
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: siguientePasoSectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
+
+      // Las líneas de la frase van cogiendo su color/opacidad al llegar
+      if (siguientePasoStatementRef.current) {
+        const lines = siguientePasoStatementRef.current.querySelectorAll(
+          ".siguiente-paso-line"
+        );
+
+        gsap.fromTo(
+          lines,
+          { opacity: 0.25 },
+          {
+            opacity: 1,
+            stagger: 0.15,
+            ease: "none",
+            scrollTrigger: {
+              trigger: siguientePasoStatementRef.current,
+              start: "top 75%",
+              end: "bottom 55%",
+              scrub: true,
+            },
+          }
+        );
+      }
     });
 
     return () => ctx.revert();
   }, []);
 
   useEffect(() => {
-    if (introDone) ScrollTrigger.refresh();
+    if (!introDone) return;
+
+    ScrollTrigger.refresh();
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
   }, [introDone]);
 
   return (
@@ -321,12 +509,90 @@ export default function NextPage(): JSX.Element {
         </div>
       </section>
 
-      <section className="case-section" data-section="4">
-        {/* Paisaje */}
+      <section
+        className="case-section paisaje-section"
+        data-section="4"
+        ref={paisajeSectionRef}
+      >
+        <div className="chapter-divider"></div>
+        <div className="chapter-heading">
+          <span className="chapter-number">03/08</span>
+          <div className="chapter-heading-text">
+            <h2 className="chapter-title">EL PAISAJE</h2>
+            <p className="chapter-eyebrow">CADA REFERENTE DOMINA UNA PIEZA. NADIE LAS REÚNE.</p>
+          </div>
+        </div>
+
+        <div className="paisaje-track-wrap">
+          <div className="paisaje-track" ref={paisajeTrackRef}>
+            {paisajeCards.map((card) => (
+              <div className="paisaje-card" key={card.title}>
+                <h3 className="paisaje-card-title">{card.title}</h3>
+                <p className="paisaje-card-subtitle">{card.subtitle}</p>
+                <p className="paisaje-card-phrase">{card.phrase}</p>
+
+                <div className="paisaje-card-footer">
+                  <div className="paisaje-card-divider"></div>
+                  <p className="paisaje-card-tag">{card.footer}</p>
+                  <p className="paisaje-card-detail">{card.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
-      <section className="case-section" data-section="5">
-        {/* Siguiente paso */}
+      <section
+        className="case-section siguiente-paso-section"
+        data-section="5"
+        ref={siguientePasoSectionRef}
+      >
+        <div className="chapter-divider"></div>
+        <div className="chapter-heading">
+          <span className="chapter-number">04/08</span>
+          <div className="chapter-heading-text">
+            <h2 className="chapter-title">EL SIGUIENTE PASO</h2>
+            <p className="chapter-eyebrow">EL INSIGHT QUE LO ORDENA TODO</p>
+          </div>
+        </div>
+
+        <div className="siguiente-paso-statement" ref={siguientePasoStatementRef}>
+          {siguientePasoLines.map((line, i) => (
+            <p
+              className={`siguiente-paso-line${
+                line.accent ? " siguiente-paso-line--accent" : ""
+              }`}
+              key={i}
+            >
+              {line.text}
+            </p>
+          ))}
+
+          <p className="siguiente-paso-attribution">
+            VERDAD HUMANA · SÍNTESIS DE P7 + P9
+          </p>
+        </div>
+
+        <div className="siguiente-paso-cards">
+          {siguientePasoCards.map((card) => (
+            <div className="siguiente-paso-card" key={card.number}>
+              <span className="siguiente-paso-card-number">
+                {card.number}
+                <svg width="10" height="13" viewBox="0 0 14 18" fill="none">
+                  <path
+                    d="M2 2 L11 9 L2 16"
+                    stroke="currentColor"
+                    strokeWidth="2.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              <h3 className="siguiente-paso-card-title">{card.title}</h3>
+              <p className="siguiente-paso-card-detail">{card.detail}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="case-section" data-section="6">
