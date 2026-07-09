@@ -2,7 +2,7 @@ import { useEffect, useState, type JSX } from "react";
 
 import "../../components/style/CaseStudyNavbar.css";
 
-const SECTION_COUNT = 9;
+const SECTION_COUNT = 10;
 const STEPS = Array.from({ length: SECTION_COUNT }, (_, i) => i + 1);
 
 interface CaseStudyNavbarProps {
