@@ -110,6 +110,44 @@ const siguientePasoCards = [
   },
 ];
 
+// El frame mide 3.6/1, así que 36 columnas x 10 filas da celdas cuadradas
+const identidadGridCols = Array.from(
+  { length: 35 },
+  (_, i) => ((i + 1) / 36) * 100
+);
+const identidadGridRows = Array.from(
+  { length: 9 },
+  (_, i) => ((i + 1) / 10) * 100
+);
+
+const identidadGridColumns = [
+  { title: "TIPOGRAFÍA", detail: "Archivo Black · tracking ceñido" },
+  { title: "TRAZO CHEVRON", detail: "Redondeado · siempre a la derecha" },
+  { title: "TAMAÑO MÍNIMO", detail: "24px digital · 12mm impresión" },
+  { title: "ÁREA DE SEGURIDAD", detail: "Altura de la «X» en los 4 lados" },
+];
+
+const identidadColorRows = [
+  {
+    label: "PIZARRA / PAPEL",
+    value: "70%",
+    fills: [{ pct: 70, color: "#293032" }],
+  },
+  {
+    label: "NEUTROS",
+    value: "20%",
+    fills: [{ pct: 20, color: "#F2F1E9" }],
+  },
+  {
+    label: "LIMA + CORAL",
+    value: "5%",
+    fills: [
+      { pct: 3, color: "#B3FF00" },
+      { pct: 2, color: "#FF5C34" },
+    ],
+  },
+];
+
 export default function NextPage(): JSX.Element {
   const [introDone, setIntroDone] = useState(false);
   const metaSectionRef = useRef<HTMLElement | null>(null);
@@ -119,6 +157,10 @@ export default function NextPage(): JSX.Element {
   const paisajeTrackRef = useRef<HTMLDivElement | null>(null);
   const siguientePasoSectionRef = useRef<HTMLElement | null>(null);
   const siguientePasoStatementRef = useRef<HTMLDivElement | null>(null);
+  const identidadSectionRef = useRef<HTMLElement | null>(null);
+  const identidadGridFrameRef = useRef<HTMLDivElement | null>(null);
+  const identidadLogoMarkRef = useRef<HTMLImageElement | null>(null);
+  const identidadColorRowsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -306,6 +348,124 @@ export default function NextPage(): JSX.Element {
           }
         );
       }
+
+      // Entrada del encabezado y el texto de LA IDENTIDAD
+      gsap.fromTo(
+        identidadSectionRef.current?.querySelectorAll(
+          ".chapter-divider, .chapter-heading, .chapter-lede, .identidad-subhead, .identidad-subtitle, .identidad-subtext"
+        ) ?? [],
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: identidadSectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
+
+      // El rectángulo se abre en grid y el logo sube y encaja en él
+      if (identidadGridFrameRef.current) {
+        const frame = identidadGridFrameRef.current;
+        const lines = frame.querySelectorAll(".identidad-grid-line");
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: frame,
+            start: "top 75%",
+            once: true,
+          },
+        });
+
+        tl.fromTo(
+          frame,
+          { opacity: 0, scale: 0.92 },
+          { opacity: 1, scale: 1, duration: 0.7, ease: "power3.out" }
+        )
+          .fromTo(
+            lines,
+            { scaleX: 0, scaleY: 0 },
+            {
+              scaleX: 1,
+              scaleY: 1,
+              duration: 0.6,
+              stagger: 0.06,
+              ease: "power2.out",
+            },
+            "-=0.3"
+          )
+          .fromTo(
+            identidadLogoMarkRef.current,
+            { y: 220, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.9, ease: "back.out(1.4)" },
+            "-=0.2"
+          );
+      }
+
+      // Entrada de las 4 columnas debajo del rectángulo
+      gsap.fromTo(
+        identidadSectionRef.current?.querySelectorAll(".identidad-grid-col") ??
+          [],
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: identidadGridFrameRef.current,
+            start: "bottom 85%",
+            once: true,
+          },
+        }
+      );
+
+      // Cada barra se rellena de su color hasta el porcentaje indicado
+      if (identidadColorRowsRef.current) {
+        const fills = identidadColorRowsRef.current.querySelectorAll(
+          ".identidad-color-fill"
+        );
+
+        gsap.fromTo(
+          fills,
+          { scaleX: 0 },
+          {
+            scaleX: 1,
+            duration: 0.8,
+            stagger: 0.08,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: identidadColorRowsRef.current,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Entrada de la nota de contraste
+      gsap.fromTo(
+        identidadSectionRef.current?.querySelectorAll(".identidad-contrast") ??
+          [],
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: identidadColorRowsRef.current,
+            start: "bottom 85%",
+            once: true,
+          },
+        }
+      );
     });
 
     return () => ctx.revert();
@@ -386,7 +546,6 @@ export default function NextPage(): JSX.Element {
         data-section="2"
         ref={metaSectionRef}
       >
-        <div className="chapter-divider"></div>
         <div className="chapter-heading">
           <span className="chapter-number">01/08</span>
           <div className="chapter-heading-text">
@@ -439,7 +598,7 @@ export default function NextPage(): JSX.Element {
         data-section="3"
         ref={caidaSectionRef}
       >
-        <div className="chapter-divider"></div>
+         <div className="chapter-divider"></div>
         <div className="chapter-heading">
           <span className="chapter-number">02/08</span>
           <div className="chapter-heading-text">
@@ -514,7 +673,6 @@ export default function NextPage(): JSX.Element {
         data-section="4"
         ref={paisajeSectionRef}
       >
-        <div className="chapter-divider"></div>
         <div className="chapter-heading">
           <span className="chapter-number">03/08</span>
           <div className="chapter-heading-text">
@@ -593,10 +751,126 @@ export default function NextPage(): JSX.Element {
             </div>
           ))}
         </div>
+         <div className="chapter-divider"></div>
       </section>
 
-      <section className="case-section" data-section="6">
-        {/* Identidad */}
+      <section
+        className="case-section identidad-section"
+        data-section="6"
+        ref={identidadSectionRef}
+      >
+        <div className="chapter-heading">
+          <span className="chapter-number">05/08</span>
+          <div className="chapter-heading-text">
+            <h2 className="chapter-title">LA IDENTIDAD</h2>
+            <p className="chapter-eyebrow">ANATOMÍA DE UNA FLECHA</p>
+          </div>
+        </div>
+
+        <p className="chapter-col chapter-lede">
+          El insight se convirtió primero en marca. NEXT + chevron = el
+          siguiente paso: energía (lima) con rumbo (la dirección). Un único
+          gesto que después se reutiliza en todo — viñetas, progreso, patrón,
+          producto.
+        </p>
+
+        <span className="chapter-number identidad-subhead">
+          01 · LOGO — CONSTRUCCIÓN
+        </span>
+
+        <h3 className="chapter-title identidad-subtitle">
+          INGENIERÍA, NO DIBUJO.
+        </h3>
+
+        <p className="chapter-col identidad-subtext">
+          El wordmark se construye sobre una retícula modular donde 1 unidad
+          = la altura de la mayúscula. Todas las proporciones derivan de
+          ahí.
+        </p>
+
+        <div className="identidad-logo-frame" ref={identidadGridFrameRef}>
+          {identidadGridCols.map((left) => (
+            <span
+              className="identidad-grid-line identidad-grid-line--v"
+              style={{ left: `${left}%` }}
+              key={`v-${left}`}
+            />
+          ))}
+          {identidadGridRows.map((top) => (
+            <span
+              className="identidad-grid-line identidad-grid-line--h"
+              style={{ top: `${top}%` }}
+              key={`h-${top}`}
+            />
+          ))}
+
+          <img
+            src={nextLogo}
+            alt="NEXT"
+            className="identidad-logo-mark"
+            ref={identidadLogoMarkRef}
+          />
+        </div>
+
+        <div className="identidad-grid-columns">
+          {identidadGridColumns.map((col) => (
+            <div className="identidad-grid-col" key={col.title}>
+              <h4 className="identidad-grid-col-title">{col.title}</h4>
+              <p className="identidad-grid-col-detail">{col.detail}</p>
+            </div>
+          ))}
+        </div>
+
+        <span className="chapter-number identidad-subhead">
+          02 · COLOR — SISTEMA
+        </span>
+
+        <h3 className="chapter-title identidad-subtitle">
+          La regla 70 · 25 · 5.
+        </h3>
+
+        <p className="chapter-col identidad-subtext">
+          El color sostiene la jerarquía. El lima y el coral son acentos: su
+          fuerza viene de usarse poco. Esta proporción gobierna cada
+          pantalla, cada slide y esta misma página.
+        </p>
+
+        <div className="identidad-color-rows" ref={identidadColorRowsRef}>
+          {identidadColorRows.map((row) => {
+            let cumulativePct = 0;
+
+            return (
+              <div className="identidad-color-row" key={row.label}>
+                <span className="identidad-color-label">{row.label}</span>
+                <div className="identidad-color-bar">
+                  {row.fills.map((fill, i) => {
+                    const left = cumulativePct;
+                    cumulativePct += fill.pct;
+
+                    return (
+                      <span
+                        className="identidad-color-fill"
+                        style={{
+                          left: `${left}%`,
+                          width: `${fill.pct}%`,
+                          background: fill.color,
+                        }}
+                        key={i}
+                      />
+                    );
+                  })}
+                </div>
+                <span className="identidad-color-value">{row.value}</span>
+              </div>
+            );
+          })}
+        </div>
+
+        <p className="identidad-contrast">
+          CONTRASTE — LIMA SOBRE PIZARRA <span className="identidad-contrast-pass">AAA ✓</span> · PAPEL
+          SOBRE PIZARRA <span className="identidad-contrast-pass">AAA ✓</span> · NUNCA TEXTO CLARO
+          SOBRE ACENTOS
+        </p>
       </section>
 
       <section className="case-section" data-section="7">

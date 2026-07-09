@@ -344,6 +344,227 @@
     }
 }
 
+.identidad-subhead{
+    display:block;
+    margin:80px 0 0 140px;
+}
+
+@media (max-width: 768px){
+    .identidad-subhead{
+        margin:40px 24px 0;
+    }
+}
+
+.identidad-subtitle{
+    margin:16px 0 0 140px;
+}
+
+@media (max-width: 768px){
+    .identidad-subtitle{
+        margin:16px 24px 0;
+    }
+}
+
+.identidad-subtext{
+    max-width:820px;
+    margin:24px 0 0 140px;
+    font-size:1.05rem;
+}
+
+@media (max-width: 768px){
+    .identidad-subtext{
+        margin:24px 24px 0;
+        max-width:none;
+    }
+}
+
+.identidad-logo-frame{
+    position:relative;
+    width:min(1180px, 96vw);
+    aspect-ratio:3.6 / 1;
+    margin:100px auto 80px;
+    border:1px solid rgba(179, 255, 0, 0.3);
+    overflow:hidden;
+}
+
+.identidad-grid-line{
+    position:absolute;
+    background:rgba(179, 255, 0, 0.22);
+}
+
+.identidad-grid-line--v{
+    top:0;
+    bottom:0;
+    width:1px;
+    transform-origin:top center;
+}
+
+.identidad-grid-line--h{
+    left:0;
+    right:0;
+    height:1px;
+    transform-origin:center left;
+}
+
+.identidad-logo-mark{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:64%;
+    transform:translate(-50%, -50%);
+}
+
+@media (max-width: 768px){
+    .identidad-logo-frame{
+        width:min(400px, 88vw);
+        aspect-ratio:4 / 3;
+        margin:64px auto 48px;
+    }
+}
+
+.identidad-grid-columns{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 140px;
+}
+
+.identidad-grid-col{
+    padding:0 32px;
+    border-left:1px solid rgba(242, 241, 233, 0.15);
+}
+
+.identidad-grid-col:first-child{
+    padding-left:0;
+    border-left:none;
+}
+
+.identidad-grid-col-title{
+    margin:0;
+    text-transform:uppercase;
+
+    font-family:"Space Mono", monospace;
+    font-size:0.85rem;
+    letter-spacing:0.1em;
+    color:#B3FF00;
+}
+
+.identidad-grid-col-detail{
+    margin:12px 0 0;
+
+    font-family:"Bricolage Grotesque", sans-serif;
+    font-size:1rem;
+    line-height:1.5;
+    color:rgba(242, 241, 233, 0.7);
+}
+
+@media (max-width: 768px){
+    .identidad-grid-columns{
+        grid-template-columns:1fr;
+        gap:24px;
+        padding:0 24px;
+    }
+
+    .identidad-grid-col{
+        padding:0 0 24px;
+        border-left:none;
+        border-bottom:1px solid rgba(242, 241, 233, 0.15);
+    }
+
+    .identidad-grid-col:first-child{
+        padding-left:0;
+    }
+
+    .identidad-grid-col:last-child{
+        padding-bottom:0;
+        border-bottom:none;
+    }
+}
+
+.identidad-color-rows{
+    display:flex;
+    flex-direction:column;
+
+    margin:64px 140px 0;
+}
+
+.identidad-color-row{
+    display:grid;
+    grid-template-columns:180px 1fr 72px;
+    align-items:center;
+    gap:32px;
+
+    padding:18px 0;
+}
+
+.identidad-color-label{
+    font-family:"Space Mono", monospace;
+    font-size:0.85rem;
+    letter-spacing:0.08em;
+    color:rgba(242, 241, 233, 0.7);
+}
+
+.identidad-color-bar{
+    position:relative;
+    height:44px;
+    width:100%;
+    background:none;
+    border:1px solid rgba(242, 241, 233, 0.15);
+    overflow:hidden;
+}
+
+.identidad-color-fill{
+    position:absolute;
+    top:0;
+    bottom:0;
+    transform-origin:left center;
+}
+
+.identidad-color-value{
+    text-align:right;
+
+    font-family:"Space Mono", monospace;
+    font-size:1.6rem;
+    font-weight:700;
+    color:#B3FF00;
+}
+
+.identidad-contrast{
+    margin:32px 140px 0;
+
+    font-family:"Space Mono", monospace;
+    font-size:0.8rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:rgba(242, 241, 233, 0.6);
+}
+
+.identidad-contrast-pass{
+    color:#B3FF00;
+}
+
+@media (max-width: 768px){
+    .identidad-contrast{
+        margin:24px 24px 0;
+    }
+
+    .identidad-color-rows{
+        margin:48px 24px 0;
+    }
+
+    .identidad-color-row{
+        grid-template-columns:1fr;
+        gap:10px;
+        padding:18px 0;
+    }
+
+    .identidad-color-value{
+        text-align:left;
+    }
+}
+
 .caida-cards{
     display:grid;
     grid-template-columns:repeat(4, 1fr);
