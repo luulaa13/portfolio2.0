@@ -953,6 +953,7 @@ export default function NextPage(): JSX.Element {
         </div>
 
         <p className="identidad-contrast">
+         
           {identidad.color.contrastBefore}{" "}
           <span className="identidad-contrast-pass">
             {identidad.color.contrastPass}

@@ -292,11 +292,11 @@
         "tags": ["PRODUCT DESIGN", "2026", "UX RESEARCH → IA → BRAND → UI"],
         "caseLabel": "CASE STUDY 02",
         "logoAlt": "NEXT",
-        "headline": "Any goal becomes",
-        "headlineHighlight": "a daily action",
-        "bodyLine1": "A productivity app that makes real progress visible.",
-        "bodyLine2": "No empty streaks, no endless lists.",
-        "bodyLine3": "Evidence that the effort is working.",
+        "headline": "Progress starts with",
+        "headlineHighlight": "what's next",
+        "bodyLine1": "An app that turns any",
+        "bodyLine2": "goal into a daily action with",
+        "bodyLine3": "visible progress.",
         "scrollLabel": "START WITH WHAT'S NEXT",
         "phoneAlt": "NEXT interface"
       },
@@ -304,87 +304,88 @@
         "number": "01/08",
         "title": "THE GOAL",
         "eyebrow": "THE BRIEF",
-        "description": "Design a productivity app that helps people turn big, abstract goals into concrete daily actions, with visible, tangible progress at every step.",
-        "role": { "label": "ROLE", "value": "Product Designer (end-to-end)" },
-        "research": { "label": "RESEARCH", "value": "Surveys, interviews, competitive analysis" },
-        "deliverables": { "label": "DELIVERABLES", "value": "IA, wireframes, design system, final UI" },
-        "territory": { "label": "TERRITORY", "value": "Personal productivity, habits" }
+        "description": "Design a product for the most universal problem in personal development: losing momentum halfway there. Big goals aren't lost all at once — they're lost one day without progress at a time.",
+        "role": { "label": "ROLE", "value": "Research, brand & product design" },
+        "research": { "label": "RESEARCH", "value": "Survey n=29 · June 2026" },
+        "deliverables": { "label": "DELIVERABLES", "value": "Brand book · PRD · UI · Prototype" },
+        "territory": { "label": "TERRITORY", "value": "The next step" }
       },
       "caida": {
         "number": "02/08",
         "title": "THE DROP-OFF",
-        "eyebrow": "QUANTITATIVE RESEARCH",
-        "lede": "Before designing anything, we needed to understand why people abandon their goals. A survey of 120 people revealed four data points that explain it.",
+        "eyebrow": "WHAT THE RESEARCH SAYS",
+        "lede": "29 people shared how they pursue their goals — and why they abandon them. The pattern is clear: it's not laziness, it's a lack of structure.",
         "cards": [
-          { "title": "BLOCKED", "percent": 72, "phrase": "Doesn't know where to start when the goal feels big." },
-          { "title": "COGNITIVE CAUSE", "percent": 45, "phrase": "Choice overload paralyzes the first action." },
-          { "title": "ACTUAL TOOL USED", "percent": 38, "phrase": "Uses a productivity app on a regular basis." },
-          { "title": "WHAT WOULD HELP MOST", "percent": 65, "phrase": "Seeing progress in a visible, tangible way." }
+          { "title": "BLOCKED", "percent": 72, "phrase": "get stuck fairly regularly when trying to move toward their goal." },
+          { "title": "COGNITIVE CAUSE", "percent": 45, "phrase": "don't know what the next step is or where to start. It's a lack of structure, not will." },
+          { "title": "ACTUAL TOOL USED", "percent": 38, "phrase": "still use pen and paper. The real rival isn't Notion — it's the notebook." },
+          { "title": "WHAT WOULD HELP MOST", "percent": 65, "phrase": "ask for motivation or a complete plan. But motivation is a consequence of visible progress." }
         ],
-        "quoteText": "I know what I have to do, but I don't know if I'm doing it right.",
-        "quoteAttribution": "— Participant, qualitative interview"
+        "quoteText": "I know what I have to do, or what I want, but I don't know what it takes to get there",
+        "quoteAttribution": "PARTICIPANT · SURVEY P10"
       },
       "paisaje": {
         "number": "03/08",
         "title": "THE LANDSCAPE",
-        "eyebrow": "COMPETITIVE ANALYSIS",
+        "eyebrow": "EVERY COMPETITOR MASTERS ONE PIECE. NO ONE BRINGS THEM TOGETHER.",
         "cards": [
-          { "title": "Duolingo", "subtitle": "Gamification", "phrase": "Turns habit into a game with streaks and levels.", "footer": "WHAT IT MASTERS", "detail": "Short-term motivation, instant feedback." },
-          { "title": "Notion", "subtitle": "Total flexibility", "phrase": "Any productivity system fits inside.", "footer": "WHAT IT MASTERS", "detail": "Infinite customization, steep learning curve." },
-          { "title": "Habitica", "subtitle": "Habit RPG", "phrase": "Your tasks are quests in a role-playing game.", "footer": "WHAT IT MASTERS", "detail": "Community and narrative, little focus on real goals." },
-          { "title": "Streaks", "subtitle": "Minimalism", "phrase": "Just streaks. Simple, direct, no distraction.", "footer": "WHAT IT MASTERS", "detail": "Visual clarity, but no context or real progress." },
-          { "title": "NEXT", "subtitle": "Tangible progress", "phrase": "Every goal becomes a visible daily action.", "footer": "WHAT IT PROPOSES", "detail": "Real evidence of progress, not just empty streaks." }
+          { "title": "Duolingo", "subtitle": "MASTERS", "phrase": "Gamification, streaks, and daily habit. Excellent retention.", "footer": "WHAT IT LACKS", "detail": "Doesn't move you toward your personal goal. One domain only." },
+          { "title": "Notion", "subtitle": "MASTERS", "phrase": "Organization and flexible structure. Everything fits.", "footer": "WHAT IT LACKS", "detail": "Structure without momentum or consistency. No one pushes you." },
+          { "title": "Habitica", "subtitle": "MASTERS", "phrase": "Reward and game mechanics. Very addictive for the right profile.", "footer": "WHAT IT LACKS", "detail": "The game hides real progress. Can feel childish." },
+          { "title": "Streaks", "subtitle": "MASTERS", "phrase": "Consistency and streak tracking. Radical simplicity.", "footer": "WHAT IT LACKS", "detail": "Tracking isn't the same as progressing. No direction." },
+          { "title": "NEXT", "subtitle": "BRINGS IT ALL TOGETHER", "phrase": "Daily action + evidence + momentum + community, built around your goal.", "footer": "THE PIECE NO ONE BRINGS TOGETHER", "detail": "The next step, with direction." }
         ]
       },
       "siguientePaso": {
         "number": "04/08",
         "title": "THE NEXT STEP",
-        "eyebrow": "THE INSIGHT",
+        "eyebrow": "THE INSIGHT THAT TIES IT ALL TOGETHER",
         "lines": [
           { "text": "“I don't quit for" },
-          { "text": "lack of motivation," },
+          { "text": "lack of drive," },
           { "text": "I quit because" },
-          { "text": "I don't see", "accent": true },
-          { "text": "the progress", "accent": true },
-          { "text": "I'm making.”" }
+          { "text": "I stop seeing progress", "accent": true },
+          { "text": "and no longer know" },
+          { "text": "what the next step is.”", "accent": true }
         ],
-        "attribution": "— Synthesis of qualitative research",
+        "attribution": "HUMAN TRUTH · SYNTHESIS OF P7 + P9",
         "cards": [
-          { "number": "01", "title": "PROGRESS", "detail": "Visualize real progress, not just checking off tasks." },
-          { "number": "02", "title": "EVIDENCE", "detail": "Show tangible proof that the effort is working." },
-          { "number": "03", "title": "MOMENTUM", "detail": "Turn small daily actions into accumulated momentum." },
-          { "number": "04", "title": "COMMUNITY", "detail": "Share progress with others to sustain commitment." }
+          { "number": "01", "title": "PROGRESS", "detail": "One clear, single daily action toward your main goal. One screen, one action." },
+          { "number": "02", "title": "EVIDENCE", "detail": "XP, percentage, and milestones. Visible proof you're progressing, not just a feeling." },
+          { "number": "03", "title": "MOMENTUM", "detail": "Streaks and consistency. The momentum that makes tomorrow easier than today." },
+          { "number": "04", "title": "COMMUNITY", "detail": "Leagues and friends. Social mechanisms that sustain consistency when it wavers." }
         ]
       },
       "identidad": {
         "number": "05/08",
         "title": "THE IDENTITY",
         "eyebrow": "ANATOMY OF AN ARROW",
-        "lede": "The insight became a brand first. NEXT is an arrow: the constant direction toward the next step. An identity system built from the logic of progress, not decoration.",
+        "lede": "The insight became a brand first. NEXT + chevron = the next step: energy (lime) with direction (the arrow). One single gesture, reused everywhere after that — bullets, progress, pattern, product.",
         "logo": {
           "subhead": "01 · LOGO — CONSTRUCTION",
-          "title": "One arrow, one grid",
-          "text": "The symbol is built on a strict grid: every angle, every proportion, follows a mathematical rule. Nothing is arbitrary.",
+          "title": "Engineering, not drawing.",
+          "text": "The wordmark is built on a modular grid where 1 unit equals the height of the capital letter. Every proportion derives from there.",
           "gridColumns": [
-            { "title": "TYPEFACE", "detail": "Geometric sans, clean strokes, no serifs." },
-            { "title": "CHEVRON STROKE", "detail": "The symbol's angle measures 60°, constant across the brand." },
-            { "title": "MINIMUM SIZE", "detail": "24px tall digitally, 10mm in print." },
-            { "title": "SAFE AREA", "detail": "Clear space equal to the height of the 'N'." }
+            { "title": "TYPEFACE", "detail": "Archivo Black · tight tracking" },
+            { "title": "CHEVRON STROKE", "detail": "Rounded · always pointing right" },
+            { "title": "MINIMUM SIZE", "detail": "24px digital · 12mm print" },
+            { "title": "SAFE AREA", "detail": "Height of the 'X' on all 4 sides" }
           ]
         },
         "color": {
           "subhead": "02 · COLOR — SYSTEM",
-          "title": "The rule 70 · 25 · 5.",
-          "text": "The palette works as a hierarchical system: slate and paper dominate, neutrals balance, and color only appears to signal action or alert.",
+          "title": "The 70 · 25 · 5 rule",
+          "text": "Color carries the hierarchy. Lime and coral are accents — their power comes from being used sparingly. This ratio governs every screen, every slide, and this very page.",
           "rows": [
             { "label": "SLATE/PAPER", "value": "70%" },
             { "label": "NEUTRALS", "value": "20%" },
             { "label": "LIME + CORAL", "value": "5%" }
           ],
+          "contrast": "CONTRAST",
           "contrastBefore": "Lime on slate:",
           "contrastPass": "AAA ✓",
-          "contrastMiddle": "Coral on paper:",
-          "contrastAfter": "Both meet the minimum contrast across every use."
+          "contrastMiddle": " PAPER ON SLATE:",
+          "contrastAfter": "NEVER LIGHT TEXT ON ACCENTS"
         },
         "tone": {
           "subhead": "03 · STRATEGY — TONE OF VOICE",
