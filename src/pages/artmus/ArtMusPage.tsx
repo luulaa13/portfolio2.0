@@ -1,215 +1,68 @@
-import { Fragment, useEffect, useRef, useState, type JSX } from "react";
+import {
+  Fragment,
+  useEffect,
+  useRef,
+  useState,
+  type JSX,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ArtMusIntro from "./ArtMusIntro";
 import ArtMusNavbar from "./ArtMusNavbar";
 import artmusLogo from "../../assets/artmusLogo.png";
 import artmusLogo2 from "../../assets/artmus-logo2.png";
+import artmusHome from "../../assets/artmusHome.png";
+import wireframeHome from "../../assets/wireframeHome.png";
+import artmusMuseums from "../../assets/Museums.png";
+import artmusUpcoming from "../../assets/Upcoming.png";
+import artmusExhibitions from "../../assets/Exhibitions.png";
 import "../../components/style/ArtMusPage.css";
+import nextLogo from "../../assets/next-logo.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const artmusStatCards = [
-  {
-    percent: 75,
-    phrase: "Prefieren reservar online",
-    placardTitle: "La reserva",
-    placardSubtitle: "Dato sobre encuesta, 2025",
-  },
-  {
-    percent: 60,
-    phrase: "Usan móvil para buscar museos",
-    placardTitle: "El bolsillo",
-    placardSubtitle: "Dato sobre encuesta, 2025",
-  },
-  {
-    percent: 70,
-    phrase: "Se frustran con la falta de información clara",
-    placardTitle: "La fricción",
-    placardSubtitle: "Dato sobre encuesta, 2025",
-  },
-  {
-    percent: 65,
-    phrase: "Descubren exposiciones en RRSS",
-    placardTitle: "El descubrimiento",
-    placardSubtitle: "Dato sobre encuesta, 2025",
-  },
-];
+// Colores de texto por swatch de paleta — constante de diseño, no traducible
+const artmusPaletteTextColors = ["#FDFCF9", "#2A3462", "#2A3462", "#2A3462"];
+
+type ArtmusStatCard = {
+  percent: number;
+  phrase: string;
+  placardTitle: string;
+  placardSubtitle: string;
+};
 
 type ArtmusPersona = {
   badge: string;
-  nombre: string;
-  subtitulo: string;
-  quiere: string;
-  frustra: string;
-  necesita: string;
-  cita: string;
+  name: string;
+  subtitle: string;
+  wants: string;
+  frustration: string;
+  needs: string;
+  quote: string;
 };
 
-const artmusPersonas: ArtmusPersona[] = [
-  {
-    badge: "RETRATO I",
-    nombre: "Clara Fernández",
-    subtitulo: "La exploradora cultural",
-    quiere: "Descubrir exposiciones nuevas sin rastrear diez webs distintas.",
-    frustra:
-      "Información incompleta: horarios desactualizados, entradas agotadas al llegar.",
-    necesita: "Un solo lugar donde ver, decidir y reservar en el momento.",
-    cita:
-      "Me entero de las exposiciones por Instagram... cuando ya casi han terminado.",
-  },
-  {
-    badge: "RETRATO II",
-    nombre: "Javier Morales",
-    subtitulo: "El estudiante planificador",
-    quiere:
-      "Aprovechar descuentos y organizar visitas que quepan en su agenda.",
-    frustra: "Colas en taquilla y no saber qué merece la pena antes de ir.",
-    necesita:
-      "Planificar la visita con antelación: qué ver, cuándo y a qué precio.",
-    cita:
-      "Si pudiera comprar la entrada desde el sofá, iría al doble de museos.",
-  },
-];
+type ArtmusReferent = {
+  name: string;
+  label: string;
+  domina: string;
+  falta?: string;
+  cartelaTitle?: string;
+  cartelaSubtitle?: string;
+  placardTitle: string;
+  placardSubtitle: string;
+  highlight?: boolean;
+};
 
-const artmusReferents = [
-  {
-    name: "Museo del Prado",
-    domina:
-      "Contenido curatorial profundo y colección digitalizada de referencia.",
-    falta: "Solo su propio museo. Reserva y planificación limitadas.",
-    label: "EXPONE",
-    cartelaTitle: "",
-    cartelaSubtitle: "",
-    placardTitle: "App institucional",
-    placardSubtitle: "Un museo, una isla",
-    highlight: false,
-  },
-  {
-    name: "Reina Sofía",
-    domina: "Agenda de actividades propia y buena información de salas.",
-    falta: "Sin descubrimiento cruzado ni comparación entre centros.",
-    label: "EXPONE",
-    cartelaTitle: "",
-    cartelaSubtitle: "",
-    placardTitle: "App institucional",
-    placardSubtitle: "Otro silo más",
-    highlight: false,
-  },
-  {
-    name: "Louvre",
-    domina: "Experiencia de audioguía y mapas interiores muy trabajados.",
-    falta:
-      "Pensada para el durante, no para descubrir ni planificar el antes.",
-    label: "EXPONE",
-    cartelaTitle: "",
-    cartelaSubtitle: "",
-    placardTitle: "App institucional",
-    placardSubtitle: "Solo dentro del edificio",
-    highlight: false,
-  },
-  {
-    name: "QuickMuseum",
-    domina: "Audioguías rápidas de múltiples museos en una sola app.",
-    falta: "Ni compra de entradas ni planificación. Solo contenido.",
-    label: "EXPONE",
-    cartelaTitle: "",
-    cartelaSubtitle: "",
-    placardTitle: "Agregador parcial",
-    placardSubtitle: "Contenido sin gestión",
-    highlight: false,
-  },
-  {
-    name: "CloudGuide",
-    domina: "Catálogo amplio de instituciones culturales adheridas.",
-    falta: "Cobertura irregular y experiencia de reserva inconsistente.",
-    label: "EXPONE",
-    cartelaTitle: "",
-    cartelaSubtitle: "",
-    placardTitle: "Agregador parcial",
-    placardSubtitle: "Amplio pero desigual",
-    highlight: false,
-  },
-  {
-    name: "artmus",
-    label: "EXPONE TODO",
-    domina:
-      "Descubrir + planificar + reservar + comprar, para todos los museos de tu ciudad.",
-    falta: "",
-    cartelaTitle: "LA PIEZA QUE NADIE EXPONÍA",
-    cartelaSubtitle: "La colección completa, en tu bolsillo.",
-    placardTitle: "Artmus, 2026",
-    placardSubtitle: "Adquisición reciente",
-    highlight: true,
-  },
-];
-
-const artmusArchitectureCards = [
-  {
-    letter: "H",
-    title: "Home",
-    detail:
-      "Descubrimiento personalizado: exposiciones destacadas, cerca de ti, últimas plazas.",
-  },
-  {
-    letter: "M",
-    title: "Museos",
-    detail:
-      "El catálogo completo de la ciudad: buscar, filtrar y comparar centros.",
-  },
-  {
-    letter: "E",
-    title: "Detalle de exposición",
-    detail:
-      "Toda la información en una pantalla: fechas, obras, precio, cómo llegar.",
-  },
-  {
-    letter: "R",
-    title: "Reservar visita",
-    detail: "Fecha, hora y entradas en tres pasos. Sin colas, sin sorpresas.",
-  },
-  {
-    letter: "A",
-    title: "Eventos",
-    detail:
-      "Agenda cultural viva: inauguraciones, visitas guiadas, noches de museo.",
-  },
-  {
-    letter: "P",
-    title: "Perfil",
-    detail: "Tus entradas, tu historial de visitas y tus museos guardados.",
-  },
-];
-
-const artmusFlowSteps = [
-  "Onboarding",
-  "Descubre exposición",
-  "Detalle",
-  "Elige fecha y hora",
-  "Entrada en el móvil",
-];
-
-const artmusPalette = [
-  { name: "AZUL MUSEO", hex: "#2A3462", text: "#FDFCF9" },
-  { name: "CHARTREUSE", hex: "#DCE94B", text: "#2A3462" },
-  { name: "LILA PARED", hex: "#EDECF4", text: "#2A3462" },
-  { name: "BLANCO SALA", hex: "#FDFCF9", text: "#2A3462" },
-];
-
-const artmusVoiceCards = [
-  {
-    label: "VOZ EXPRESIVA — SERIF",
-    detail: "El arte se siente en serif",
-    body: "Para titulares, la palabra «art» y los momentos de emoción. Itálicas con carácter.",
-  },
-  {
-    label: "VOZ FUNCIONAL — SANS",
-    detail: "El museo se usa en sans",
-    body: "Para interfaz, datos y navegación. Clara, geométrica, sin fricción.",
-  },
-];
+type ArtmusArchCard = { letter: string; title: string; detail: string };
+type ArtmusPaletteColor = { name: string; hex: string };
+type ArtmusVoiceCard = { label: string; detail: string; body: string };
 
 export default function ArtMusPage(): JSX.Element {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   const [introDone, setIntroDone] = useState(false);
   const heroStatementRef = useRef<HTMLDivElement | null>(null);
   const problemSectionRef = useRef<HTMLElement | null>(null);
@@ -226,6 +79,147 @@ export default function ArtMusPage(): JSX.Element {
   const paletteRef = useRef<HTMLDivElement | null>(null);
   const voiceCardsRef = useRef<HTMLDivElement | null>(null);
   const workSectionRef = useRef<HTMLElement | null>(null);
+  const phoneScreenRef = useRef<HTMLDivElement | null>(null);
+  const wireLayerRef = useRef<HTMLDivElement | null>(null);
+  const phoneHandleRef = useRef<HTMLDivElement | null>(null);
+  const draggingRef = useRef(false);
+
+  const rooms = t("caseStudies.artmus.rooms", { returnObjects: true }) as {
+    problem: { number: string; title: string; eyebrow: string; lede: string };
+    visitors: { number: string; title: string; eyebrow: string };
+    referents: { number: string; title: string; eyebrow: string };
+    architecture: {
+      number: string;
+      title: string;
+      eyebrow: string;
+      lede: string;
+    };
+    brand: { number: string; title: string; eyebrow: string; lede: string };
+    work: { number: string; title: string; eyebrow: string };
+  };
+
+  const hero = t("caseStudies.artmus.hero", { returnObjects: true }) as {
+    tags: string[];
+    caseLabel: string;
+    logoAlt: string;
+    statementAccent: string;
+    statementBody: string;
+    stickerTitle: string;
+    stickerSubtitle: string;
+    stickerLine1: string;
+    stickerLine2: string;
+    stickerLine3: string;
+    scrollLabel: string;
+  };
+
+  const stats = t("caseStudies.artmus.stats", {
+    returnObjects: true,
+  }) as ArtmusStatCard[];
+
+  const personasData = t("caseStudies.artmus.personas", {
+    returnObjects: true,
+  }) as {
+    labels: { wants: string; frustration: string; needs: string };
+    items: ArtmusPersona[];
+  };
+
+  const referentsData = t("caseStudies.artmus.referents", {
+    returnObjects: true,
+  }) as {
+    missingLabel: string;
+    items: ArtmusReferent[];
+  };
+
+  const architecture = t("caseStudies.artmus.architecture", {
+    returnObjects: true,
+  }) as ArtmusArchCard[];
+
+  const flow = t("caseStudies.artmus.flow", { returnObjects: true }) as {
+    label: string;
+    steps: string[];
+  };
+
+  const brandSection = t("caseStudies.artmus.brandSection", {
+    returnObjects: true,
+  }) as {
+    logoAlt: string;
+    quoteAccent: string;
+    quoteRest: string;
+    palette: ArtmusPaletteColor[];
+    voices: ArtmusVoiceCard[];
+  };
+
+  const palette = brandSection.palette.map((color, i) => ({
+    ...color,
+    text: artmusPaletteTextColors[i],
+  }));
+
+  const work = t("caseStudies.artmus.work", { returnObjects: true }) as {
+    label: string;
+    titleSans: string;
+    titleSerif: string;
+    text1: string;
+    text2: string;
+    phoneFinalAlt: string;
+    phoneWireAlt: string;
+    shot1Alt: string;
+    shot2Alt: string;
+    shot3Alt: string;
+  };
+
+  const ending = t("caseStudies.artmus.ending", {
+    returnObjects: true,
+  }) as {
+    heroLine1: string;
+    heroConnector: string;
+    heroAccent: string;
+    ticketTitle: string;
+    ticketSubtitle: string;
+    nextLabel: string;
+    nextDescription: string;
+  };
+
+  const updateReveal = (clientX: number) => {
+    const el = phoneScreenRef.current;
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    const pct = Math.min(
+      100,
+      Math.max(0, ((clientX - rect.left) / rect.width) * 100)
+    );
+
+    if (wireLayerRef.current) {
+      wireLayerRef.current.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+    }
+    if (phoneHandleRef.current) {
+      phoneHandleRef.current.style.left = `${pct}%`;
+    }
+  };
+
+  const handlePhonePointerDown = (e: ReactPointerEvent) => {
+    e.preventDefault();
+    draggingRef.current = true;
+    updateReveal(e.clientX);
+  };
+
+  useEffect(() => {
+    const handleMove = (e: PointerEvent) => {
+      if (!draggingRef.current) return;
+      updateReveal(e.clientX);
+    };
+    const handleUp = () => {
+      draggingRef.current = false;
+    };
+
+    window.addEventListener("pointermove", handleMove);
+    window.addEventListener("pointerup", handleUp);
+
+    return () => {
+      window.removeEventListener("pointermove", handleMove);
+      window.removeEventListener("pointerup", handleUp);
+    };
+  }, []);
 
   useEffect(() => {
     gsap.set(heroStatementRef.current, { y: 40, opacity: 0 });
@@ -573,41 +567,47 @@ export default function ArtMusPage(): JSX.Element {
       <section className="case-section artmus-hero" data-section="1">
         <div className="artmus-hero-meta">
           <div className="artmus-hero-meta-tags">
-            <span>PRODUCT DESIGN</span>
-            <span className="artmus-hero-meta-dot">·</span>
-            <span>2026</span>
-            <span className="artmus-hero-meta-dot">·</span>
-            <span>UX RESEARCH → IA → BRAND → UI</span>
+            {hero.tags.map((tag, i) => (
+              <Fragment key={tag}>
+                {i > 0 && <span className="artmus-hero-meta-dot">·</span>}
+                <span>{tag}</span>
+              </Fragment>
+            ))}
           </div>
 
-          <span className="artmus-hero-meta-case">CASE STUDY 01</span>
+          <span className="artmus-hero-meta-case">{hero.caseLabel}</span>
         </div>
 
         <div className="artmus-hero-logo-wrap">
-          <img src={artmusLogo} alt="Artmus" className="artmus-hero-logo" />
+          <img
+            src={artmusLogo}
+            alt={hero.logoAlt}
+            className="artmus-hero-logo"
+          />
         </div>
 
         <div className="artmus-hero-statement" ref={heroStatementRef}>
           <p className="artmus-hero-statement-text">
             <span className="artmus-hero-statement-accent">
-              Tu ciudad está llena de arte.
+              {hero.statementAccent}
             </span>{" "}
-            Una app que centraliza todos los museos: planifica visitas,
-            descubre exposiciones y compra entradas en un solo lugar.
+            {hero.statementBody}
           </p>
         </div>
 
         <div className="artmus-hero-sticker">
-          <span className="artmus-hero-sticker-title">Artmus, 2026</span>
+          <span className="artmus-hero-sticker-title">
+            {hero.stickerTitle}
+          </span>
           <span className="artmus-hero-sticker-subtitle">
-            Aplicación móvil sobre lienzo digital
+            {hero.stickerSubtitle}
           </span>
           <p className="artmus-hero-sticker-text">
-            LUCÍA GARCÍA GARCÍA
+            {hero.stickerLine1}
             <br />
-            RESEARCH · BRANDING · UX/UI
+            {hero.stickerLine2}
             <br />
-            COLECCIÓN PERMANENTE
+            {hero.stickerLine3}
           </p>
         </div>
 
@@ -627,7 +627,7 @@ export default function ArtMusPage(): JSX.Element {
               strokeLinejoin="round"
             />
           </svg>
-          <span>COMIENZA LA VISITA</span>
+          <span>{hero.scrollLabel}</span>
         </div>
       </section>
 
@@ -641,23 +641,19 @@ export default function ArtMusPage(): JSX.Element {
         <div className="artmus-room-heading">
           <span className="artmus-room-number">
             <span className="artmus-room-square" />
-            SALA 01
+            {rooms.problem.number}
           </span>
 
           <div className="artmus-room-heading-text">
-            <h2 className="artmus-room-title">El problema</h2>
-            <p className="artmus-room-eyebrow">INVESTIGACIÓN CUANTITATIVA</p>
+            <h2 className="artmus-room-title">{rooms.problem.title}</h2>
+            <p className="artmus-room-eyebrow">{rooms.problem.eyebrow}</p>
           </div>
         </div>
 
-        <p className="artmus-room-lede">
-          La información sobre museos vive dispersa: webs distintas,
-          taquillas físicas, redes sociales. El visitante quiere planificar,
-          pero el ecosistema no se lo pone fácil. Cuatro datos lo enmarcan.
-        </p>
+        <p className="artmus-room-lede">{rooms.problem.lede}</p>
 
         <div className="artmus-stat-cards" ref={artmusStatCardsRef}>
-          {artmusStatCards.map((card, i) => (
+          {stats.map((card, i) => (
             <div className="artmus-stat-item" key={i}>
               <div className="artmus-stat-card">
                 <span className="artmus-stat-clip" aria-hidden="true" />
@@ -700,46 +696,44 @@ export default function ArtMusPage(): JSX.Element {
         <div className="artmus-room-heading">
           <span className="artmus-room-number">
             <span className="artmus-room-square" />
-            SALA 02
+            {rooms.visitors.number}
           </span>
 
           <div className="artmus-room-heading-text">
-            <h2 className="artmus-room-title">Los visitantes</h2>
-            <p className="artmus-room-eyebrow">
-              PERSONA DEVELOPMENT · EMPATHY MAPPING
-            </p>
+            <h2 className="artmus-room-title">{rooms.visitors.title}</h2>
+            <p className="artmus-room-eyebrow">{rooms.visitors.eyebrow}</p>
           </div>
         </div>
 
         <div className="artmus-persona-cards" ref={personaCardsRef}>
-          {artmusPersonas.map((p) => (
-            <article className="artmus-persona-card" key={p.nombre}>
+          {personasData.items.map((p) => (
+            <article className="artmus-persona-card" key={p.name}>
               <div className="artmus-persona-topline" aria-hidden="true" />
 
               <span className="artmus-persona-tag">{p.badge}</span>
 
-              <h2 className="artmus-persona-name">{p.nombre}</h2>
-              <h3 className="artmus-persona-subtitle">{p.subtitulo}</h3>
+              <h2 className="artmus-persona-name">{p.name}</h2>
+              <h3 className="artmus-persona-subtitle">{p.subtitle}</h3>
 
               <div className="artmus-persona-info">
                 <div className="artmus-persona-row">
-                  <span>QUIERE</span>
-                  <p>{p.quiere}</p>
+                  <span>{personasData.labels.wants}</span>
+                  <p>{p.wants}</p>
                 </div>
 
                 <div className="artmus-persona-row">
-                  <span>LE FRUSTRA</span>
-                  <p>{p.frustra}</p>
+                  <span>{personasData.labels.frustration}</span>
+                  <p>{p.frustration}</p>
                 </div>
 
                 <div className="artmus-persona-row">
-                  <span>NECESITA</span>
-                  <p>{p.necesita}</p>
+                  <span>{personasData.labels.needs}</span>
+                  <p>{p.needs}</p>
                 </div>
               </div>
 
               <blockquote className="artmus-persona-quote">
-                {p.cita}
+                {p.quote}
               </blockquote>
             </article>
           ))}
@@ -756,23 +750,18 @@ export default function ArtMusPage(): JSX.Element {
         <div className="artmus-room-heading">
           <span className="artmus-room-number">
             <span className="artmus-room-square" />
-            SALA 03
+            {rooms.referents.number}
           </span>
 
           <div className="artmus-room-heading-text">
-            <h2 className="artmus-room-title">
-              El pasillo de los referentes
-            </h2>
-            <p className="artmus-room-eyebrow">
-              ANÁLISIS COMPETITIVO — CADA UNO EXPONE UNA PIEZA. NINGUNO LA
-              COLECCIÓN COMPLETA.
-            </p>
+            <h2 className="artmus-room-title">{rooms.referents.title}</h2>
+            <p className="artmus-room-eyebrow">{rooms.referents.eyebrow}</p>
           </div>
         </div>
 
         <div className="artmus-referents-track-wrap">
           <div className="artmus-referents-track" ref={referentsTrackRef}>
-            {artmusReferents.map((referent, i) => (
+            {referentsData.items.map((referent, i) => (
               <div className="artmus-referent-item" key={i}>
                 <div
                   className={`artmus-referent-card${
@@ -790,7 +779,9 @@ export default function ArtMusPage(): JSX.Element {
 
                   {!referent.highlight && (
                     <div className="artmus-referent-block artmus-referent-falta">
-                      <span className="artmus-referent-label">LE FALTA</span>
+                      <span className="artmus-referent-label">
+                        {referentsData.missingLabel}
+                      </span>
                       <p>{referent.falta}</p>
                     </div>
                   )}
@@ -831,25 +822,21 @@ export default function ArtMusPage(): JSX.Element {
         <div className="artmus-room-heading">
           <span className="artmus-room-number">
             <span className="artmus-room-square" />
-            SALA 04
+            {rooms.architecture.number}
           </span>
 
           <div className="artmus-room-heading-text">
-            <h2 className="artmus-room-title">La arquitectura</h2>
+            <h2 className="artmus-room-title">{rooms.architecture.title}</h2>
             <p className="artmus-room-eyebrow">
-              INFORMATION ARCHITECTURE · SITE MAP · USER FLOW
+              {rooms.architecture.eyebrow}
             </p>
           </div>
         </div>
 
-        <p className="artmus-room-lede">
-          Seis espacios organizan la app — como las alas de un museo. Cada
-          uno con una función clara, todos conectados por el mismo flujo:
-          descubrir, decidir, reservar.
-        </p>
+        <p className="artmus-room-lede">{rooms.architecture.lede}</p>
 
         <div className="artmus-architecture-cards" ref={architectureCardsRef}>
-          {artmusArchitectureCards.map((card, i) => (
+          {architecture.map((card, i) => (
             <div className="artmus-architecture-card" key={i}>
               <span className="artmus-architecture-card-letter">
                 {card.letter}
@@ -865,15 +852,15 @@ export default function ArtMusPage(): JSX.Element {
         </div>
 
         <div className="artmus-flow-row">
-          <span className="artmus-flow-label">USER FLOW PRINCIPAL</span>
+          <span className="artmus-flow-label">{flow.label}</span>
 
           <div className="artmus-flow-steps">
-            {artmusFlowSteps.map((step, i) => (
+            {flow.steps.map((step, i) => (
               <Fragment key={step}>
                 {i > 0 && <span className="artmus-flow-arrow">→</span>}
                 <span
                   className={`artmus-flow-step${
-                    i === artmusFlowSteps.length - 1
+                    i === flow.steps.length - 1
                       ? " artmus-flow-step--final"
                       : ""
                   }`}
@@ -896,27 +883,21 @@ export default function ArtMusPage(): JSX.Element {
         <div className="artmus-room-heading">
           <span className="artmus-room-number">
             <span className="artmus-room-square" />
-            SALA 05
+            {rooms.brand.number}
           </span>
 
           <div className="artmus-room-heading-text">
-            <h2 className="artmus-room-title">La identidad</h2>
-            <p className="artmus-room-eyebrow">
-              BRANDING — DOS VOCES, UNA MARCA
-            </p>
+            <h2 className="artmus-room-title">{rooms.brand.title}</h2>
+            <p className="artmus-room-eyebrow">{rooms.brand.eyebrow}</p>
           </div>
         </div>
 
-        <p className="artmus-room-lede">
-          El nombre une dos mundos: art, orgánico y expresivo, y mus,
-          estructurado y funcional. El arte y el museo. La emoción y el
-          sistema. El logo lo cuenta en dos pesos.
-        </p>
+        <p className="artmus-room-lede">{rooms.brand.lede}</p>
 
         <div className="artmus-brand-logo-wrap">
           <img
             src={artmusLogo2}
-            alt="Logo de Artmus"
+            alt={brandSection.logoAlt}
             className="artmus-brand-logo"
             ref={brandLogoRef}
           />
@@ -925,13 +906,13 @@ export default function ArtMusPage(): JSX.Element {
         <p className="artmus-brand-quote" ref={brandQuoteRef}>
           &ldquo;
           <span className="artmus-brand-quote-accent">
-            Tu ciudad está llena de arte.
+            {brandSection.quoteAccent}
           </span>{" "}
-          Solo faltaba la puerta de entrada.&rdquo;
+          {brandSection.quoteRest}&rdquo;
         </p>
 
         <div className="artmus-palette" ref={paletteRef}>
-          {artmusPalette.map((color) => (
+          {palette.map((color) => (
             <div
               className="artmus-palette-swatch"
               key={color.name}
@@ -946,7 +927,7 @@ export default function ArtMusPage(): JSX.Element {
         </div>
 
         <div className="artmus-voice-cards" ref={voiceCardsRef}>
-          {artmusVoiceCards.map((voice) => (
+          {brandSection.voices.map((voice) => (
             <div className="artmus-voice-card" key={voice.label}>
               <span className="artmus-voice-card-label">{voice.label}</span>
               <span className="artmus-voice-card-detail">
@@ -968,19 +949,141 @@ export default function ArtMusPage(): JSX.Element {
         <div className="artmus-room-heading">
           <span className="artmus-room-number">
             <span className="artmus-room-square" />
-            SALA 06
+            {rooms.work.number}
           </span>
 
           <div className="artmus-room-heading-text">
-            <h2 className="artmus-room-title">La obra</h2>
-            <p className="artmus-room-eyebrow">
-              WIREFRAMING → DESIGN COMPONENTS → HIGH FIDELITY
-            </p>
+            <h2 className="artmus-room-title">{rooms.work.title}</h2>
+            <p className="artmus-room-eyebrow">{rooms.work.eyebrow}</p>
+          </div>
+        </div>
+
+        <div className="artmus-work-columns">
+          <div className="artmus-work-col-left">
+            <div className="artmus-work-phone">
+              <div
+                className="artmus-work-phone-screen"
+                ref={phoneScreenRef}
+                onPointerDown={handlePhonePointerDown}
+              >
+                <div className="artmus-work-phone-layer artmus-work-phone-layer--final">
+                  <img
+                    src={artmusHome}
+                    alt={work.phoneFinalAlt}
+                    className="artmus-work-phone-img"
+                    draggable={false}
+                  />
+                </div>
+
+                <div
+                  className="artmus-work-phone-layer artmus-work-phone-layer--wire"
+                  ref={wireLayerRef}
+                  style={{ clipPath: "inset(0 50% 0 0)" }}
+                >
+                  <img
+                    src={wireframeHome}
+                    alt={work.phoneWireAlt}
+                    className="artmus-work-phone-img"
+                    draggable={false}
+                  />
+                </div>
+
+                <div
+                  className="artmus-work-phone-handle"
+                  ref={phoneHandleRef}
+                  style={{ left: "50%" }}
+                >
+                  <span className="artmus-work-phone-handle-grip">
+                    ‹ ›
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="artmus-work-col-right">
+            <span className="artmus-work-label">{work.label}</span>
+
+            <h3 className="artmus-work-title">
+              <span className="artmus-work-title-sans">
+                {work.titleSans}
+              </span>{" "}
+              <span className="artmus-work-title-serif">
+                {work.titleSerif}
+              </span>
+            </h3>
+
+            <p className="artmus-work-text">{work.text1}</p>
+
+            <p className="artmus-work-text">{work.text2}</p>
+          </div>
+        </div>
+
+        <div className="artmus-work-shots">
+          <div className="artmus-work-shot">
+            <img src={artmusMuseums} alt={work.shot1Alt} />
+          </div>
+          <div className="artmus-work-shot">
+            <img src={artmusUpcoming} alt={work.shot2Alt} />
+          </div>
+          <div className="artmus-work-shot">
+            <img src={artmusExhibitions} alt={work.shot3Alt} />
           </div>
         </div>
       </section>
 
       {/* Next Project */}
+      <section className="ending" data-section="8">
+        <div className="artmus-divider" />
+
+        <header className="ending__hero">
+          <h1>
+            {ending.heroLine1}
+            <br />
+            {ending.heroConnector} <span>{ending.heroAccent}</span>
+          </h1>
+        </header>
+
+        <article className="ticket-card">
+          <div>
+            <h3>{ending.ticketTitle}</h3>
+
+            <p>{ending.ticketSubtitle}</p>
+          </div>
+
+          <div className="ticket-card__stamp">
+            {[...Array(6)].map((_, i) => (
+              <span key={i} />
+            ))}
+          </div>
+        </article>
+
+        <article
+          className="next-card"
+          onClick={() => navigate("/projects/next")}
+          role="link"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") navigate("/projects/next");
+          }}
+        >
+          <div>
+            <small>{ending.nextLabel}</small>
+
+            <h2 className="next-logo">
+              <span className="logo-text">
+                NEXT<span className="arrow">›</span>
+              </span>
+
+              <img className="logo-hover" src={nextLogo} alt="NEXT" />
+            </h2>
+
+            <p>{ending.nextDescription}</p>
+          </div>
+
+          <button>→</button>
+        </article>
+      </section>
     </main>
   );
 }

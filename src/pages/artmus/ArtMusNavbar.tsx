@@ -1,4 +1,5 @@
 import { useEffect, useState, type JSX } from "react";
+import { useTranslation } from "react-i18next";
 
 import "../../components/style/ArtMusNavbar.css";
 
@@ -12,6 +13,7 @@ interface ArtMusNavbarProps {
 export default function ArtMusNavbar({
   visible,
 }: ArtMusNavbarProps): JSX.Element {
+  const { t } = useTranslation();
   const [active, setActive] = useState(1);
 
   useEffect(() => {
@@ -43,7 +45,9 @@ export default function ArtMusNavbar({
         }`}
         aria-hidden="true"
       >
-        <span className="artmus-navbar-label">RECORRIDO</span>
+        <span className="artmus-navbar-label">
+          {t("caseStudies.artmus.nav.label")}
+        </span>
 
         <div className="artmus-navbar-squares">
           {STEPS.map((step) => (

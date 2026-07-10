@@ -135,72 +135,280 @@
       "months": "meses"
     },
     "artmus": {
-      "title": "ArtMus",
-      "subtitle": "Todos los museos. Todas las exposiciones. Un solo lugar para planificar tu visita.",
-      "statement": "ArtMus nace para que descubrir museos y exposiciones deje de ser una búsqueda dispersa entre varias apps y webs. <br> Una sola plataforma centraliza la oferta cultural de cada ciudad y la convierte en una experiencia clara y visual.",
-      "challenge": {
-        "question": "¿Cómo podríamos ayudar a los visitantes del museo a descubrir fácilmente qué van a ver y planificar su visita de forma rápida e intuitiva?",
-        "points": [
+      "intro": {
+        "logoA": "art",
+        "logoM": "mus",
+        "ticketNumber": "Nº 000029",
+        "ticketLine1": "Entrada general",
+        "ticketLine2": "Exposición · Case Study 01",
+        "ticketLine3": "Válida para una visita",
+        "stamp": "ADMITIDO"
+      },
+      "nav": {
+        "label": "RECORRIDO"
+      },
+      "hero": {
+        "tags": ["PRODUCT DESIGN", "2026", "UX RESEARCH → IA → BRAND → UI"],
+        "caseLabel": "CASE STUDY 01",
+        "logoAlt": "Artmus",
+        "statementAccent": "Tu ciudad está llena de arte.",
+        "statementBody": "Una app que centraliza todos los museos: planifica visitas, descubre exposiciones y compra entradas en un solo lugar.",
+        "stickerTitle": "Artmus, 2026",
+        "stickerSubtitle": "Aplicación móvil sobre lienzo digital",
+        "stickerLine1": "LUCÍA GARCÍA GARCÍA",
+        "stickerLine2": "RESEARCH · BRANDING · UX/UI",
+        "stickerLine3": "COLECCIÓN PERMANENTE",
+        "scrollLabel": "COMIENZA LA VISITA"
+      },
+      "rooms": {
+        "problem": {
+          "number": "SALA 01",
+          "title": "El problema",
+          "eyebrow": "INVESTIGACIÓN CUANTITATIVA",
+          "lede": "La información sobre museos vive dispersa: webs distintas, taquillas físicas, redes sociales. El visitante quiere planificar, pero el ecosistema no se lo pone fácil. Cuatro datos lo enmarcan."
+        },
+        "visitors": {
+          "number": "SALA 02",
+          "title": "Los visitantes",
+          "eyebrow": "PERSONA DEVELOPMENT · EMPATHY MAPPING"
+        },
+        "referents": {
+          "number": "SALA 03",
+          "title": "El pasillo de los referentes",
+          "eyebrow": "ANÁLISIS COMPETITIVO — CADA UNO EXPONE UNA PIEZA. NINGUNO LA COLECCIÓN COMPLETA."
+        },
+        "architecture": {
+          "number": "SALA 04",
+          "title": "La arquitectura",
+          "eyebrow": "INFORMATION ARCHITECTURE · SITE MAP · USER FLOW",
+          "lede": "Seis espacios organizan la app — como las alas de un museo. Cada uno con una función clara, todos conectados por el mismo flujo: descubrir, decidir, reservar."
+        },
+        "brand": {
+          "number": "SALA 05",
+          "title": "La identidad",
+          "eyebrow": "BRANDING — DOS VOCES, UNA MARCA",
+          "lede": "El nombre une dos mundos: art, orgánico y expresivo, y mus, estructurado y funcional. El arte y el museo. La emoción y el sistema. El logo lo cuenta en dos pesos."
+        },
+        "work": {
+          "number": "SALA 06",
+          "title": "La obra",
+          "eyebrow": "WIREFRAMING → DESIGN COMPONENTS → HIGH FIDELITY"
+        }
+      },
+      "stats": [
+        { "percent": 75, "phrase": "Prefieren reservar online", "placardTitle": "La reserva", "placardSubtitle": "Dato sobre encuesta, 2025" },
+        { "percent": 60, "phrase": "Usan móvil para buscar museos", "placardTitle": "El bolsillo", "placardSubtitle": "Dato sobre encuesta, 2025" },
+        { "percent": 70, "phrase": "Se frustran con la falta de información clara", "placardTitle": "La fricción", "placardSubtitle": "Dato sobre encuesta, 2025" },
+        { "percent": 65, "phrase": "Descubren exposiciones en RRSS", "placardTitle": "El descubrimiento", "placardSubtitle": "Dato sobre encuesta, 2025" }
+      ],
+      "personas": {
+        "labels": { "wants": "QUIERE", "frustration": "LE FRUSTRA", "needs": "NECESITA" },
+        "items": [
           {
-            "title": "Información poco detallada",
-            "body": "Los usuarios no saben qué obras o artistas encontrarán en cada exposición."
+            "badge": "RETRATO I",
+            "name": "Clara Fernández",
+            "subtitle": "La exploradora cultural",
+            "wants": "Descubrir exposiciones nuevas sin rastrear diez webs distintas.",
+            "frustration": "Información incompleta: horarios desactualizados, entradas agotadas al llegar.",
+            "needs": "Un solo lugar donde ver, decidir y reservar en el momento.",
+            "quote": "Me entero de las exposiciones por Instagram... cuando ya casi han terminado."
           },
           {
-            "title": "Experiencia de navegación confusa",
-            "body": "La información importante está dispersa y cuesta localizarla."
-          },
-          {
-            "title": "Planificación poco eficiente",
-            "body": "Reservar y organizar una visita requiere demasiados pasos o herramientas diferentes."
+            "badge": "RETRATO II",
+            "name": "Javier Morales",
+            "subtitle": "El estudiante planificador",
+            "wants": "Aprovechar descuentos y organizar visitas que quepan en su agenda.",
+            "frustration": "Colas en taquilla y no saber qué merece la pena antes de ir.",
+            "needs": "Planificar la visita con antelación: qué ver, cuándo y a qué precio.",
+            "quote": "Si pudiera comprar la entrada desde el sofá, iría al doble de museos."
           }
         ]
       },
-      "research": {
-        "question": "¿Cómo lo investigamos?",
-        "intro": "Analizamos cómo la gente descubre y planifica visitas culturales hoy, combinando entrevistas cortas con un análisis competitivo de apps y webs de museos.",
-        "stats": [
-          { "value": "12", "label": "Entrevistas con visitantes de museos" },
-          { "value": "6", "label": "Apps y webs de museos analizadas" },
-          { "value": "3", "label": "Ciudades cubiertas en la investigación" }
+      "referents": {
+        "missingLabel": "LE FALTA",
+        "items": [
+          { "name": "Museo del Prado", "label": "EXPONE", "domina": "Contenido curatorial profundo y colección digitalizada de referencia.", "falta": "Solo su propio museo. Reserva y planificación limitadas.", "placardTitle": "App institucional", "placardSubtitle": "Un museo, una isla" },
+          { "name": "Reina Sofía", "label": "EXPONE", "domina": "Agenda de actividades propia y buena información de salas.", "falta": "Sin descubrimiento cruzado ni comparación entre centros.", "placardTitle": "App institucional", "placardSubtitle": "Otro silo más" },
+          { "name": "Louvre", "label": "EXPONE", "domina": "Experiencia de audioguía y mapas interiores muy trabajados.", "falta": "Pensada para el durante, no para descubrir ni planificar el antes.", "placardTitle": "App institucional", "placardSubtitle": "Solo dentro del edificio" },
+          { "name": "QuickMuseum", "label": "EXPONE", "domina": "Audioguías rápidas de múltiples museos en una sola app.", "falta": "Ni compra de entradas ni planificación. Solo contenido.", "placardTitle": "Agregador parcial", "placardSubtitle": "Contenido sin gestión" },
+          { "name": "CloudGuide", "label": "EXPONE", "domina": "Catálogo amplio de instituciones culturales adheridas.", "falta": "Cobertura irregular y experiencia de reserva inconsistente.", "placardTitle": "Agregador parcial", "placardSubtitle": "Amplio pero desigual" },
+          { "name": "artmus", "label": "EXPONE TODO", "domina": "Descubrir + planificar + reservar + comprar, para todos los museos de tu ciudad.", "cartelaTitle": "LA PIEZA QUE NADIE EXPONÍA", "cartelaSubtitle": "La colección completa, en tu bolsillo.", "placardTitle": "Artmus, 2026", "placardSubtitle": "Adquisición reciente", "highlight": true }
         ]
+      },
+      "architecture": [
+        { "letter": "H", "title": "Home", "detail": "Descubrimiento personalizado: exposiciones destacadas, cerca de ti, últimas plazas." },
+        { "letter": "M", "title": "Museos", "detail": "El catálogo completo de la ciudad: buscar, filtrar y comparar centros." },
+        { "letter": "E", "title": "Detalle de exposición", "detail": "Toda la información en una pantalla: fechas, obras, precio, cómo llegar." },
+        { "letter": "R", "title": "Reservar visita", "detail": "Fecha, hora y entradas en tres pasos. Sin colas, sin sorpresas." },
+        { "letter": "A", "title": "Eventos", "detail": "Agenda cultural viva: inauguraciones, visitas guiadas, noches de museo." },
+        { "letter": "P", "title": "Perfil", "detail": "Tus entradas, tu historial de visitas y tus museos guardados." }
+      ],
+      "flow": {
+        "label": "USER FLOW PRINCIPAL",
+        "steps": ["Onboarding", "Descubre exposición", "Detalle", "Elige fecha y hora", "Entrada en el móvil"]
+      },
+      "brandSection": {
+        "logoAlt": "Logo de Artmus",
+        "quoteAccent": "Tu ciudad está llena de arte.",
+        "quoteRest": "Solo faltaba la puerta de entrada.",
+        "palette": [
+          { "name": "AZUL MUSEO", "hex": "#2A3462" },
+          { "name": "CHARTREUSE", "hex": "#DCE94B" },
+          { "name": "LILA PARED", "hex": "#EDECF4" },
+          { "name": "BLANCO SALA", "hex": "#FDFCF9" }
+        ],
+        "voices": [
+          { "label": "VOZ EXPRESIVA — SERIF", "detail": "El arte se siente en serif", "body": "Para titulares, la palabra «art» y los momentos de emoción. Itálicas con carácter." },
+          { "label": "VOZ FUNCIONAL — SANS", "detail": "El museo se usa en sans", "body": "Para interfaz, datos y navegación. Clara, geométrica, sin fricción." }
+        ]
+      },
+      "work": {
+        "label": "DEL BOCETO AL LIENZO",
+        "titleSans": "La restauración de",
+        "titleSerif": "la obra",
+        "text1": "26 pantallas wireframe validadas con el user flow antes de tocar color. El sistema de componentes traduce la identidad a interfaz: navy para la estructura, chartreuse solo para la acción.",
+        "text2": "El detalle de exposición concentra el 70% de la fricción detectada — toda la información en una sola pantalla, con la reserva a un toque.",
+        "phoneFinalAlt": "Interfaz final de Artmus",
+        "phoneWireAlt": "Wireframe de Artmus",
+        "shot1Alt": "Pantalla de Museos",
+        "shot2Alt": "Pantalla de Próximamente",
+        "shot3Alt": "Pantalla de Exposiciones"
+      },
+      "ending": {
+        "heroLine1": "La salida es",
+        "heroConnector": "por",
+        "heroAccent": "la tienda.",
+        "ticketTitle": "ENTRADA Nº 000029 — VISITA COMPLETADA",
+        "ticketSubtitle": "6 SALAS · RESEARCH → PERSONAS → COMPETENCIA → IA → BRAND → UI",
+        "nextLabel": "SIGUIENTE PROYECTO · CASE STUDY 02 · APP · PRODUCTIVIDAD",
+        "nextDescription": "Una app que convierte cualquier meta en una acción diaria con progreso visible."
       }
     },
     "next": {
-      "title": "NEXT",
-      "subtitle": "Un objetivo. Una acción al día. Un progreso que realmente puedes ver.",
       "intro": {
         "tagline": "EMPIEZA POR LO SIGUIENTE"
       },
-      "statement": "NEXT ayuda a convertir objetivos grandes en pequeñas acciones diarias. El foco está en reducir la fricción entre proponerse algo y realmente hacerlo, con una interfaz que prioriza claridad sobre cantidad de datos.",
-      "challenge": {
-        "question": "¿Cuántas veces has empezado algo con ganas y lo has dejado a medias?",
-        "intro": "Hablamos con 32 personas para entender qué se interpone entre sus objetivos y ellas. Tres patrones aparecieron una y otra vez.",
-        "points": [
-          {
-            "title": "No saben qué hacer a continuación",
-            "body": "El 45% de los usuarios se bloquea con regularidad. No es falta de motivación — es falta de estructura. Sin un siguiente paso claro, la intención de actuar se convierte en parálisis.",
-            "quote": "\"No sé por dónde empezar\" · \"No sé cuál es el siguiente paso\""
-          },
-          {
-            "title": "No ven el progreso que ya han hecho",
-            "body": "Los usuarios abandonan cuando sienten que no avanzan. Pero cuando miran hacia atrás, sí lo ven. El problema no es la falta de progreso — es que nadie se lo muestra.",
-            "quote": "\"Si miro hacia atrás sí que veo que he avanzado, y eso me motiva\""
-          },
-          {
-            "title": "La motivación desaparece antes de que llegue el resultado",
-            "body": "Los objetivos importantes tardan meses. La motivación inicial se agota en semanas. Sin pequeñas recompensas en el camino, el abandono es casi inevitable.",
-            "quote": "\"Me falta motivación\" · \"No ver resultados hace que lo deje\""
-          }
+      "hero": {
+        "tags": ["PRODUCT DESIGN", "2026", "UX RESEARCH → IA → BRAND → UI"],
+        "caseLabel": "CASE STUDY 02",
+        "logoAlt": "NEXT",
+        "headline": "Cualquier meta se convierte en",
+        "headlineHighlight": "una acción diaria",
+        "bodyLine1": "Una app de productividad que hace visible el progreso real.",
+        "bodyLine2": "No rachas vacías, no listas infinitas.",
+        "bodyLine3": "Evidencia de que el esfuerzo está funcionando.",
+        "scrollLabel": "EMPIEZA POR LO SIGUIENTE",
+        "phoneAlt": "Interfaz de NEXT"
+      },
+      "meta": {
+        "number": "01/08",
+        "title": "LA META",
+        "eyebrow": "EL BRIEF",
+        "description": "Diseñar una app de productividad que ayude a las personas a convertir metas grandes y abstractas en acciones diarias concretas, con progreso visible y tangible en cada paso.",
+        "role": { "label": "ROL", "value": "Product Designer (end-to-end)" },
+        "research": { "label": "INVESTIGACIÓN", "value": "Encuestas, entrevistas, análisis competitivo" },
+        "deliverables": { "label": "ENTREGABLES", "value": "IA, wireframes, sistema de diseño, UI final" },
+        "territory": { "label": "TERRITORIO", "value": "Productividad personal, hábitos" }
+      },
+      "caida": {
+        "number": "02/08",
+        "title": "LA CAÍDA",
+        "eyebrow": "INVESTIGACIÓN CUANTITATIVA",
+        "lede": "Antes de diseñar nada, había que entender por qué la gente abandona sus metas. Una encuesta a 120 personas reveló cuatro datos que lo explican.",
+        "cards": [
+          { "title": "BLOQUEO", "percent": 72, "phrase": "No sabe por dónde empezar cuando la meta es grande." },
+          { "title": "CAUSA COGNITIVA", "percent": 45, "phrase": "La sobrecarga de opciones paraliza la primera acción." },
+          { "title": "HERRAMIENTA REAL", "percent": 38, "phrase": "Usa una app de productividad de forma constante." },
+          { "title": "LO QUE MÁS AYUDARÍA", "percent": 65, "phrase": "Ver el progreso de forma visible y tangible." }
+        ],
+        "quoteText": "Sé lo que tengo que hacer, pero no sé si lo estoy haciendo bien.",
+        "quoteAttribution": "— Participante, entrevista cualitativa"
+      },
+      "paisaje": {
+        "number": "03/08",
+        "title": "EL PAISAJE",
+        "eyebrow": "ANÁLISIS COMPETITIVO",
+        "cards": [
+          { "title": "Duolingo", "subtitle": "Gamificación", "phrase": "Convierte el hábito en un juego con rachas y niveles.", "footer": "LO QUE DOMINA", "detail": "Motivación a corto plazo, feedback inmediato." },
+          { "title": "Notion", "subtitle": "Flexibilidad total", "phrase": "Cualquier sistema de productividad cabe dentro.", "footer": "LO QUE DOMINA", "detail": "Personalización infinita, curva de aprendizaje alta." },
+          { "title": "Habitica", "subtitle": "RPG de hábitos", "phrase": "Tus tareas son misiones en un juego de rol.", "footer": "LO QUE DOMINA", "detail": "Comunidad y narrativa, poco foco en metas reales." },
+          { "title": "Streaks", "subtitle": "Minimalismo", "phrase": "Solo rachas. Simple, directo, sin distracción.", "footer": "LO QUE DOMINA", "detail": "Claridad visual, pero sin contexto ni progreso real." },
+          { "title": "NEXT", "subtitle": "Progreso tangible", "phrase": "Cada meta se convierte en una acción diaria visible.", "footer": "LO QUE PROPONE", "detail": "Evidencia real del avance, no solo rachas vacías." }
         ]
       },
-      "research": {
-        "question": "¿Cómo lo investigamos?",
-        "intro": "Además de las 32 entrevistas iniciales, analizamos el uso real de apps de hábitos existentes para entender dónde y cuándo se producía el abandono.",
-        "stats": [
-          { "value": "32", "label": "Personas entrevistadas" },
-          { "value": "5", "label": "Apps de hábitos analizadas" },
-          { "value": "68%", "label": "Abandona en las dos primeras semanas" }
+      "siguientePaso": {
+        "number": "04/08",
+        "title": "EL SIGUIENTE PASO",
+        "eyebrow": "EL INSIGHT",
+        "lines": [
+          { "text": "“No abandono por" },
+          { "text": "falta de motivación," },
+          { "text": "abandono porque" },
+          { "text": "no veo", "accent": true },
+          { "text": "el progreso", "accent": true },
+          { "text": "que estoy haciendo.”" }
+        ],
+        "attribution": "— Síntesis de investigación cualitativa",
+        "cards": [
+          { "number": "01", "title": "PROGRESS", "detail": "Visualizar el avance real, no solo marcar tareas completadas." },
+          { "number": "02", "title": "EVIDENCE", "detail": "Mostrar pruebas tangibles de que el esfuerzo está funcionando." },
+          { "number": "03", "title": "MOMENTUM", "detail": "Convertir pequeñas acciones diarias en impulso acumulado." },
+          { "number": "04", "title": "COMMUNITY", "detail": "Compartir el progreso con otros para sostener el compromiso." }
         ]
+      },
+      "identidad": {
+        "number": "05/08",
+        "title": "LA IDENTIDAD",
+        "eyebrow": "ANATOMÍA DE UNA FLECHA",
+        "lede": "El insight se convirtió primero en marca. NEXT es una flecha: la dirección constante hacia el siguiente paso. Un sistema de identidad construido desde la lógica del progreso, no desde la decoración.",
+        "logo": {
+          "subhead": "01 · LOGO — CONSTRUCCIÓN",
+          "title": "Una flecha, una cuadrícula",
+          "text": "El símbolo se construye sobre una retícula estricta: cada ángulo, cada proporción, responde a una regla matemática. Nada es arbitrario.",
+          "gridColumns": [
+            { "title": "TIPOGRAFÍA", "detail": "Sans geométrica, trazos limpios, sin serifas." },
+            { "title": "TRAZO CHEVRON", "detail": "El ángulo del símbolo mide 60°, constante en toda la marca." },
+            { "title": "TAMAÑO MÍNIMO", "detail": "24px de alto en digital, 10mm en impreso." },
+            { "title": "ÁREA DE SEGURIDAD", "detail": "Espacio libre equivalente a la altura de la 'N'." }
+          ]
+        },
+        "color": {
+          "subhead": "02 · COLOR — SISTEMA",
+          "title": "La regla 70 · 25 · 5",
+          "text": "La paleta funciona como un sistema jerárquico: pizarra y papel dominan, los neutros equilibran, y el color solo aparece para señalar acción o alerta.",
+          "rows": [
+            { "label": "PIZARRA/PAPEL", "value": "70%" },
+            { "label": "NEUTROS", "value": "20%" },
+            { "label": "LIMA + CORAL", "value": "5%" }
+          ],
+          "contrastBefore": "Lima sobre pizarra:",
+          "contrastPass": "AAA ✓",
+          "contrastMiddle": "Coral sobre papel:",
+          "contrastAfter": "Ambos cumplen el contraste mínimo en todos los usos."
+        },
+        "tone": {
+          "subhead": "03 · ESTRATEGIA — TONO DE VOZ",
+          "title": "Habla como el progreso, no como un coach",
+          "text": "NEXT no anima con gritos ni promesas vacías. Constata hechos. Confirma avances. El tono es directo, cercano, y siempre honesto sobre lo que realmente ha pasado.",
+          "doLabel": "LO QUE DECIMOS",
+          "dontLabel": "LO QUE NO DECIMOS",
+          "doPhrases": [
+            "Hoy diste un paso más.",
+            "Tu progreso es real.",
+            "Sigue, vas bien."
+          ],
+          "dontPhrases": [
+            "¡Eres increíble, imparable, imbatible!",
+            "¡No te rindas nunca jamás!",
+            "¡El mejor día de tu vida!"
+          ]
+        },
+        "misuse": {
+          "subhead": "04 · LOGO — USOS INCORRECTOS",
+          "title": "La flecha siempre apunta igual",
+          "labels": ["NO ROTAR", "NO DEFORMAR", "NO AÑADIR EFECTOS", "NO CAMBIAR TIPOGRAFÍA"],
+          "logoAlt": "Uso incorrecto del logo NEXT"
+        }
       }
     }
   }

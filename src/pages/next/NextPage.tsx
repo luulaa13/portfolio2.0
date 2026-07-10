@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState, type JSX } from "react";
+import { Fragment, useEffect, useRef, useState, type JSX } from "react";
+import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import NextIntro from "./NextIntro";
@@ -8,107 +9,6 @@ import phoneHero from "../../assets/phoneHero-next.png";
 import "../../components/style/ProjectPage.css";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const caidaCards = [
-  {
-    title: "BLOQUEO",
-    percent: 72,
-    phrase: "se bloquea con cierta regularidad al intentar avanzar hacia su meta.",
-  },
-  {
-    title: "CAUSA COGNITIVA",
-    percent: 45,
-    phrase:
-      "no sabe cuál es el siguiente paso o por dónde empezar. Falta estructura, no voluntad.",
-  },
-  {
-    title: "HERRAMIENTA REAL",
-    percent: 38,
-    phrase: "sigue usando papel y bolígrafo. El rival no es Notion: es el cuaderno.",
-  },
-  {
-    title: "LO QUE MÁS AYUDARÍA",
-    percent: 65,
-    phrase:
-      "pide motivación o un plan completo. Pero la motivación es consecuencia del progreso visible.",
-  },
-];
-
-const paisajeCards = [
-  {
-    title: "Duolingo",
-    subtitle: "DOMINA",
-    phrase: "Gamificación, rachas y hábito diario. Retención excelente.",
-    footer: "LE FALTA",
-    detail: "No te lleva hacia tu meta personal. Un solo dominio.",
-  },
-  {
-    title: "Notion",
-    subtitle: "DOMINA",
-    phrase: "Organización y estructura flexible. Todo cabe.",
-    footer: "LE FALTA",
-    detail: "Estructura sin impulso ni constancia. Nadie te empuja.",
-  },
-  {
-    title: "Habitica",
-    subtitle: "DOMINA",
-    phrase:
-      "Recompensa y mecánica de juego. Muy adictivo para cierto perfil.",
-    footer: "LE FALTA",
-    detail: "El juego tapa el progreso real. Puede sentirse infantil.",
-  },
-  {
-    title: "Streaks",
-    subtitle: "DOMINA",
-    phrase: "Constancia y registro de rachas. Simplicidad radical.",
-    footer: "LE FALTA",
-    detail: "Registrar no es lo mismo que avanzar. Sin rumbo",
-  },
-  {
-    title: "NEXT",
-    subtitle: "INTEGRA TODO",
-    phrase:
-      "Acción diaria + evidencia + momentum + comunidad, en torno a tu meta.",
-    footer: "LA PIEZA QUE NADIE REÚNE",
-    detail: "El siguiente paso, con rumbo.",
-  },
-];
-
-const siguientePasoLines = [
-  { text: "“No abandono por" },
-  { text: "falta de ganas." },
-  { text: "Abandono porque" },
-  { text: "dejo de ver avance", accent: true },
-  { text: "y ya no sé cuál es" },
-  { text: "el siguiente paso.”", accent: true },
-];
-
-const siguientePasoCards = [
-  {
-    number: "01",
-    title: "PROGRESS",
-    detail:
-      "Una acción diaria, clara y única, hacia tu meta principal. Una pantalla, una acción.",
-  },
-  {
-    number: "02",
-    title: "EVIDENCE",
-    detail:
-      "XP, porcentaje e hitos. Prueba visible de que avanzas, no solo la sensación.",
-  },
-  {
-    number: "03",
-    title: "MOMENTUM",
-    detail:
-      "Rachas y consistencia. El impulso que hace que mañana cueste menos que hoy.",
-  },
-  {
-    number: "04",
-    title: "COMMUNITY",
-    detail:
-      "Ligas y amigos. Mecanismos sociales que sostienen la constancia cuando flaquea.",
-  },
-];
 
 // El frame mide 3.6/1, así que 36 columnas x 10 filas da celdas cuadradas
 const identidadGridCols = Array.from(
@@ -120,54 +20,31 @@ const identidadGridRows = Array.from(
   (_, i) => ((i + 1) / 10) * 100
 );
 
-const identidadGridColumns = [
-  { title: "TIPOGRAFÍA", detail: "Archivo Black · tracking ceñido" },
-  { title: "TRAZO CHEVRON", detail: "Redondeado · siempre a la derecha" },
-  { title: "TAMAÑO MÍNIMO", detail: "24px digital · 12mm impresión" },
-  { title: "ÁREA DE SEGURIDAD", detail: "Altura de la «X» en los 4 lados" },
+// Colores de relleno por fila — constante de diseño, no traducible
+const identidadColorFills = [
+  [{ pct: 70, color: "#293032" }],
+  [{ pct: 20, color: "#F2F1E9" }],
+  [
+    { pct: 3, color: "#B3FF00" },
+    { pct: 2, color: "#FF5C34" },
+  ],
 ];
 
-const identidadColorRows = [
-  {
-    label: "PIZARRA / PAPEL",
-    value: "70%",
-    fills: [{ pct: 70, color: "#293032" }],
-  },
-  {
-    label: "NEUTROS",
-    value: "20%",
-    fills: [{ pct: 20, color: "#F2F1E9" }],
-  },
-  {
-    label: "LIMA + CORAL",
-    value: "5%",
-    fills: [
-      { pct: 3, color: "#B3FF00" },
-      { pct: 2, color: "#FF5C34" },
-    ],
-  },
-];
-
-const identidadToneDoPhrases = [
-  "Tu siguiente paso de hoy: 20 min de lectura.",
-  "Llevas 6 días seguidos. Vas mejor de lo que crees.",
-  "Ayer no pudiste. Hoy es un buen día para volver.",
-];
-
-const identidadToneDontPhrases = [
-  "¡¡Maximiza tu productividad ya!!",
-  "Has roto tu racha. Empieza de cero.",
-  "Si fallas, es porque no te esfuerzas.",
-];
-
-const identidadMisuseLabels = [
-  "NO ROTAR",
-  "NO DEFORMAR",
-  "NO AÑADIR EFECTOS",
-  "NO CAMBIAR TIPOGRAFÍA",
-];
+type CaidaCard = { title: string; percent: number; phrase: string };
+type PaisajeCard = {
+  title: string;
+  subtitle: string;
+  phrase: string;
+  footer: string;
+  detail: string;
+};
+type SiguientePasoLine = { text: string; accent?: boolean };
+type SiguientePasoCard = { number: string; title: string; detail: string };
+type GridColumn = { title: string; detail: string };
+type ColorRow = { label: string; value: string };
 
 export default function NextPage(): JSX.Element {
+  const { t } = useTranslation();
   const [introDone, setIntroDone] = useState(false);
   const metaSectionRef = useRef<HTMLElement | null>(null);
   const caidaSectionRef = useRef<HTMLElement | null>(null);
@@ -182,6 +59,103 @@ export default function NextPage(): JSX.Element {
   const identidadColorRowsRef = useRef<HTMLDivElement | null>(null);
   const identidadToneCardsRef = useRef<HTMLDivElement | null>(null);
   const identidadMisuseCardsRef = useRef<HTMLDivElement | null>(null);
+
+  const hero = t("caseStudies.next.hero", { returnObjects: true }) as {
+    tags: string[];
+    caseLabel: string;
+    logoAlt: string;
+    headline: string;
+    headlineHighlight: string;
+    bodyLine1: string;
+    bodyLine2: string;
+    bodyLine3: string;
+    scrollLabel: string;
+    phoneAlt: string;
+  };
+
+  const meta = t("caseStudies.next.meta", { returnObjects: true }) as {
+    number: string;
+    title: string;
+    eyebrow: string;
+    description: string;
+    role: { label: string; value: string };
+    research: { label: string; value: string };
+    deliverables: { label: string; value: string };
+    territory: { label: string; value: string };
+  };
+
+  const caida = t("caseStudies.next.caida", { returnObjects: true }) as {
+    number: string;
+    title: string;
+    eyebrow: string;
+    lede: string;
+    cards: CaidaCard[];
+    quoteText: string;
+    quoteAttribution: string;
+  };
+
+  const paisaje = t("caseStudies.next.paisaje", { returnObjects: true }) as {
+    number: string;
+    title: string;
+    eyebrow: string;
+    cards: PaisajeCard[];
+  };
+
+  const siguientePaso = t("caseStudies.next.siguientePaso", {
+    returnObjects: true,
+  }) as {
+    number: string;
+    title: string;
+    eyebrow: string;
+    lines: SiguientePasoLine[];
+    attribution: string;
+    cards: SiguientePasoCard[];
+  };
+
+  const identidad = t("caseStudies.next.identidad", {
+    returnObjects: true,
+  }) as {
+    number: string;
+    title: string;
+    eyebrow: string;
+    lede: string;
+    logo: {
+      subhead: string;
+      title: string;
+      text: string;
+      gridColumns: GridColumn[];
+    };
+    color: {
+      subhead: string;
+      title: string;
+      text: string;
+      rows: ColorRow[];
+      contrastBefore: string;
+      contrastPass: string;
+      contrastMiddle: string;
+      contrastAfter: string;
+    };
+    tone: {
+      subhead: string;
+      title: string;
+      text: string;
+      doLabel: string;
+      dontLabel: string;
+      doPhrases: string[];
+      dontPhrases: string[];
+    };
+    misuse: {
+      subhead: string;
+      title: string;
+      labels: string[];
+      logoAlt: string;
+    };
+  };
+
+  const identidadColorRows = identidad.color.rows.map((row, i) => ({
+    ...row,
+    fills: identidadColorFills[i],
+  }));
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -614,29 +588,33 @@ export default function NextPage(): JSX.Element {
       <section className="case-section next-hero" data-section="1">
         <div className="hero-meta">
           <div className="hero-meta-tags">
-            <span>PRODUCT DESIGN</span>
-            <span className="hero-meta-dot">·</span>
-            <span>2026</span>
-            <span className="hero-meta-dot">·</span>
-            <span>UX RESEARCH → BRAND → UI</span>
+            {hero.tags.map((tag, i) => (
+              <Fragment key={tag}>
+                {i > 0 && <span className="hero-meta-dot">·</span>}
+                <span>{tag}</span>
+              </Fragment>
+            ))}
           </div>
 
-          <span className="hero-meta-case">CASE STUDY 02</span>
+          <span className="hero-meta-case">{hero.caseLabel}</span>
         </div>
 
         <div className="hero-logo-wrap">
-          <img src={nextLogo} alt="NEXT" className="hero-logo" />
+          <img src={nextLogo} alt={hero.logoAlt} className="hero-logo" />
         </div>
 
         <div className="hero-statement">
           <p className="hero-statement-headline">
-            Progress starts with{" "}
-            <span className="hero-statement-highlight">what&apos;s next</span>.
+            {hero.headline}{" "}
+            <span className="hero-statement-highlight">
+              {hero.headlineHighlight}
+            </span>
+            .
           </p>
           <p className="hero-statement-body">
-            Una app que convierte cualquier <br/>
-            meta en una acción diaria con <br/>
-            progreso visible.
+            {hero.bodyLine1} <br />
+            {hero.bodyLine2} <br />
+            {hero.bodyLine3}
           </p>
         </div>
 
@@ -656,15 +634,11 @@ export default function NextPage(): JSX.Element {
               strokeLinejoin="round"
             />
           </svg>
-          <span>SCROLL — TU PRIMER PASO</span>
+          <span>{hero.scrollLabel}</span>
         </div>
 
         <div className="hero-phone-wrap">
-          <img
-            src={phoneHero}
-            alt="Pantalla de la app NEXT mostrando el progreso diario"
-            className="hero-phone"
-          />
+          <img src={phoneHero} alt={hero.phoneAlt} className="hero-phone" />
           <div className="hero-phone-shadow" aria-hidden="true" />
         </div>
       </section>
@@ -675,50 +649,50 @@ export default function NextPage(): JSX.Element {
         ref={metaSectionRef}
       >
         <div className="chapter-heading">
-          <span className="chapter-number">01/08</span>
+          <span className="chapter-number">{meta.number}</span>
           <div className="chapter-heading-text">
-            <h2 className="chapter-title">LA META</h2>
-            <p className="chapter-eyebrow">EL BRIEF</p>
+            <h2 className="chapter-title">{meta.title}</h2>
+            <p className="chapter-eyebrow">{meta.eyebrow}</p>
           </div>
         </div>
 
         <div className="chapter-columns">
-          <p className="chapter-col">
-            Diseñar un producto para el problema más universal del
-            desarrollo personal: perder el impulso a mitad de camino. Las
-            metas grandes no se pierden de golpe — se pierden un día sin
-            avance tras otro.
-          </p>
+          <p className="chapter-col">{meta.description}</p>
 
           <div className="chapter-meta-list">
             <div className="chapter-meta-item">
-              <span className="chapter-meta-label">ROL</span>
+              <span className="chapter-meta-label">{meta.role.label}</span>
+              <span className="chapter-meta-value">{meta.role.value}</span>
+            </div>
+
+            <div className="chapter-meta-item">
+              <span className="chapter-meta-label">
+                {meta.research.label}
+              </span>
               <span className="chapter-meta-value">
-                Research, brand &amp; product design
+                {meta.research.value}
               </span>
             </div>
 
             <div className="chapter-meta-item">
-              <span className="chapter-meta-label">INVESTIGACIÓN</span>
+              <span className="chapter-meta-label">
+                {meta.deliverables.label}
+              </span>
               <span className="chapter-meta-value">
-                Encuesta n=29 · junio 2026
+                {meta.deliverables.value}
               </span>
             </div>
 
             <div className="chapter-meta-item">
-              <span className="chapter-meta-label">ENTREGABLES</span>
-              <span className="chapter-meta-value">
-                Brand book · PRD · UI · Prototipo
+              <span className="chapter-meta-label">
+                {meta.territory.label}
               </span>
-            </div>
-
-            <div className="chapter-meta-item">
-              <span className="chapter-meta-label">TERRITORIO</span>
-              <span className="chapter-meta-value">El siguiente paso</span>
+              <span className="chapter-meta-value">
+                {meta.territory.value}
+              </span>
             </div>
           </div>
         </div>
-       
       </section>
 
       <section
@@ -726,23 +700,19 @@ export default function NextPage(): JSX.Element {
         data-section="3"
         ref={caidaSectionRef}
       >
-         <div className="chapter-divider"></div>
+        <div className="chapter-divider"></div>
         <div className="chapter-heading">
-          <span className="chapter-number">02/08</span>
+          <span className="chapter-number">{caida.number}</span>
           <div className="chapter-heading-text">
-            <h2 className="chapter-title">LA CAÍDA</h2>
-            <p className="chapter-eyebrow">QUÉ DICE LA INVESTIGACIÓN</p>
+            <h2 className="chapter-title">{caida.title}</h2>
+            <p className="chapter-eyebrow">{caida.eyebrow}</p>
           </div>
         </div>
 
-        <p className="chapter-col chapter-lede">
-          34 personas contaron cómo persiguen sus metas — y por qué las
-          abandonan. El patrón es claro: no es pereza, es falta de
-          estructura.
-        </p>
+        <p className="chapter-col chapter-lede">{caida.lede}</p>
 
         <div className="caida-cards" ref={caidaCardsRef}>
-          {caidaCards.map((card) => (
+          {caida.cards.map((card) => (
             <div className="caida-card" key={card.title}>
               <span className="caida-card-title">{card.title}</span>
 
@@ -785,12 +755,11 @@ export default function NextPage(): JSX.Element {
 
           <div className="caida-quote-body">
             <p className="caida-quote-text">
-              &ldquo;Sé lo que tengo que hacer o lo que quiero, pero no sé
-              qué hay que hacer para llegar.&rdquo;
+              &ldquo;{caida.quoteText}&rdquo;
             </p>
 
             <p className="caida-quote-attribution">
-              PARTICIPANTE · ENCUESTA P10
+              {caida.quoteAttribution}
             </p>
           </div>
         </div>
@@ -802,16 +771,16 @@ export default function NextPage(): JSX.Element {
         ref={paisajeSectionRef}
       >
         <div className="chapter-heading">
-          <span className="chapter-number">03/08</span>
+          <span className="chapter-number">{paisaje.number}</span>
           <div className="chapter-heading-text">
-            <h2 className="chapter-title">EL PAISAJE</h2>
-            <p className="chapter-eyebrow">CADA REFERENTE DOMINA UNA PIEZA. NADIE LAS REÚNE.</p>
+            <h2 className="chapter-title">{paisaje.title}</h2>
+            <p className="chapter-eyebrow">{paisaje.eyebrow}</p>
           </div>
         </div>
 
         <div className="paisaje-track-wrap">
           <div className="paisaje-track" ref={paisajeTrackRef}>
-            {paisajeCards.map((card) => (
+            {paisaje.cards.map((card) => (
               <div className="paisaje-card" key={card.title}>
                 <h3 className="paisaje-card-title">{card.title}</h3>
                 <p className="paisaje-card-subtitle">{card.subtitle}</p>
@@ -835,15 +804,15 @@ export default function NextPage(): JSX.Element {
       >
         <div className="chapter-divider"></div>
         <div className="chapter-heading">
-          <span className="chapter-number">04/08</span>
+          <span className="chapter-number">{siguientePaso.number}</span>
           <div className="chapter-heading-text">
-            <h2 className="chapter-title">EL SIGUIENTE PASO</h2>
-            <p className="chapter-eyebrow">EL INSIGHT QUE LO ORDENA TODO</p>
+            <h2 className="chapter-title">{siguientePaso.title}</h2>
+            <p className="chapter-eyebrow">{siguientePaso.eyebrow}</p>
           </div>
         </div>
 
         <div className="siguiente-paso-statement" ref={siguientePasoStatementRef}>
-          {siguientePasoLines.map((line, i) => (
+          {siguientePaso.lines.map((line, i) => (
             <p
               className={`siguiente-paso-line${
                 line.accent ? " siguiente-paso-line--accent" : ""
@@ -855,12 +824,12 @@ export default function NextPage(): JSX.Element {
           ))}
 
           <p className="siguiente-paso-attribution">
-            VERDAD HUMANA · SÍNTESIS DE P7 + P9
+            {siguientePaso.attribution}
           </p>
         </div>
 
         <div className="siguiente-paso-cards">
-          {siguientePasoCards.map((card) => (
+          {siguientePaso.cards.map((card) => (
             <div className="siguiente-paso-card" key={card.number}>
               <span className="siguiente-paso-card-number">
                 {card.number}
@@ -879,7 +848,7 @@ export default function NextPage(): JSX.Element {
             </div>
           ))}
         </div>
-         <div className="chapter-divider"></div>
+        <div className="chapter-divider"></div>
       </section>
 
       <section
@@ -888,33 +857,24 @@ export default function NextPage(): JSX.Element {
         ref={identidadSectionRef}
       >
         <div className="chapter-heading">
-          <span className="chapter-number">05/08</span>
+          <span className="chapter-number">{identidad.number}</span>
           <div className="chapter-heading-text">
-            <h2 className="chapter-title">LA IDENTIDAD</h2>
-            <p className="chapter-eyebrow">ANATOMÍA DE UNA FLECHA</p>
+            <h2 className="chapter-title">{identidad.title}</h2>
+            <p className="chapter-eyebrow">{identidad.eyebrow}</p>
           </div>
         </div>
 
-        <p className="chapter-col chapter-lede">
-          El insight se convirtió primero en marca. NEXT + chevron = el
-          siguiente paso: energía (lima) con rumbo (la dirección). Un único
-          gesto que después se reutiliza en todo — viñetas, progreso, patrón,
-          producto.
-        </p>
+        <p className="chapter-col chapter-lede">{identidad.lede}</p>
 
         <span className="chapter-number identidad-subhead">
-          01 · LOGO — CONSTRUCCIÓN
+          {identidad.logo.subhead}
         </span>
 
         <h3 className="chapter-title identidad-subtitle">
-          INGENIERÍA, NO DIBUJO.
+          {identidad.logo.title}
         </h3>
 
-        <p className="chapter-col identidad-subtext">
-          El wordmark se construye sobre una retícula modular donde 1 unidad
-          = la altura de la mayúscula. Todas las proporciones derivan de
-          ahí.
-        </p>
+        <p className="chapter-col identidad-subtext">{identidad.logo.text}</p>
 
         <div className="identidad-logo-frame" ref={identidadGridFrameRef}>
           {identidadGridCols.map((left) => (
@@ -941,7 +901,7 @@ export default function NextPage(): JSX.Element {
         </div>
 
         <div className="identidad-grid-columns">
-          {identidadGridColumns.map((col) => (
+          {identidad.logo.gridColumns.map((col) => (
             <div className="identidad-grid-col" key={col.title}>
               <h4 className="identidad-grid-col-title">{col.title}</h4>
               <p className="identidad-grid-col-detail">{col.detail}</p>
@@ -950,17 +910,15 @@ export default function NextPage(): JSX.Element {
         </div>
 
         <span className="chapter-number identidad-subhead">
-          02 · COLOR — SISTEMA
+          {identidad.color.subhead}
         </span>
 
         <h3 className="chapter-title identidad-subtitle">
-          La regla 70 · 25 · 5.
+          {identidad.color.title}
         </h3>
 
         <p className="chapter-col identidad-subtext">
-          El color sostiene la jerarquía. El lima y el coral son acentos: su
-          fuerza viene de usarse poco. Esta proporción gobierna cada
-          pantalla, cada slide y esta misma página.
+          {identidad.color.text}
         </p>
 
         <div className="identidad-color-rows" ref={identidadColorRowsRef}>
@@ -995,34 +953,36 @@ export default function NextPage(): JSX.Element {
         </div>
 
         <p className="identidad-contrast">
-          CONTRASTE — LIMA SOBRE PIZARRA <span className="identidad-contrast-pass">AAA ✓</span> · PAPEL
-          SOBRE PIZARRA <span className="identidad-contrast-pass">AAA ✓</span> · NUNCA TEXTO CLARO
-          SOBRE ACENTOS
+          {identidad.color.contrastBefore}{" "}
+          <span className="identidad-contrast-pass">
+            {identidad.color.contrastPass}
+          </span>{" "}
+          {identidad.color.contrastMiddle}{" "}
+          <span className="identidad-contrast-pass">
+            {identidad.color.contrastPass}
+          </span>{" "}
+          {identidad.color.contrastAfter}
         </p>
 
         <span className="chapter-number identidad-subhead">
-          03 · ESTRATEGIA — TONO DE VOZ
+          {identidad.tone.subhead}
         </span>
 
         <h3 className="chapter-title identidad-subtitle">
-          Un amigo que cree en ti. Nunca un sargento.
+          {identidad.tone.title}
         </h3>
 
-        <p className="chapter-col identidad-subtext">
-          La investigación fue clara: la culpa hace abandonar
-          (&ldquo;cuando me genera mucha ansiedad, abandono&rdquo;). El tono
-          celebra el avance real y nunca castiga la recaída.
-        </p>
+        <p className="chapter-col identidad-subtext">{identidad.tone.text}</p>
 
         <div className="identidad-tone-cards" ref={identidadToneCardsRef}>
           <div className="identidad-tone-card identidad-tone-card--do">
             <span className="identidad-tone-card-header">
               <span className="identidad-tone-card-icon">✓</span>
-              SÍ DECIMOS
+              {identidad.tone.doLabel}
             </span>
 
             <div className="identidad-tone-phrases">
-              {identidadToneDoPhrases.map((phrase, i) => (
+              {identidad.tone.doPhrases.map((phrase, i) => (
                 <p className="identidad-tone-phrase" key={i}>
                   {phrase}
                 </p>
@@ -1033,12 +993,15 @@ export default function NextPage(): JSX.Element {
           <div className="identidad-tone-card identidad-tone-card--dont">
             <span className="identidad-tone-card-header">
               <span className="identidad-tone-card-icon">✕</span>
-              NO DECIMOS
+              {identidad.tone.dontLabel}
             </span>
 
             <div className="identidad-tone-phrases">
-              {identidadToneDontPhrases.map((phrase, i) => (
-                <p className="identidad-tone-phrase identidad-tone-phrase--dont" key={i}>
+              {identidad.tone.dontPhrases.map((phrase, i) => (
+                <p
+                  className="identidad-tone-phrase identidad-tone-phrase--dont"
+                  key={i}
+                >
                   {phrase}
                   <span className="identidad-tone-strike" />
                 </p>
@@ -1048,19 +1011,19 @@ export default function NextPage(): JSX.Element {
         </div>
 
         <span className="chapter-number identidad-subhead">
-          04 · LOGO — USOS INCORRECTOS
+          {identidad.misuse.subhead}
         </span>
 
         <h3 className="chapter-title identidad-subtitle">
-          Lo que nunca hacemos.
+          {identidad.misuse.title}
         </h3>
 
         <div className="identidad-misuse-cards" ref={identidadMisuseCardsRef}>
-          {identidadMisuseLabels.map((label) => (
+          {identidad.misuse.labels.map((label) => (
             <div className="identidad-misuse-card" key={label}>
               <img
                 src={nextLogo}
-                alt="Uso incorrecto del logo NEXT"
+                alt={identidad.misuse.logoAlt}
                 className="identidad-misuse-logo"
               />
               <span className="identidad-misuse-badge">✕</span>

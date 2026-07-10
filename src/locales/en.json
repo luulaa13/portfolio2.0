@@ -135,72 +135,280 @@
       "months": "months"
     },
     "artmus": {
-      "title": "ArtMus",
-      "subtitle": "Every museum. Every exhibition. One place to plan your visit",
-      "statement": "ArtMus makes discovering museums and exhibitions feel like one experience instead of a scattered search across apps and websites. <br> A single platform brings each city's cultural offer together into something clear and visual.",
-      "challenge": {
-        "question": "How could we help museum visitors easily discover what they're about to see and plan their visit quickly and intuitively?",
-        "points": [
+      "intro": {
+        "logoA": "art",
+        "logoM": "mus",
+        "ticketNumber": "No. 000029",
+        "ticketLine1": "General admission",
+        "ticketLine2": "Exhibition · Case Study 01",
+        "ticketLine3": "Valid for one visit",
+        "stamp": "ADMITTED"
+      },
+      "nav": {
+        "label": "TOUR"
+      },
+      "hero": {
+        "tags": ["PRODUCT DESIGN", "2026", "UX RESEARCH → IA → BRAND → UI"],
+        "caseLabel": "CASE STUDY 01",
+        "logoAlt": "Artmus",
+        "statementAccent": "Your city is full of art.",
+        "statementBody": "An app that brings every museum together: plan visits, discover exhibitions, and buy tickets in one place.",
+        "stickerTitle": "Artmus, 2026",
+        "stickerSubtitle": "Mobile app on digital canvas",
+        "stickerLine1": "LUCÍA GARCÍA GARCÍA",
+        "stickerLine2": "RESEARCH · BRANDING · UX/UI",
+        "stickerLine3": "PERMANENT COLLECTION",
+        "scrollLabel": "START THE VISIT"
+      },
+      "rooms": {
+        "problem": {
+          "number": "ROOM 01",
+          "title": "The problem",
+          "eyebrow": "QUANTITATIVE RESEARCH",
+          "lede": "Museum information lives scattered across different websites, physical box offices, and social media. Visitors want to plan ahead, but the ecosystem doesn't make it easy. Four data points frame the problem."
+        },
+        "visitors": {
+          "number": "ROOM 02",
+          "title": "The visitors",
+          "eyebrow": "PERSONA DEVELOPMENT · EMPATHY MAPPING"
+        },
+        "referents": {
+          "number": "ROOM 03",
+          "title": "The hall of references",
+          "eyebrow": "COMPETITIVE ANALYSIS — EACH ONE EXHIBITS ONE PIECE. NONE SHOWS THE FULL COLLECTION."
+        },
+        "architecture": {
+          "number": "ROOM 04",
+          "title": "The architecture",
+          "eyebrow": "INFORMATION ARCHITECTURE · SITE MAP · USER FLOW",
+          "lede": "Six spaces organize the app — like the wings of a museum. Each with a clear function, all connected by the same flow: discover, decide, book."
+        },
+        "brand": {
+          "number": "ROOM 05",
+          "title": "The identity",
+          "eyebrow": "BRANDING — TWO VOICES, ONE BRAND",
+          "lede": "The name joins two worlds: art, organic and expressive, and mus, structured and functional. Art and museum. Emotion and system. The logo tells it in two weights."
+        },
+        "work": {
+          "number": "ROOM 06",
+          "title": "The work",
+          "eyebrow": "WIREFRAMING → DESIGN COMPONENTS → HIGH FIDELITY"
+        }
+      },
+      "stats": [
+        { "percent": 75, "phrase": "Prefer to book online", "placardTitle": "The booking", "placardSubtitle": "Survey data, 2025" },
+        { "percent": 60, "phrase": "Use mobile to search for museums", "placardTitle": "The pocket", "placardSubtitle": "Survey data, 2025" },
+        { "percent": 70, "phrase": "Get frustrated by unclear information", "placardTitle": "The friction", "placardSubtitle": "Survey data, 2025" },
+        { "percent": 65, "phrase": "Discover exhibitions on social media", "placardTitle": "The discovery", "placardSubtitle": "Survey data, 2025" }
+      ],
+      "personas": {
+        "labels": { "wants": "WANTS", "frustration": "IS FRUSTRATED BY", "needs": "NEEDS" },
+        "items": [
           {
-            "title": "Not enough detail",
-            "body": "Users don't know which artworks or artists they'll find in each exhibition."
+            "badge": "PORTRAIT I",
+            "name": "Clara Fernández",
+            "subtitle": "The cultural explorer",
+            "wants": "Discover new exhibitions without tracking ten different websites.",
+            "frustration": "Incomplete information: outdated hours, tickets sold out on arrival.",
+            "needs": "One place to see, decide, and book on the spot.",
+            "quote": "I find out about exhibitions on Instagram... when they're almost over."
           },
           {
-            "title": "Confusing navigation",
-            "body": "Important information is scattered and hard to find."
-          },
-          {
-            "title": "Inefficient planning",
-            "body": "Booking and organizing a visit requires too many steps or different tools."
+            "badge": "PORTRAIT II",
+            "name": "Javier Morales",
+            "subtitle": "The planning student",
+            "wants": "Take advantage of discounts and plan visits that fit his schedule.",
+            "frustration": "Box office queues and not knowing what's worth seeing beforehand.",
+            "needs": "Plan the visit in advance: what to see, when, and at what price.",
+            "quote": "If I could buy the ticket from the couch, I'd visit twice as many museums."
           }
         ]
       },
-      "research": {
-        "question": "How did we approach research?",
-        "intro": "We looked at how people discover and plan cultural visits today, combining short interviews with a competitive analysis of museum apps and websites.",
-        "stats": [
-          { "value": "12", "label": "Interviews with museum visitors" },
-          { "value": "6", "label": "Museum apps and websites analyzed" },
-          { "value": "3", "label": "Cities covered in the research" }
+      "referents": {
+        "missingLabel": "MISSING",
+        "items": [
+          { "name": "Museo del Prado", "label": "EXHIBITS", "domina": "Deep curatorial content and a reference-grade digitized collection.", "falta": "Only its own museum. Limited booking and planning.", "placardTitle": "Institutional app", "placardSubtitle": "One museum, one island" },
+          { "name": "Reina Sofía", "label": "EXHIBITS", "domina": "Its own activity calendar and good room information.", "falta": "No cross-discovery or comparison between venues.", "placardTitle": "Institutional app", "placardSubtitle": "Another silo" },
+          { "name": "Louvre", "label": "EXHIBITS", "domina": "Highly polished audio guide and indoor maps.", "falta": "Built for the during, not for discovering or planning the before.", "placardTitle": "Institutional app", "placardSubtitle": "Only inside the building" },
+          { "name": "QuickMuseum", "label": "EXHIBITS", "domina": "Quick audio guides for multiple museums in one app.", "falta": "No ticket purchase or planning. Content only.", "placardTitle": "Partial aggregator", "placardSubtitle": "Content without management" },
+          { "name": "CloudGuide", "label": "EXHIBITS", "domina": "Wide catalog of affiliated cultural institutions.", "falta": "Uneven coverage and inconsistent booking experience.", "placardTitle": "Partial aggregator", "placardSubtitle": "Broad but uneven" },
+          { "name": "artmus", "label": "EXHIBITS EVERYTHING", "domina": "Discover + plan + book + buy, for every museum in your city.", "cartelaTitle": "THE PIECE NO ONE WAS EXHIBITING", "cartelaSubtitle": "The full collection, in your pocket.", "placardTitle": "Artmus, 2026", "placardSubtitle": "Recent acquisition", "highlight": true }
         ]
+      },
+      "architecture": [
+        { "letter": "H", "title": "Home", "detail": "Personalized discovery: featured exhibitions, nearby, last spots." },
+        { "letter": "M", "title": "Museums", "detail": "The city's full catalog: search, filter, and compare venues." },
+        { "letter": "E", "title": "Exhibition detail", "detail": "All the information on one screen: dates, artworks, price, how to get there." },
+        { "letter": "R", "title": "Book a visit", "detail": "Date, time, and tickets in three steps. No queues, no surprises." },
+        { "letter": "A", "title": "Events", "detail": "A living cultural agenda: openings, guided tours, museum nights." },
+        { "letter": "P", "title": "Profile", "detail": "Your tickets, your visit history, and your saved museums." }
+      ],
+      "flow": {
+        "label": "MAIN USER FLOW",
+        "steps": ["Onboarding", "Discover exhibition", "Detail", "Choose date and time", "Ticket on your phone"]
+      },
+      "brandSection": {
+        "logoAlt": "Artmus logo",
+        "quoteAccent": "Your city is full of art.",
+        "quoteRest": "It just needed a way in.",
+        "palette": [
+          { "name": "MUSEUM BLUE", "hex": "#2A3462" },
+          { "name": "CHARTREUSE", "hex": "#DCE94B" },
+          { "name": "WALL LILAC", "hex": "#EDECF4" },
+          { "name": "GALLERY WHITE", "hex": "#FDFCF9" }
+        ],
+        "voices": [
+          { "label": "EXPRESSIVE VOICE — SERIF", "detail": "Art feels in serif", "body": "For headlines, the word «art», and moments of emotion. Italics with character." },
+          { "label": "FUNCTIONAL VOICE — SANS", "detail": "The museum is used in sans", "body": "For interface, data, and navigation. Clear, geometric, frictionless." }
+        ]
+      },
+      "work": {
+        "label": "FROM SKETCH TO CANVAS",
+        "titleSans": "The restoration of",
+        "titleSerif": "the work",
+        "text1": "26 wireframe screens validated against the user flow before touching color. The component system translates the identity into interface: navy for structure, chartreuse only for action.",
+        "text2": "The exhibition detail screen concentrates 70% of the detected friction — all the information on a single screen, with booking one tap away.",
+        "phoneFinalAlt": "Artmus final interface",
+        "phoneWireAlt": "Artmus wireframe",
+        "shot1Alt": "Museums screen",
+        "shot2Alt": "Upcoming screen",
+        "shot3Alt": "Exhibitions screen"
+      },
+      "ending": {
+        "heroLine1": "The exit is",
+        "heroConnector": "through",
+        "heroAccent": "the gift shop.",
+        "ticketTitle": "TICKET No. 000029 — VISIT COMPLETED",
+        "ticketSubtitle": "6 ROOMS · RESEARCH → PERSONAS → COMPETITORS → IA → BRAND → UI",
+        "nextLabel": "NEXT PROJECT · CASE STUDY 02 · APP · PRODUCTIVITY",
+        "nextDescription": "An app that turns any goal into a visible daily action."
       }
     },
     "next": {
-      "title": "NEXT",
-      "subtitle": "One goal. One action a day. Progress you can actually see.",
       "intro": {
         "tagline": "START WITH WHAT'S NEXT"
       },
-      "statement": "NEXT turns big goals into small daily actions. The focus is reducing the friction between setting an intention and actually following through, with an interface that prioritizes clarity over data density.",
-      "challenge": {
-        "question": "How many times have you started something with excitement and dropped it halfway through?",
-        "intro": "We talked to 32 people to understand what gets in the way between them and their goals. Three patterns kept coming up.",
-        "points": [
-          {
-            "title": "They don't know what to do next",
-            "body": "45% of users get stuck on a regular basis. It's not a lack of motivation — it's a lack of structure. Without a clear next step, the intention to act turns into paralysis.",
-            "quote": "\"I don't know where to start\" · \"I don't know what the next step is\""
-          },
-          {
-            "title": "They don't see the progress they've already made",
-            "body": "Users give up when they feel like they're not moving forward. But when they look back, they do see it. The problem isn't a lack of progress — it's that no one is showing it to them.",
-            "quote": "\"When I look back I can actually see I've made progress, and that motivates me\""
-          },
-          {
-            "title": "Motivation fades before the result arrives",
-            "body": "Meaningful goals take months. Initial motivation runs out in weeks. Without small rewards along the way, dropping off becomes almost inevitable.",
-            "quote": "\"I lack motivation\" · \"Not seeing results makes me quit\""
-          }
+      "hero": {
+        "tags": ["PRODUCT DESIGN", "2026", "UX RESEARCH → IA → BRAND → UI"],
+        "caseLabel": "CASE STUDY 02",
+        "logoAlt": "NEXT",
+        "headline": "Any goal becomes",
+        "headlineHighlight": "a daily action",
+        "bodyLine1": "A productivity app that makes real progress visible.",
+        "bodyLine2": "No empty streaks, no endless lists.",
+        "bodyLine3": "Evidence that the effort is working.",
+        "scrollLabel": "START WITH WHAT'S NEXT",
+        "phoneAlt": "NEXT interface"
+      },
+      "meta": {
+        "number": "01/08",
+        "title": "THE GOAL",
+        "eyebrow": "THE BRIEF",
+        "description": "Design a productivity app that helps people turn big, abstract goals into concrete daily actions, with visible, tangible progress at every step.",
+        "role": { "label": "ROLE", "value": "Product Designer (end-to-end)" },
+        "research": { "label": "RESEARCH", "value": "Surveys, interviews, competitive analysis" },
+        "deliverables": { "label": "DELIVERABLES", "value": "IA, wireframes, design system, final UI" },
+        "territory": { "label": "TERRITORY", "value": "Personal productivity, habits" }
+      },
+      "caida": {
+        "number": "02/08",
+        "title": "THE DROP-OFF",
+        "eyebrow": "QUANTITATIVE RESEARCH",
+        "lede": "Before designing anything, we needed to understand why people abandon their goals. A survey of 120 people revealed four data points that explain it.",
+        "cards": [
+          { "title": "BLOCKED", "percent": 72, "phrase": "Doesn't know where to start when the goal feels big." },
+          { "title": "COGNITIVE CAUSE", "percent": 45, "phrase": "Choice overload paralyzes the first action." },
+          { "title": "ACTUAL TOOL USED", "percent": 38, "phrase": "Uses a productivity app on a regular basis." },
+          { "title": "WHAT WOULD HELP MOST", "percent": 65, "phrase": "Seeing progress in a visible, tangible way." }
+        ],
+        "quoteText": "I know what I have to do, but I don't know if I'm doing it right.",
+        "quoteAttribution": "— Participant, qualitative interview"
+      },
+      "paisaje": {
+        "number": "03/08",
+        "title": "THE LANDSCAPE",
+        "eyebrow": "COMPETITIVE ANALYSIS",
+        "cards": [
+          { "title": "Duolingo", "subtitle": "Gamification", "phrase": "Turns habit into a game with streaks and levels.", "footer": "WHAT IT MASTERS", "detail": "Short-term motivation, instant feedback." },
+          { "title": "Notion", "subtitle": "Total flexibility", "phrase": "Any productivity system fits inside.", "footer": "WHAT IT MASTERS", "detail": "Infinite customization, steep learning curve." },
+          { "title": "Habitica", "subtitle": "Habit RPG", "phrase": "Your tasks are quests in a role-playing game.", "footer": "WHAT IT MASTERS", "detail": "Community and narrative, little focus on real goals." },
+          { "title": "Streaks", "subtitle": "Minimalism", "phrase": "Just streaks. Simple, direct, no distraction.", "footer": "WHAT IT MASTERS", "detail": "Visual clarity, but no context or real progress." },
+          { "title": "NEXT", "subtitle": "Tangible progress", "phrase": "Every goal becomes a visible daily action.", "footer": "WHAT IT PROPOSES", "detail": "Real evidence of progress, not just empty streaks." }
         ]
       },
-      "research": {
-        "question": "How did we approach research?",
-        "intro": "Beyond the initial 32 interviews, we analyzed real usage of existing habit apps to understand where and when people dropped off.",
-        "stats": [
-          { "value": "32", "label": "People interviewed" },
-          { "value": "5", "label": "Habit apps analyzed" },
-          { "value": "68%", "label": "Drop off within the first two weeks" }
+      "siguientePaso": {
+        "number": "04/08",
+        "title": "THE NEXT STEP",
+        "eyebrow": "THE INSIGHT",
+        "lines": [
+          { "text": "“I don't quit for" },
+          { "text": "lack of motivation," },
+          { "text": "I quit because" },
+          { "text": "I don't see", "accent": true },
+          { "text": "the progress", "accent": true },
+          { "text": "I'm making.”" }
+        ],
+        "attribution": "— Synthesis of qualitative research",
+        "cards": [
+          { "number": "01", "title": "PROGRESS", "detail": "Visualize real progress, not just checking off tasks." },
+          { "number": "02", "title": "EVIDENCE", "detail": "Show tangible proof that the effort is working." },
+          { "number": "03", "title": "MOMENTUM", "detail": "Turn small daily actions into accumulated momentum." },
+          { "number": "04", "title": "COMMUNITY", "detail": "Share progress with others to sustain commitment." }
         ]
+      },
+      "identidad": {
+        "number": "05/08",
+        "title": "THE IDENTITY",
+        "eyebrow": "ANATOMY OF AN ARROW",
+        "lede": "The insight became a brand first. NEXT is an arrow: the constant direction toward the next step. An identity system built from the logic of progress, not decoration.",
+        "logo": {
+          "subhead": "01 · LOGO — CONSTRUCTION",
+          "title": "One arrow, one grid",
+          "text": "The symbol is built on a strict grid: every angle, every proportion, follows a mathematical rule. Nothing is arbitrary.",
+          "gridColumns": [
+            { "title": "TYPEFACE", "detail": "Geometric sans, clean strokes, no serifs." },
+            { "title": "CHEVRON STROKE", "detail": "The symbol's angle measures 60°, constant across the brand." },
+            { "title": "MINIMUM SIZE", "detail": "24px tall digitally, 10mm in print." },
+            { "title": "SAFE AREA", "detail": "Clear space equal to the height of the 'N'." }
+          ]
+        },
+        "color": {
+          "subhead": "02 · COLOR — SYSTEM",
+          "title": "The rule 70 · 25 · 5.",
+          "text": "The palette works as a hierarchical system: slate and paper dominate, neutrals balance, and color only appears to signal action or alert.",
+          "rows": [
+            { "label": "SLATE/PAPER", "value": "70%" },
+            { "label": "NEUTRALS", "value": "20%" },
+            { "label": "LIME + CORAL", "value": "5%" }
+          ],
+          "contrastBefore": "Lime on slate:",
+          "contrastPass": "AAA ✓",
+          "contrastMiddle": "Coral on paper:",
+          "contrastAfter": "Both meet the minimum contrast across every use."
+        },
+        "tone": {
+          "subhead": "03 · STRATEGY — TONE OF VOICE",
+          "title": "A friend who believes in you. Never a drill sergeant.",
+          "text": "The research was clear: guilt makes people quit (“when it makes me anxious, I quit”). The tone celebrates real progress and never punishes a relapse.",
+          "doLabel": "WHAT WE SAY",
+          "dontLabel": "WHAT WE DON'T SAY",
+          "doPhrases": [
+            "Today's next step: 20 min of reading.",
+            "You're on a 6-day streak. You're doing better than you think.",
+            "You couldn't yesterday. Today's a good day to come back."
+          ],
+          "dontPhrases": [
+            "Maximize your productivity NOW!!",
+            "You broke your streak. Start from zero.",
+            "If you fail, it's because you're not trying hard enough."
+          ]
+        },
+        "misuse": {
+          "subhead": "04 · LOGO — INCORRECT USES",
+          "title": "What we never do.",
+          "labels": ["DON'T ROTATE", "DON'T DISTORT", "DON'T ADD EFFECTS", "DON'T CHANGE TYPEFACE"],
+          "logoAlt": "Incorrect use of the NEXT logo"
+        }
       }
     }
   }

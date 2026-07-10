@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type JSX } from "react";
+import { useTranslation } from "react-i18next";
 import { gsap } from "gsap";
 import "../../components/style/ArtMusIntro.css";
 
@@ -7,6 +8,7 @@ interface ArtMusIntroProps {
 }
 
 export default function ArtMusIntro({ onDone }: ArtMusIntroProps): JSX.Element | null {
+  const { t } = useTranslation();
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const heroRectRef = useRef<HTMLDivElement | null>(null);
   const stampRef = useRef<HTMLSpanElement | null>(null);
@@ -67,24 +69,30 @@ export default function ArtMusIntro({ onDone }: ArtMusIntroProps): JSX.Element |
         <div className="artmus-hero-rect-content">
           <div className="artmus-hero-rect-top">
             <span className="artmus-hero-rect-logo">
-              <span className="artmus-hero-rect-logo-a">art</span>
-              <span className="artmus-hero-rect-logo-m">mus</span>
+              <span className="artmus-hero-rect-logo-a">
+                {t("caseStudies.artmus.intro.logoA")}
+              </span>
+              <span className="artmus-hero-rect-logo-m">
+                {t("caseStudies.artmus.intro.logoM")}
+              </span>
             </span>
 
-            <span className="artmus-hero-rect-number">Nº 000029</span>
+            <span className="artmus-hero-rect-number">
+              {t("caseStudies.artmus.intro.ticketNumber")}
+            </span>
           </div>
 
           <p className="artmus-hero-rect-text">
-            Entrada general
+            {t("caseStudies.artmus.intro.ticketLine1")}
             <br />
-            Exposición · Case Study 01
+            {t("caseStudies.artmus.intro.ticketLine2")}
             <br />
-            Válida para una visita
+            {t("caseStudies.artmus.intro.ticketLine3")}
           </p>
         </div>
 
         <span className="artmus-hero-rect-stamp" ref={stampRef}>
-          ADMITIDO
+          {t("caseStudies.artmus.intro.stamp")}
         </span>
       </div>
     </div>
