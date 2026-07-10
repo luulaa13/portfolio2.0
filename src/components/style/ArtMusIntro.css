@@ -1,0 +1,135 @@
+.artmus-intro{
+    position:fixed;
+    inset:0;
+    z-index:3000;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#2A3462;
+    color:#F2F1E9;
+}
+
+.artmus-hero-rect{
+    position:relative;
+    display:flex;
+    align-items:flex-start;
+    justify-content:flex-start;
+
+    width:min(440px, 55vw);
+    aspect-ratio:16 / 9;
+    background:#EDECF4;
+    border-radius:16px;
+}
+
+.artmus-hero-rect-content{
+    width:100%;
+    padding:24px 40px 0;
+}
+
+.artmus-hero-rect-stamp{
+    position:absolute;
+    right:18px;
+    bottom:28px;
+
+    border:2.5px solid #B9C62E;
+    border-radius:4px;
+    padding:7px 14px;
+
+    font-family:"Space Mono", monospace;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.24em;
+    color:#B9C62E;
+
+    transform:rotate(-12deg);
+}
+
+.artmus-hero-rect-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+
+    border-bottom:2px dashed rgba(42, 52, 98, 0.35);
+    padding-bottom:14px;
+    margin-bottom:28px;
+}
+
+.artmus-hero-rect-logo{
+    font-family:"Fraunces", serif;
+}
+
+.artmus-hero-rect-logo-a{
+    font-style:italic;
+    font-weight:500;
+    font-size:22px;
+    color:#2A3462;
+}
+
+.artmus-hero-rect-logo-m{
+    font-weight:900;
+    font-size:22px;
+    letter-spacing:-0.01em;
+    color:#2A3462;
+}
+
+.artmus-hero-rect-number{
+    font-family:"Space Mono", monospace;
+    font-size:0.75rem;
+    letter-spacing:0.06em;
+    color:rgba(42, 52, 98, 0.55);
+}
+
+.artmus-hero-rect-text{
+    margin:0;
+    text-align:left;
+
+    font-family:"Space Mono", monospace;
+    font-size:0.85rem;
+    line-height:1.8;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:#2A3462;
+}
+
+.artmus-hero-rect::before,
+.artmus-hero-rect::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    width:44px;
+    height:44px;
+    background:#2A3462;
+    border-radius:50%;
+    transform:translateY(-50%);
+}
+
+.artmus-hero-rect::before{
+    left:-22px;
+}
+
+.artmus-hero-rect::after{
+    right:-22px;
+}
+
+@media (max-width: 768px){
+    .artmus-hero-rect{
+        width:min(280px, 70vw);
+        border-radius:12px;
+    }
+
+    .artmus-hero-rect::before,
+    .artmus-hero-rect::after{
+        width:20px;
+        height:20px;
+    }
+
+    .artmus-hero-rect::before{
+        left:-10px;
+    }
+
+    .artmus-hero-rect::after{
+        right:-10px;
+    }
+}

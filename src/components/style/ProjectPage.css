@@ -357,6 +357,7 @@
 
 .identidad-subtitle{
     margin:16px 0 0 140px;
+    text-transform:uppercase;
 }
 
 @media (max-width: 768px){
@@ -543,6 +544,165 @@
 
 .identidad-contrast-pass{
     color:#B3FF00;
+}
+
+.identidad-tone-cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+
+    margin:64px 140px 0;
+}
+
+.identidad-tone-card{
+    min-height:220px;
+    padding:24px;
+    background:#17191A;
+    border:1px solid rgba(242, 241, 233, 0.15);
+    overflow:hidden;
+}
+
+.identidad-tone-card-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    font-family:"Space Mono", monospace;
+    font-size:0.9rem;
+    letter-spacing:0.1em;
+    color:#F2F1E9;
+}
+
+.identidad-tone-card-icon{
+    font-size:1.1rem;
+}
+
+.identidad-tone-card--do .identidad-tone-card-header{
+    color:#B3FF00;
+}
+
+.identidad-tone-card--dont .identidad-tone-card-header{
+    color:#FF5C34;
+}
+
+.identidad-tone-phrases{
+    display:flex;
+    flex-direction:column;
+
+    margin-top:20px;
+}
+
+.identidad-tone-phrase{
+    margin:0;
+    padding:14px 0;
+    border-top:1px solid rgba(242, 241, 233, 0.12);
+
+    font-family:"Bricolage Grotesque", sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    line-height:1.5;
+    color:rgba(242, 241, 233, 0.85);
+}
+
+.identidad-tone-phrase::before{
+    content:"\201C";
+}
+
+.identidad-tone-phrase::after{
+    content:"\201D";
+}
+
+.identidad-tone-phrase:first-child{
+    border-top:none;
+    padding-top:0;
+}
+
+.identidad-tone-phrase--dont{
+    position:relative;
+}
+
+.identidad-tone-strike{
+    position:absolute;
+    left:0;
+    top:calc(14px + 0.75em);
+    width:100%;
+    height:2px;
+    background:#FF5C34;
+    transform-origin:left center;
+}
+
+.identidad-tone-phrase--dont:first-child .identidad-tone-strike{
+    top:0.75em;
+}
+
+@media (max-width: 768px){
+    .identidad-tone-cards{
+        grid-template-columns:1fr;
+        gap:16px;
+        margin:48px 24px 0;
+    }
+}
+
+.identidad-misuse-cards{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:24px;
+
+    margin:48px 140px 0;
+}
+
+.identidad-misuse-card{
+    position:relative;
+    aspect-ratio:1 / 1;
+    background:#17191A;
+    border:1px solid rgba(242, 241, 233, 0.15);
+    overflow:hidden;
+}
+
+.identidad-misuse-logo{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:44%;
+    transform:translate(-50%, -50%);
+}
+
+.identidad-misuse-badge{
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:28px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    border:2px solid #FF5C34;
+
+    font-family:"Space Mono", monospace;
+    font-size:13px;
+    font-weight:700;
+    color:#FF5C34;
+}
+
+.identidad-misuse-label{
+    position:absolute;
+    bottom:12px;
+    left:12px;
+
+    font-family:"Space Mono", monospace;
+    font-size:0.7rem;
+    letter-spacing:0.06em;
+    color:rgba(242, 241, 233, 0.6);
+}
+
+@media (max-width: 768px){
+    .identidad-misuse-cards{
+        grid-template-columns:1fr 1fr;
+        gap:16px;
+        margin:32px 24px 0;
+    }
 }
 
 @media (max-width: 768px){

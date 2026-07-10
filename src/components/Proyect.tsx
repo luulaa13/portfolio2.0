@@ -16,18 +16,24 @@ export default function Proyect(): JSX.Element {
   const navigate = useNavigate();
 
   const [zooming, setZooming] = useState(false);
+  const [zoomTarget, setZoomTarget] = useState<{
+    slug: "artmus" | "next";
+    color: string;
+  } | null>(null);
   const zoomOverlayRef = useRef<HTMLDivElement | null>(null);
 
+  const zoomColors: Record<"artmus" | "next", string> = {
+    artmus: "#2A3462",
+    next: "#050505",
+  };
+
   const openProject = (slug: "artmus" | "next") => {
-    if (slug === "next") {
-      setZooming(true);
-      return;
-    }
-    navigate(`/projects/${slug}`);
+    setZoomTarget({ slug, color: zoomColors[slug] });
+    setZooming(true);
   };
 
   useEffect(() => {
-    if (!zooming) return;
+    if (!zooming || !zoomTarget) return;
     const overlay = zoomOverlayRef.current;
     if (!overlay) return;
 
@@ -39,10 +45,10 @@ export default function Proyect(): JSX.Element {
         scale: 1,
         duration: 0.6,
         ease: "power2.inOut",
-        onComplete: () => navigate("/projects/next"),
+        onComplete: () => navigate(`/projects/${zoomTarget.slug}`),
       }
     );
-  }, [zooming, navigate]);
+  }, [zooming, zoomTarget, navigate]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -161,7 +167,13 @@ export default function Proyect(): JSX.Element {
 
       <div className="projects-divider"></div>
 
-      {zooming && <div className="project-zoom-overlay" ref={zoomOverlayRef} />}
+      {zooming && (
+        <div
+          className="project-zoom-overlay"
+          style={{ background: zoomTarget?.color }}
+          ref={zoomOverlayRef}
+        />
+      )}
     </section>
   );
 }

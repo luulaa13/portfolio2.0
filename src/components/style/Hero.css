@@ -39,6 +39,10 @@
   word-break: break-word;
 }
 
+.keyword {
+  font-weight: 700;
+}
+
 /* ── FINAL PHASE ── */
 .phase-final {
   position: absolute;

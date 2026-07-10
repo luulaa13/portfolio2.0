@@ -148,6 +148,25 @@ const identidadColorRows = [
   },
 ];
 
+const identidadToneDoPhrases = [
+  "Tu siguiente paso de hoy: 20 min de lectura.",
+  "Llevas 6 días seguidos. Vas mejor de lo que crees.",
+  "Ayer no pudiste. Hoy es un buen día para volver.",
+];
+
+const identidadToneDontPhrases = [
+  "¡¡Maximiza tu productividad ya!!",
+  "Has roto tu racha. Empieza de cero.",
+  "Si fallas, es porque no te esfuerzas.",
+];
+
+const identidadMisuseLabels = [
+  "NO ROTAR",
+  "NO DEFORMAR",
+  "NO AÑADIR EFECTOS",
+  "NO CAMBIAR TIPOGRAFÍA",
+];
+
 export default function NextPage(): JSX.Element {
   const [introDone, setIntroDone] = useState(false);
   const metaSectionRef = useRef<HTMLElement | null>(null);
@@ -161,6 +180,8 @@ export default function NextPage(): JSX.Element {
   const identidadGridFrameRef = useRef<HTMLDivElement | null>(null);
   const identidadLogoMarkRef = useRef<HTMLImageElement | null>(null);
   const identidadColorRowsRef = useRef<HTMLDivElement | null>(null);
+  const identidadToneCardsRef = useRef<HTMLDivElement | null>(null);
+  const identidadMisuseCardsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -466,6 +487,113 @@ export default function NextPage(): JSX.Element {
           },
         }
       );
+
+      // Entrada de las cards de tono de voz, y sus frases suben detrás
+      if (identidadToneCardsRef.current) {
+        const container = identidadToneCardsRef.current;
+        const cards = container.querySelectorAll(".identidad-tone-card");
+        const phrases = container.querySelectorAll(".identidad-tone-phrase");
+        const dontPhrases = container.querySelectorAll(
+          ".identidad-tone-phrase--dont"
+        );
+        const strikes = container.querySelectorAll(".identidad-tone-strike");
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: container,
+            start: "top 85%",
+            once: true,
+          },
+        });
+
+        tl.fromTo(
+          cards,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power3.out",
+          }
+        ).fromTo(
+          phrases,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.08,
+            ease: "power3.out",
+          },
+          "-=0.3"
+        )
+          .to(
+            dontPhrases,
+            { opacity: 0.4, duration: 0.4, ease: "power2.out" },
+            "+=1"
+          )
+          .fromTo(
+            strikes,
+            { scaleX: 0 },
+            { scaleX: 1, duration: 0.5, stagger: 0.1, ease: "power2.out" },
+            "<"
+          );
+      }
+
+      // Cards de usos incorrectos: aparecen, sube el logo, "efecto incorrecto"
+      // y por último aparece el círculo con la X
+      if (identidadMisuseCardsRef.current) {
+        const container = identidadMisuseCardsRef.current;
+        const misuseCards = container.querySelectorAll(".identidad-misuse-card");
+        const misuseLogos = container.querySelectorAll(".identidad-misuse-logo");
+        const misuseBadges = container.querySelectorAll(".identidad-misuse-badge");
+
+        const tlMisuse = gsap.timeline({
+          scrollTrigger: {
+            trigger: container,
+            start: "top 85%",
+            once: true,
+          },
+        });
+
+        tlMisuse
+          .fromTo(
+            misuseCards,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.7,
+              stagger: 0.1,
+              ease: "power3.out",
+            }
+          )
+          .fromTo(
+            misuseLogos,
+            { y: 60, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              stagger: 0.1,
+              ease: "back.out(1.4)",
+            },
+            "-=0.3"
+          )
+          .fromTo(
+            misuseBadges,
+            { scale: 0, opacity: 0 },
+            {
+              scale: 1,
+              opacity: 1,
+              duration: 0.4,
+              stagger: 0.1,
+              ease: "back.out(2)",
+            },
+            "-=0.3"
+          );
+      }
     });
 
     return () => ctx.revert();
@@ -871,6 +999,75 @@ export default function NextPage(): JSX.Element {
           SOBRE PIZARRA <span className="identidad-contrast-pass">AAA ✓</span> · NUNCA TEXTO CLARO
           SOBRE ACENTOS
         </p>
+
+        <span className="chapter-number identidad-subhead">
+          03 · ESTRATEGIA — TONO DE VOZ
+        </span>
+
+        <h3 className="chapter-title identidad-subtitle">
+          Un amigo que cree en ti. Nunca un sargento.
+        </h3>
+
+        <p className="chapter-col identidad-subtext">
+          La investigación fue clara: la culpa hace abandonar
+          (&ldquo;cuando me genera mucha ansiedad, abandono&rdquo;). El tono
+          celebra el avance real y nunca castiga la recaída.
+        </p>
+
+        <div className="identidad-tone-cards" ref={identidadToneCardsRef}>
+          <div className="identidad-tone-card identidad-tone-card--do">
+            <span className="identidad-tone-card-header">
+              <span className="identidad-tone-card-icon">✓</span>
+              SÍ DECIMOS
+            </span>
+
+            <div className="identidad-tone-phrases">
+              {identidadToneDoPhrases.map((phrase, i) => (
+                <p className="identidad-tone-phrase" key={i}>
+                  {phrase}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          <div className="identidad-tone-card identidad-tone-card--dont">
+            <span className="identidad-tone-card-header">
+              <span className="identidad-tone-card-icon">✕</span>
+              NO DECIMOS
+            </span>
+
+            <div className="identidad-tone-phrases">
+              {identidadToneDontPhrases.map((phrase, i) => (
+                <p className="identidad-tone-phrase identidad-tone-phrase--dont" key={i}>
+                  {phrase}
+                  <span className="identidad-tone-strike" />
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <span className="chapter-number identidad-subhead">
+          04 · LOGO — USOS INCORRECTOS
+        </span>
+
+        <h3 className="chapter-title identidad-subtitle">
+          Lo que nunca hacemos.
+        </h3>
+
+        <div className="identidad-misuse-cards" ref={identidadMisuseCardsRef}>
+          {identidadMisuseLabels.map((label) => (
+            <div className="identidad-misuse-card" key={label}>
+              <img
+                src={nextLogo}
+                alt="Uso incorrecto del logo NEXT"
+                className="identidad-misuse-logo"
+              />
+              <span className="identidad-misuse-badge">✕</span>
+              <span className="identidad-misuse-label">{label}</span>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="case-section" data-section="7">

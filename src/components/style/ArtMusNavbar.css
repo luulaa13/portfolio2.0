@@ -1,0 +1,85 @@
+.artmus-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  padding: 20px 40px;
+}
+
+.artmus-navbar-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.artmus-navbar-progress--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.artmus-navbar-label {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: rgba(42, 52, 98, 0.55);
+}
+
+.artmus-navbar-squares {
+  display: flex;
+  align-items: center;
+}
+
+.artmus-square {
+  position: relative;
+  width: 13px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: none;
+  border: 1.5px solid #2a3462;
+  transition: background 0.35s ease;
+}
+
+.artmus-square--passed {
+  background: #b9c62e;
+}
+
+.artmus-square-dot {
+  width: 5px;
+  height: 5px;
+  background: #2a3462;
+}
+
+@media (max-width: 768px) {
+  .artmus-navbar {
+    padding: 16px 20px;
+  }
+
+  .artmus-navbar-label {
+    font-size: 9px;
+  }
+
+  .artmus-square {
+    width: 11px;
+    height: 11px;
+  }
+
+  .artmus-square-dot {
+    width: 4px;
+    height: 4px;
+  }
+}
