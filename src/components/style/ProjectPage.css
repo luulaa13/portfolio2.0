@@ -136,6 +136,17 @@
     color:rgba(242, 241, 233, 0.7);
 }
 
+@media (min-width: 1025px) and (max-width: 1440px){
+    .siguiente-paso-statement{
+        margin:80px 0 0 72px;
+        padding-bottom:100px;
+    }
+
+    .siguiente-paso-cards{
+        margin:0 72px 100px;
+    }
+}
+
 @media (max-width: 1024px){
     .siguiente-paso-cards{
         grid-template-columns:repeat(2, 1fr);
@@ -254,6 +265,12 @@
     opacity:0.6;
 }
 
+@media (min-width: 1025px) and (max-width: 1440px){
+    .paisaje-track{
+        padding:0 72px;
+    }
+}
+
 @media (max-width: 768px){
     .paisaje-track-wrap{
         overflow-x:auto;
@@ -337,6 +354,12 @@
     margin:120px 0 0 140px;
 }
 
+@media (min-width: 1025px) and (max-width: 1440px){
+    .chapter-lede{
+        margin:80px 0 0 72px;
+    }
+}
+
 @media (max-width: 768px){
     .chapter-lede{
         margin:40px 24px 0;
@@ -347,6 +370,12 @@
 .identidad-subhead{
     display:block;
     margin:80px 0 0 140px;
+}
+
+@media (min-width: 1025px) and (max-width: 1440px){
+    .identidad-subhead{
+        margin:56px 0 0 72px;
+    }
 }
 
 @media (max-width: 768px){
@@ -360,6 +389,12 @@
     text-transform:uppercase;
 }
 
+@media (min-width: 1025px) and (max-width: 1440px){
+    .identidad-subtitle{
+        margin:16px 0 0 72px;
+    }
+}
+
 @media (max-width: 768px){
     .identidad-subtitle{
         margin:16px 24px 0;
@@ -370,6 +405,12 @@
     max-width:820px;
     margin:24px 0 0 140px;
     font-size:1.05rem;
+}
+
+@media (min-width: 1025px) and (max-width: 1440px){
+    .identidad-subtext{
+        margin:24px 0 0 72px;
+    }
 }
 
 @media (max-width: 768px){
@@ -459,6 +500,12 @@
     font-size:1rem;
     line-height:1.5;
     color:rgba(242, 241, 233, 0.7);
+}
+
+@media (min-width: 1025px) and (max-width: 1440px){
+    .identidad-grid-columns{
+        padding:0 72px;
+    }
 }
 
 @media (max-width: 768px){
@@ -635,6 +682,12 @@
     top:0.75em;
 }
 
+@media (min-width: 1025px) and (max-width: 1440px){
+    .identidad-tone-cards{
+        margin:64px 72px 0;
+    }
+}
+
 @media (max-width: 768px){
     .identidad-tone-cards{
         grid-template-columns:1fr;
@@ -697,11 +750,27 @@
     color:rgba(242, 241, 233, 0.6);
 }
 
+@media (min-width: 1025px) and (max-width: 1440px){
+    .identidad-misuse-cards{
+        margin:48px 72px 0;
+    }
+}
+
 @media (max-width: 768px){
     .identidad-misuse-cards{
         grid-template-columns:1fr 1fr;
         gap:16px;
         margin:32px 24px 0;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px){
+    .identidad-color-rows{
+        margin:64px 72px 0;
+    }
+
+    .identidad-contrast{
+        margin:32px 72px 0;
     }
 }
 
@@ -785,6 +854,12 @@
     color:rgba(23, 25, 26, 0.7);
 }
 
+@media (min-width: 1025px) and (max-width: 1440px){
+    .caida-cards{
+        margin:64px 72px 0;
+    }
+}
+
 @media (max-width: 1024px){
     .caida-cards{
         grid-template-columns:repeat(2, 1fr);
@@ -850,6 +925,12 @@
     color:#8F9189;
 }
 
+@media (min-width: 1025px) and (max-width: 1440px){
+    .caida-quote{
+        margin:96px 72px 0;
+    }
+}
+
 @media (max-width: 768px){
     .caida-quote{
         flex-direction:column;
@@ -897,6 +978,17 @@
     font-size:1.05rem;
     color:#F2F1E9;
     text-align:right;
+}
+
+@media (min-width: 1025px) and (max-width: 1440px){
+    .chapter-heading{
+        padding:64px 56px 0;
+    }
+
+    .chapter-columns{
+        gap:80px;
+        margin:100px 0 0 72px;
+    }
 }
 
 @media (max-width: 768px){
@@ -1037,7 +1129,7 @@
     50% { transform:translateX(-50%) scale(0.82); opacity:0.3; }
 }
 
-@media (max-width: 1100px){
+@media (max-width: 1440px){
     .hero-phone-wrap{
         display:none;
     }
@@ -1069,6 +1161,20 @@
 @keyframes hero-scroll-bounce{
     0%, 100% { transform:translateY(-3px); }
     50% { transform:translateY(3px); }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px){
+    .hero-meta{
+        padding:90px 56px 0;
+    }
+
+    .hero-logo-wrap{
+        margin:48px 0 0 56px;
+    }
+
+    .hero-statement{
+        margin:90px 0 0 56px;
+    }
 }
 
 @media (max-width: 768px){

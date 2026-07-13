@@ -7,10 +7,14 @@ import Proyect from "../components/Proyect";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 
-export default function Home(): JSX.Element {
+interface HomeProps {
+  ready?: boolean;
+}
+
+export default function Home({ ready = true }: HomeProps): JSX.Element {
   return (
     <>
-      <Hero />
+      <Hero ready={ready} />
 
       <section className="skills-banner">
         <div className="skills-track">

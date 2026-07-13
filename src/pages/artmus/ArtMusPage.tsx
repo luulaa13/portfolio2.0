@@ -1063,6 +1063,7 @@ export default function ArtMusPage(): JSX.Element {
           onClick={() => navigate("/projects/next")}
           role="link"
           tabIndex={0}
+          data-cursor={t("cursor.next")}
           onKeyDown={(e) => {
             if (e.key === "Enter") navigate("/projects/next");
           }}

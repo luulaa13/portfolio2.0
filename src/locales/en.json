@@ -1,9 +1,23 @@
 {
+  "cursor": {
+    "view": "View project",
+    "next": "Next"
+  },
+  "loader": {
+    "steps": {
+      "design": "Design",
+      "code": "Code",
+      "launch": "Launch"
+    },
+    "publishButton": "Publish",
+    "command": "npm install portfolio",
+    "installOutput": "packages installed ✓"
+  },
   "projects": {
     "title": "SELECTED WORK",
     "project": "PROJECT",
     "count": "2 SELECTED WORK",
-    "behance": "EXPLORE ON BEHANCE",
+    "exploreMore": "EXPLORE MORE PROJECTS",
     "tags": {
       "uxui": "UX/UI",
       "branding": "Branding",
@@ -13,6 +27,12 @@
     "items": {
       "artmus": "Artmus app",
       "next": "NEXT app"
+    },
+    "allPage": {
+      "eyebrow": "Full archive",
+      "title": "All projects",
+      "subtitle": "Every project is a full case study: research, design decisions, and the final outcome.",
+      "back": "Back to home"
     }
   },
   "whatIDo": {

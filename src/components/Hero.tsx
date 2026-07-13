@@ -13,7 +13,11 @@ interface NameState {
   translateY: number
 }
 
-export default function Hero() {
+interface HeroProps {
+  ready?: boolean
+}
+
+export default function Hero({ ready = true }: HeroProps) {
   const { t } = useTranslation()
 
   const lines = t("hero.lines", { returnObjects: true }) as Array<{
@@ -41,10 +45,10 @@ export default function Hero() {
   const ran = useRef(false)
 
   useEffect(() => {
-    if (ran.current) return
+    if (!ready || ran.current) return
     ran.current = true
     document.fonts.ready.then(runSequence)
-  }, [])
+  }, [ready])
 
   async function runSequence() {
     await wait(400)

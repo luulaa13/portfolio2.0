@@ -54,7 +54,7 @@ export default function ArtMusIntro({ onDone }: ArtMusIntroProps): JSX.Element |
           yPercent: -100,
           duration: 0.9,
           ease: "power3.inOut",
-          delay: 1,
+          delay: 1.5,
         });
     });
 

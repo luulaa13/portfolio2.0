@@ -9,11 +9,8 @@
   left: 0;
   top: 0;
 
-  width: 20px;
-  height: 20px;
-
-  border-radius: 50%;
-  background: #c9951a;
+  width: 26px;
+  height: 26px;
 
   pointer-events: none;
   z-index: 999999;
@@ -21,21 +18,111 @@
   transform: translate(-50%, -50%);
 
   transition:
-    width 0.25s ease,
-    height 0.25s ease,
-    background 0.25s ease;
+    width 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+    height 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: white;
-  font-size: 11px;
-  font-family: "Space Mono", monospace;
+  --cursor-accent: #c9951a;
 }
 
-.custom-cursor.active {
-  width: 80px;
-  height: 80px;
-  background: #111;
+.custom-cursor.theme-artmus {
+  --cursor-accent: #b9c62e;
+}
+
+.custom-cursor.theme-next {
+  --cursor-accent: #b3ff00;
+}
+
+.custom-cursor--active {
+  width: 74px;
+  height: 74px;
+}
+
+.custom-cursor-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+
+  border: 1.5px solid var(--cursor-accent);
+  opacity: 0.85;
+
+  transition:
+    width 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+    height 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+    border-color 0.25s ease;
+}
+
+.custom-cursor--active .custom-cursor-corner {
+  width: 13px;
+  height: 13px;
+}
+
+.custom-cursor-corner--tl {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.custom-cursor-corner--tr {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+.custom-cursor-corner--bl {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+}
+
+.custom-cursor-corner--br {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.custom-cursor-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--cursor-accent);
+
+  transform: translate(-50%, -50%) scale(1);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.custom-cursor--active .custom-cursor-dot {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.3);
+}
+
+.custom-cursor-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+
+  font-family: "Space Mono", monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cursor-accent);
+
+  opacity: 0;
+  transition: opacity 0.2s ease 0.05s;
+}
+
+.custom-cursor--active .custom-cursor-label {
+  opacity: 1;
 }
