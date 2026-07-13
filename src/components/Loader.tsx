@@ -1,22 +1,37 @@
 import { useEffect, useState } from "react";
-import faceDesktop from "../assets/face2.gif";
-import faceMobile from "../assets/face1.gif";
+
+const steps = [
+  "Understanding users...",
+  "Designing experiences...",
+  "Building interfaces...",
+  "Growing products...",
+  "Ready."
+];
 
 function Loader() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 768);
+    const interval = setInterval(() => {
+      setCurrentStep((prev) => {
+        if (prev < steps.length - 1) return prev + 1;
+        clearInterval(interval);
+        return prev;
+      });
+    }, 450);
 
-    check();
-    window.addEventListener("resize", check);
-
-    return () => window.removeEventListener("resize", check);
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="loader">
-      <img src={isMobile ? faceMobile : faceDesktop} alt="loading" />
+      <div className="loader-content">
+        <span className="loader-label">Initializing</span>
+
+        <h2 key={currentStep} className="loader-step">
+          {steps[currentStep]}
+        </h2>
+      </div>
     </div>
   );
 }
