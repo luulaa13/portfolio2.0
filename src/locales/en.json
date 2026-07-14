@@ -432,5 +432,97 @@
         }
       }
     }
+  },
+  "reto30": {
+    "header": {
+      "eyebrowLine1": "PERSONAL CHALLENGE",
+      "eyebrowLine2": "2026 — IN PROGRESS",
+      "eyebrowLine3": "30 BUILDS · NO DEADLINE",
+      "titleAriaLabel": "30 builds, at my own pace",
+      "titleLine1": "30 builds,",
+      "titleLine2": "at my own pace.",
+      "subBefore": "Thirty small products: designed, built and shipped.",
+      "subBold": "No deadline and no perfectionism",
+      "subAfter": "— the challenge is finishing them, not racing.",
+      "progressOf": "/ {{total}}",
+      "progressPercent": "% OF THE CHALLENGE"
+    },
+    "status": {
+      "done": "COMPLETED",
+      "wip": "IN PROGRESS",
+      "locked": "COMING SOON"
+    },
+    "lockedRow": {
+      "name": "?????",
+      "tag": "NEXT ON THE LIST"
+    },
+    "restRow": {
+      "bold": "+{{count}} builds",
+      "text": "ahead — no deadline"
+    },
+    "preview": {
+      "buildLabel": "BUILD {{num}}",
+      "placeholderTitle": "[ SLOT — PREVIEW ]",
+      "placeholderHint": "ADD `video` OR `thumb`"
+    },
+    "footer": {
+      "left": "{{total}}-BUILD CHALLENGE — PORTFOLIO 2026",
+      "right": "UPDATED WITH EVERY BUILD"
+    },
+    "buildPage": {
+      "back": "← BACK TO THE CHALLENGE",
+      "buildCountLabel": "BUILD {{num}}",
+      "buildCountTotal": "/ {{total}}",
+      "ctaLive": "View live ›",
+      "ctaRepo": "Repository",
+      "browserOpen": "OPEN ↗",
+      "iframeTitle": "{{name}} — live site",
+      "browserNote": "REAL SITE EMBEDDED — INTERACT WITH IT, OR OPEN IT FULL SCREEN ↗",
+      "blockWhatLabel": "THE WHAT",
+      "blockWhatHeading": "{{name}}: what it is and why.",
+      "blockDecisionLabel": "THE DECISION",
+      "blockLearnedLabel": "WHAT I LEARNED",
+      "navPrevLabel": "← PREVIOUS BUILD · {{num}}",
+      "navFirstLabel": "← PREVIOUS BUILD",
+      "navFirstNote": "This is the first one — no way back, only forward.",
+      "navNextLabel": "NEXT BUILD · {{num}}",
+      "navLockedName": "?????",
+      "footerLeft": "{{total}}-BUILD CHALLENGE — PORTFOLIO 2026",
+      "footerRight": "BUILD {{num}} · {{name}}"
+    },
+    "projects": {
+      "vena-viva": {
+        "name": "Vena viva",
+        "tag": "REACT · GSAP · CSS"
+      },
+      "pausa-breve": {
+        "name": "Pausa Breve",
+        "tag": "FIGMA · UX/UI · BRANDING"
+      }
+    },
+    "builds": {
+      "vena-viva": {
+        "name": "Vena Viva",
+        "tag": "REACT · GSAP · CSS",
+        "tagline": "Three springs, one traceable origin. A conceptual landing page for a premium water brand — an exercise in art direction and scroll-driven animation.",
+        "what": [
+          "Vena Viva is a conceptual landing page for a premium water brand built around one idea: traceability as a brand argument. Three springs, each with its own character, and a journey that takes the visitor from the rock to the bottle.",
+          "I picked it as my first build because it brings together the three legs of the challenge: art direction (the visual world of each spring), frontend (React + GSAP with scroll-driven animation) and product storytelling (telling an origin is telling a value proposition)."
+        ],
+        "decision": {
+          "title": "[ Customize: your key decision ]",
+          "body": [
+            "One single design or technical decision, told honestly: how you structured the three springs with ScrollTrigger, why pin + scrub instead of viewport-based animations, how you solved the performance of some effect, or what you dropped and why.",
+            "Suggested format: the problem in one sentence → what you tried → what you chose and its trade-off."
+          ]
+        },
+        "learned": {
+          "title": "[ Customize: what you're taking away ]",
+          "body": [
+            "One or two honest sentences — technical, process-related, or about judgment calls. This is what turns the challenge into a story of progression instead of a list of links."
+          ]
+        }
+      }
+    }
   }
 }

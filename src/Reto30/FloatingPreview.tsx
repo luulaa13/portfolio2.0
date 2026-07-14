@@ -6,6 +6,7 @@ import {
   useState,
 } from 'react';
 import gsap from 'gsap';
+import { useTranslation } from 'react-i18next';
 import type { Project } from './types';
 import { pad } from './DayRow';
 
@@ -23,6 +24,7 @@ export const FloatingPreview = forwardRef<FloatingPreviewHandle>(
   function FloatingPreview(_props, ref) {
     const el = useRef<HTMLDivElement>(null);
     const [project, setProject] = useState<Project | null>(null);
+    const { t } = useTranslation();
 
     useImperativeHandle(ref, () => ({
       show(p: Project) {
@@ -64,7 +66,9 @@ export const FloatingPreview = forwardRef<FloatingPreviewHandle>(
 
     return (
       <div ref={el} className="preview" aria-hidden="true">
-        <span className="pv-num">{project ? `BUILD ${pad(project.num)}` : ''}</span>
+        <span className="pv-num">
+          {project ? t('reto30.preview.buildLabel', { num: pad(project.num) }) : ''}
+        </span>
         {project?.video ? (
           <video
             key={project.video}
@@ -80,9 +84,9 @@ export const FloatingPreview = forwardRef<FloatingPreviewHandle>(
           <img className="pv-img" src={project.thumb} alt="" />
         ) : (
           <span className="pv-body">
-            [ SLOT — PREVIEW ]
+            {t('reto30.preview.placeholderTitle')}
             <br />
-            AÑADE `video` O `thumb`
+            {t('reto30.preview.placeholderHint')}
           </span>
         )}
       </div>

@@ -1,4 +1,6 @@
+
 import type { ElementType } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { Project } from './types';
 
 export const pad = (n: number): string => String(n).padStart(2, '0');
@@ -23,7 +25,8 @@ export function DayRow({
   onHoverEnd,
   linkAs: LinkAs = 'a',
 }: DayRowProps) {
-  const { num, name, tag, status, url } = project;
+  const { t } = useTranslation();
+  const { num, slug, status, url } = project;
   return (
     <LinkAs
       href={url}
@@ -35,12 +38,12 @@ export function DayRow({
     >
       <span className="d-num">{pad(num)}</span>
       <span className="d-name">
-        {name}
-        <span className="d-tag">{tag}</span>
+        {t(`reto30.projects.${slug}.name`)}
+        <span className="d-tag">{t(`reto30.projects.${slug}.tag`)}</span>
       </span>
       <span className="d-status">
         <span className="dot" />
-        {status === 'done' ? 'COMPLETED' : 'EN PROGRESO'}
+        {t(status === 'done' ? 'reto30.status.done' : 'reto30.status.wip')}
       </span>
       <span className="d-arrow">→</span>
       <span className="divider" />
@@ -51,14 +54,15 @@ export function DayRow({
 /* ---------- teaser bloqueado ---------- */
 
 export function LockedRow({ num }: { num: number }) {
+  const { t } = useTranslation();
   return (
     <div className="day day--locked">
       <span className="d-num">{pad(num)}</span>
       <span className="d-name">
-        ?????
-        <span className="d-tag">PRÓXIMO EN LA LISTA</span>
+        {t('reto30.lockedRow.name')}
+        <span className="d-tag">{t('reto30.lockedRow.tag')}</span>
       </span>
-      <span className="d-status">PRÓXIMAMENTE</span>
+      <span className="d-status">{t('reto30.status.locked')}</span>
       <span className="d-arrow">→</span>
       <span className="divider" />
     </div>
@@ -68,11 +72,13 @@ export function LockedRow({ num }: { num: number }) {
 /* ---------- resumen de días restantes ---------- */
 
 export function RestRow({ remaining }: { remaining: number }) {
+  const { t } = useTranslation();
   if (remaining <= 0) return null;
   return (
     <div className="rest">
       <span className="r-txt">
-        <b>+{remaining} builds</b> por delante — sin fecha límite
+        <b>{t('reto30.restRow.bold', { count: remaining })}</b>{' '}
+        {t('reto30.restRow.text')}
       </span>
       <span className="r-dots" aria-hidden="true">
         {Array.from({ length: remaining }, (_, i) => (

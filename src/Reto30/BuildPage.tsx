@@ -1,7 +1,8 @@
 import { useLayoutEffect, useRef, type ElementType } from 'react';
 import gsap from 'gsap';
+import { useTranslation } from 'react-i18next';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import type { BuildDetail } from './types';
+import type { BuildDetail, Project } from './types';
 import { TOTAL_BUILDS } from './projects';
 import { pad } from './DayRow';
 import './BuildPage.css';
@@ -12,11 +13,24 @@ interface BuildPageProps {
   build: BuildDetail;
   /** Ruta de vuelta al listado del reto */
   backHref?: string;
-  /** Build anterior/siguiente si existen (para la nav inferior) */
-  prev?: BuildDetail;
-  next?: BuildDetail;
+  /**
+   * Build anterior/siguiente si existen (para la nav inferior).
+   * Vienen de PROJECTS, no de BUILDS: así el nav puede nombrar un build
+   * aunque todavía no tenga página propia (status 'wip', url '#').
+   */
+  prev?: Project;
+  next?: Project;
   /** Componente de enlace del router para navegación interna SPA. Ver README. */
   linkAs?: ElementType;
+}
+
+interface BuildContent {
+  name: string;
+  tag: string;
+  tagline: string;
+  what: string[];
+  decision: { title: string; body: string[] };
+  learned: { title: string; body: string[] };
 }
 
 export default function BuildPage({
@@ -26,8 +40,20 @@ export default function BuildPage({
   next,
   linkAs: LinkAs = 'a',
 }: BuildPageProps) {
+  const { t } = useTranslation();
   const root = useRef<HTMLDivElement>(null);
-  const [first, ...restName] = build.name.split(' ');
+
+  const content = t(`reto30.builds.${build.slug}`, {
+    returnObjects: true,
+  }) as BuildContent;
+  const prevName = prev
+    ? (t(`reto30.projects.${prev.slug}.name`) as string)
+    : undefined;
+  const nextName = next
+    ? (t(`reto30.projects.${next.slug}.name`) as string)
+    : undefined;
+
+  const [first, ...restName] = content.name.split(' ');
 
   useLayoutEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -57,9 +83,10 @@ export default function BuildPage({
     <div className="buildpage" ref={root}>
       <div className="topbar">
         <div className="wrap topbar-inner">
-          <LinkAs href={backHref}>← VOLVER AL RETO</LinkAs>
+          <LinkAs href={backHref}>{t('reto30.buildPage.back')}</LinkAs>
           <span className="b-count">
-            BUILD {pad(build.num)} <b>/ {TOTAL_BUILDS}</b>
+            {t('reto30.buildPage.buildCountLabel', { num: pad(build.num) })}{' '}
+            <b>{t('reto30.buildPage.buildCountTotal', { total: TOTAL_BUILDS })}</b>
           </span>
         </div>
       </div>
@@ -69,25 +96,25 @@ export default function BuildPage({
           <div className="b-chips">
             <span className={`chip chip--${build.status}`}>
               <span className="dot" />
-              {build.status === 'done' ? 'COMPLETED' : 'EN PROGRESO'}
+              {t(build.status === 'done' ? 'reto30.status.done' : 'reto30.status.wip')}
             </span>
             <span className="chip chip--meta">{build.date}</span>
-            <span className="chip chip--meta">{build.tag}</span>
+            <span className="chip chip--meta">{content.tag}</span>
           </div>
-          <h1 className="b-title" aria-label={build.name}>
+          <h1 className="b-title" aria-label={content.name}>
             <span className="row"><span>{first}</span></span>
             {restName.length > 0 && (
               <span className="row"><span>{restName.join(' ')}</span></span>
             )}
           </h1>
-          <p className="b-tagline">{build.tagline}</p>
+          <p className="b-tagline">{content.tagline}</p>
           <div className="b-ctas">
             <a className="btn btn--primary" href={build.liveUrl} target="_blank" rel="noopener noreferrer">
-              Ver en vivo ›
+              {t('reto30.buildPage.ctaLive')}
             </a>
             {build.repoUrl && (
               <a className="btn btn--ghost" href={build.repoUrl} target="_blank" rel="noopener noreferrer">
-                Repositorio
+                {t('reto30.buildPage.ctaRepo')}
               </a>
             )}
           </div>
@@ -100,23 +127,27 @@ export default function BuildPage({
             <span className="dots"><i /><i /><i /></span>
             <span className="url">{host}</span>
             <a className="open" href={build.liveUrl} target="_blank" rel="noopener noreferrer">
-              ABRIR ↗
+              {t('reto30.buildPage.browserOpen')}
             </a>
           </div>
-          <iframe src={build.liveUrl} title={`${build.name} — sitio en vivo`} loading="lazy" />
+          <iframe
+            src={build.liveUrl}
+            title={t('reto30.buildPage.iframeTitle', { name: content.name }) as string}
+            loading="lazy"
+          />
         </div>
         <p className="browser-note">
-          SITIO REAL EMBEBIDO — INTERACTÚA CON ÉL, O ÁBRELO A PANTALLA COMPLETA ↗
+          {t('reto30.buildPage.browserNote')}
         </p>
       </section>
 
       <section className="blocks">
         <div className="wrap">
           <div className="block">
-            <div className="bk-num">01<em>EL QUÉ</em></div>
+            <div className="bk-num">01<em>{t('reto30.buildPage.blockWhatLabel')}</em></div>
             <div>
-              <h2>{build.name}: qué es y por qué.</h2>
-              {build.what.map((p, i) => (<p key={i}>{p}</p>))}
+              <h2>{t('reto30.buildPage.blockWhatHeading', { name: content.name })}</h2>
+              {content.what.map((p, i) => (<p key={i}>{p}</p>))}
               <div className="stack-row">
                 {build.stack.map((s) => (<span key={s}>{s}</span>))}
               </div>
@@ -124,18 +155,18 @@ export default function BuildPage({
           </div>
 
           <div className="block">
-            <div className="bk-num">02<em>LA DECISIÓN</em></div>
+            <div className="bk-num">02<em>{t('reto30.buildPage.blockDecisionLabel')}</em></div>
             <div>
-              <h2>{build.decision.title}</h2>
-              {build.decision.body.map((p, i) => (<p key={i}>{p}</p>))}
+              <h2>{content.decision.title}</h2>
+              {content.decision.body.map((p, i) => (<p key={i}>{p}</p>))}
             </div>
           </div>
 
           <div className="block">
-            <div className="bk-num">03<em>LO APRENDIDO</em></div>
+            <div className="bk-num">03<em>{t('reto30.buildPage.blockLearnedLabel')}</em></div>
             <div>
-              <h2>{build.learned.title}</h2>
-              {build.learned.body.map((p, i) => (<p key={i}>{p}</p>))}
+              <h2>{content.learned.title}</h2>
+              {content.learned.body.map((p, i) => (<p key={i}>{p}</p>))}
             </div>
           </div>
         </div>
@@ -145,24 +176,24 @@ export default function BuildPage({
         <div className="wrap b-nav-grid">
           {prev ? (
             <LinkAs href={prev.url}>
-              <span className="label">← BUILD ANTERIOR · {pad(prev.num)}</span>
-              <span className="n-name">{prev.name}</span>
+              <span className="label">{t('reto30.buildPage.navPrevLabel', { num: pad(prev.num) })}</span>
+              <span className="n-name">{prevName}</span>
             </LinkAs>
           ) : (
             <div className="first">
-              <span className="label">← BUILD ANTERIOR</span>
-              <span className="n-note">Este es el primero — no hay camino atrás, solo adelante.</span>
+              <span className="label">{t('reto30.buildPage.navFirstLabel')}</span>
+              <span className="n-note">{t('reto30.buildPage.navFirstNote')}</span>
             </div>
           )}
           {next ? (
             <LinkAs className="right" href={next.url}>
-              <span className="label">SIGUIENTE BUILD · {pad(next.num)}</span>
-              <span className="n-name">{next.name}</span>
+              <span className="label">{t('reto30.buildPage.navNextLabel', { num: pad(next.num) })}</span>
+              <span className="n-name">{nextName}</span>
             </LinkAs>
           ) : (
             <div className="locked">
-              <span className="label">SIGUIENTE BUILD · {pad(build.num + 1)}</span>
-              <span className="n-name">?????</span>
+              <span className="label">{t('reto30.buildPage.navNextLabel', { num: pad(build.num + 1) })}</span>
+              <span className="n-name">{t('reto30.buildPage.navLockedName')}</span>
             </div>
           )}
         </div>
@@ -170,8 +201,10 @@ export default function BuildPage({
 
       <footer>
         <div className="wrap foot-inner">
-          <span className="label">RETO {TOTAL_BUILDS} BUILDS — PORTFOLIO 2026</span>
-          <span className="label">BUILD {pad(build.num)} · {build.name.toUpperCase()}</span>
+          <span className="label">{t('reto30.buildPage.footerLeft', { total: TOTAL_BUILDS })}</span>
+          <span className="label">
+            {t('reto30.buildPage.footerRight', { num: pad(build.num), name: content.name.toUpperCase() })}
+          </span>
         </div>
       </footer>
     </div>

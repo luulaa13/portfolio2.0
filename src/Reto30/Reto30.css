@@ -83,7 +83,7 @@
   cursor: pointer;
 }
 .reto30 .divider {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  position: absolute; left: 0; right: 0; width: auto; bottom: 0; height: 1px;
   background: var(--line);
   transform: scaleX(0); transform-origin: left;
 }
@@ -197,6 +197,8 @@
 
 /* ---------- responsive ---------- */
 @media (max-width: 760px) {
+  .reto30 header { padding: 9vh 0 6vh; }
+  .reto30 .lista { padding-bottom: 9vh; }
   .reto30 .day {
     grid-template-columns: 56px 1fr;
     grid-template-rows: auto auto;
@@ -207,6 +209,13 @@
   .reto30 .day:hover .d-arrow { transform: translateY(-50%) translateX(6px); }
   .reto30 .day--wip::before { left: -14px; }
   .reto30 .r-dots { display: none; }
+}
+
+/* flecha visible sin hover en touch (móvil/tablet) */
+@media (hover: none) {
+  .reto30 .d-arrow { color: var(--dim); opacity: 0.6; }
+  .reto30 .day--done .d-arrow { color: var(--done); }
+  .reto30 .day--wip .d-arrow { color: var(--accent); }
 }
 
 /* ---------- reduced motion: todo visible sin JS ---------- */

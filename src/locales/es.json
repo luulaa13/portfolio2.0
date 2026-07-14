@@ -432,5 +432,99 @@
         }
       }
     }
+  },
+  "reto30": {
+    "header": {
+      "eyebrowLine1": "RETO PERSONAL",
+      "eyebrowLine2": "2026 — EN CURSO",
+      "eyebrowLine3": "30 BUILDS · SIN FECHA LÍMITE",
+      "titleAriaLabel": "30 builds, a mi ritmo",
+      "titleLine1": "30 builds,",
+      "titleLine2": "a mi ritmo.",
+      "subBefore": "Treinta productos pequeños: diseñados, construidos y publicados.",
+      "subBold": "Sin fecha límite y sin perfeccionismo",
+      "subAfter": "— el reto es terminarlos, no correr.",
+      "progressOf": "/ {{total}}",
+      "progressPercent": "% DEL RETO"
+    },
+    "status": {
+      "done": "COMPLETADO",
+      "wip": "EN PROGRESO",
+      "locked": "PRÓXIMAMENTE"
+    },
+    "lockedRow": {
+      "name": "?????",
+      "tag": "PRÓXIMO EN LA LISTA"
+    },
+    "restRow": {
+      "bold": "+{{count}} builds",
+      "text": "por delante — sin fecha límite"
+    },
+    "preview": {
+      "buildLabel": "BUILD {{num}}",
+      "placeholderTitle": "[ SLOT — PREVIEW ]",
+      "placeholderHint": "AÑADE `video` O `thumb`"
+    },
+    "footer": {
+      "left": "RETO {{total}} BUILDS — PORTFOLIO 2026",
+      "right": "ACTUALIZADO CON CADA BUILD"
+    },
+    "buildPage": {
+      "back": "← VOLVER AL RETO",
+      "buildCountLabel": "BUILD {{num}}",
+      "buildCountTotal": "/ {{total}}",
+      "ctaLive": "Ver en vivo ›",
+      "ctaRepo": "Repositorio",
+      "browserOpen": "ABRIR ↗",
+      "iframeTitle": "{{name}} — sitio en vivo",
+      "browserNote": "SITIO REAL EMBEBIDO — INTERACTÚA CON ÉL, O ÁBRELO A PANTALLA COMPLETA ↗",
+      "blockWhatLabel": "EL QUÉ",
+      "blockWhatHeading": "{{name}}: qué es y por qué.",
+      "blockDecisionLabel": "LA DECISIÓN",
+      "blockLearnedLabel": "LO APRENDIDO",
+      "navPrevLabel": "← BUILD ANTERIOR · {{num}}",
+      "navFirstLabel": "← BUILD ANTERIOR",
+      "navFirstNote": "Este es el primero — no hay camino atrás, solo adelante.",
+      "navNextLabel": "SIGUIENTE BUILD · {{num}}",
+      "navLockedName": "?????",
+      "footerLeft": "RETO {{total}} BUILDS — PORTFOLIO 2026",
+      "footerRight": "BUILD {{num}} · {{name}}"
+    },
+    "projects": {
+      "vena-viva": {
+        "name": "Vena viva",
+        "tag": "REACT · GSAP · CSS"
+      },
+      "pausa-breve": {
+        "name": "Pausa Breve",
+        "tag": "FIGMA · UX/UI· BRANDING"
+      }
+    },
+    "builds": {
+      "vena-viva": {
+        "name": "Vena Viva",
+        "tag": "REACT · GSAP · CSS",
+        "tagline": "Tres manantiales, un origen trazable. Landing conceptual para una marca de agua premium — un ejercicio de dirección de arte y animación scroll-driven.",
+        "what": [
+          "Vena Viva es una landing conceptual para una marca de agua premium construida sobre una idea: la trazabilidad como argumento de marca. Tres manantiales, cada uno con su carácter, y un recorrido que lleva al visitante desde la roca hasta la botella.",
+          "Lo elegí como primer build porque une las tres patas del reto: dirección de arte (el mundo visual de cada manantial), frontend (React + GSAP con scroll-driven animation) y narrativa de producto (contar un origen es contar una propuesta de valor)."
+        ],
+        "decision": {
+          "title": "Fijar la botella en pantalla sin depender de una librería externa",
+          "body": [
+            "El problema: la botella tenía que quedarse fija en pantalla mientras fondo y texto cambiaban entre los tres manantiales — pero sin meter una librería de animación externa solo para eso.",
+            "Lo que probé: mi primer instinto fue usar IntersectionObserver, que ya tenía funcionando para los fade-in del resto de la página. Pero un observer solo te dice \"visible / no visible\", no una posición continua — y para decidir cuál de las tres etapas tocaba mostrar dentro de una sección de 340vh necesitaba saber cuánto se había scrolleado, no solo si.",
+            "Lo que elegí: position: sticky para el pin, y un hook propio (useScrollStage) que calcula el progreso con getBoundingClientRect() dentro de un scroll listener con requestAnimationFrame, actualizando el estado de React solo cuando el índice activo cambia realmente (no en cada píxel). El trade-off: pierdo el scrub suave \"de serie\" que te da algo como GSAP ScrollTrigger — tuve que ajustar a mano las transiciones de opacidad y easing. A cambio, cero dependencias nuevas y control total de cuándo React vuelve a renderizar."
+          ]
+        },
+        "learned": {
+          "title": "Separar el DOM del estado — y no confundir el efecto con la jerarquía",
+          "body": [
+            "Aprendí a separar lo que necesita volver a renderizar React de lo que solo necesita tocar el DOM directamente: el parallax del hero y el fondo de la sección de manantiales nunca pasan por setState en cada frame de scroll, solo cuando cambia el estado real (qué manantial toca mostrar). Esa distinción fue la diferencia entre un scroll fluido y uno con tirones.",
+            "Y una de proceso: tener el efecto técnico funcionando (parallax, pin, cutouts reales de las botellas) no bastaba — hasta que no revisé la composición completa (jerarquía, ritmo, espaciado) el sitio seguía sin convencer, aunque cada pieza suelta funcionara bien. La lección: un efecto bien resuelto no salva un layout sin jerarquía clara — primero se decide qué debe mirar el usuario primero, y el efecto se construye alrededor de eso, no al revés."
+          ]
+        }
+      }
+    }
   }
 }

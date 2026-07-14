@@ -320,8 +320,9 @@
     flex-direction: column;
     gap: 10px;
   }
+}
 
-/* ---------- reduced motion ---------- */
+/* ---------- reduced motion: todo visible sin JS ---------- */
 @media (prefers-reduced-motion: reduce) {
   .buildpage .b-title .row span,
   .buildpage .b-tagline,

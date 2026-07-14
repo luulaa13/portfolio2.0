@@ -1,5 +1,6 @@
 import { useLayoutEffect, useMemo, useRef, type ElementType } from 'react';
 import gsap from 'gsap';
+import { useTranslation } from 'react-i18next';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PROJECTS, TOTAL_BUILDS, LOCKED_TEASERS } from './projects';
 import type { Project } from './types';
@@ -15,6 +16,7 @@ interface Reto30Props {
 }
 
 export default function Reto30({ linkAs }: Reto30Props = {}) {
+  const { t } = useTranslation();
   const root = useRef<HTMLDivElement>(null);
   const doneCountEl = useRef<HTMLSpanElement>(null);
   const pctEl = useRef<HTMLSpanElement>(null);
@@ -91,8 +93,10 @@ export default function Reto30({ linkAs }: Reto30Props = {}) {
     return () => ctx.revert();
   }, [doneCount, pct]);
 
-  /* ---------- hover → preview ---------- */
-  const handleHoverStart = (p: Project) => preview.current?.show(p);
+  /* ---------- hover → preview (solo builds terminados) ---------- */
+  const handleHoverStart = (p: Project) => {
+    if (p.status === 'done') preview.current?.show(p);
+  };
   const handleHoverEnd = () => preview.current?.hide();
 
   return (
@@ -100,27 +104,26 @@ export default function Reto30({ linkAs }: Reto30Props = {}) {
       <header>
         <div className="wrap">
           <div className="head-eyebrow">
-            <span className="label">RETO PERSONAL</span>
-            <span className="label">2026 — EN CURSO</span>
-            <span className="label label--accent">30 BUILDS · SIN FECHA LÍMITE</span>
+            <span className="label">{t('reto30.header.eyebrowLine1')}</span>
+            <span className="label">{t('reto30.header.eyebrowLine2')}</span>
+            <span className="label label--accent">{t('reto30.header.eyebrowLine3')}</span>
           </div>
-          <h1 className="head-title" aria-label="30 builds, a mi ritmo">
-            <span className="row"><span>30 builds,</span></span>
-            <span className="row"><span className="acc">a mi ritmo.</span></span>
+          <h1 className="head-title" aria-label={t('reto30.header.titleAriaLabel') as string}>
+            <span className="row"><span>{t('reto30.header.titleLine1')}</span></span>
+            <span className="row"><span className="acc">{t('reto30.header.titleLine2')}</span></span>
           </h1>
           <p className="head-sub">
-            Treinta productos pequeños: diseñados, construidos y publicados.
-            <b> Sin fecha límite y sin perfeccionismo</b> — el reto es
-            terminarlos, no correr.
+            {t('reto30.header.subBefore')}
+            <b> {t('reto30.header.subBold')}</b> {t('reto30.header.subAfter')}
           </p>
           <div className="progress">
             <div className="big">
               <span ref={doneCountEl}>0</span>
-              <span className="of"> / {TOTAL_BUILDS}</span>
+              <span className="of"> {t('reto30.header.progressOf', { total: TOTAL_BUILDS })}</span>
             </div>
             <div className="p-track"><div className="p-fill" /></div>
             <span className="p-pct">
-              <span ref={pctEl}>0</span>% DEL RETO
+              <span ref={pctEl}>0</span>{t('reto30.header.progressPercent')}
             </span>
           </div>
         </div>
@@ -148,8 +151,8 @@ export default function Reto30({ linkAs }: Reto30Props = {}) {
 
       <footer>
         <div className="wrap foot-inner">
-          <span className="label">RETO 30 BUILDS — PORTFOLIO 2026</span>
-          <span className="label">ACTUALIZADO CON CADA BUILD</span>
+          <span className="label">{t('reto30.footer.left', { total: TOTAL_BUILDS })}</span>
+          <span className="label">{t('reto30.footer.right')}</span>
         </div>
       </footer>
     </div>

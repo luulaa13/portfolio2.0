@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import BuildLog from "./Reto30/Reto30";
 import BuildPage from "./Reto30/BuildPage";
 import { BUILDS } from "./Reto30/builds";
+import { PROJECTS } from "./Reto30/projects";
 import ArtMusPage from "./pages/artmus/ArtMusPage";
 import NextPage from "./pages/next/NextPage";
 
@@ -16,20 +17,20 @@ const RouterLink = ({ href, ...rest }: ComponentProps<"a">) => (
   <Link to={href ?? "#"} {...rest} />
 );
 
-const slugify = (name: string) =>
-  name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "-");
-
 /* Ruta dinámica: /build-log/vena-viva, /build-log/lo-que-sea... */
 function BuildRoute() {
   const { slug } = useParams();
-  const i = BUILDS.findIndex((b) => slugify(b.name) === slug);
+  const i = BUILDS.findIndex((b) => b.slug === slug);
   if (i === -1) return <BuildLog linkAs={RouterLink} />; // slug desconocido → listado
+  const build = BUILDS[i];
+  // prev/next salen de PROJECTS (el listado completo), no de BUILDS:
+  // así el nav ya muestra el nombre de un build aunque aún no tenga página propia.
   return (
     <BuildPage
-      build={BUILDS[i]}
+      build={build}
       backHref="/build-log"
-      prev={BUILDS[i - 1]}
-      next={BUILDS[i + 1]}
+      prev={PROJECTS.find((p) => p.num === build.num - 1)}
+      next={PROJECTS.find((p) => p.num === build.num + 1)}
       linkAs={RouterLink}
     />
   );
