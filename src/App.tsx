@@ -44,6 +44,21 @@ function ScrollToTop() {
 }
 
 function App() {
+
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const mediaQuery = window.matchMedia("(pointer: coarse)");
+
+  const update = () => setIsMobile(mediaQuery.matches);
+
+  update();
+
+  mediaQuery.addEventListener("change", update);
+
+  return () => mediaQuery.removeEventListener("change", update);
+}, []);
+  
   /* El loader solo corre una vez por sesión, aunque haya recargas */
   const [bootDone, setBootDone] = useState(
     () => sessionStorage.getItem("boot-done") === "1"
@@ -60,7 +75,7 @@ function App() {
   return (
     <>
       {!bootDone && <Loader onDone={finishBoot} />}
-      {bootDone && <CustomCursor />}
+      {bootDone && !isMobile && <CustomCursor />}
       {!hideNavbar && <Navbar />}
       <ScrollToTop />
       <Routes>
