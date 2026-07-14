@@ -246,6 +246,7 @@
       },
       "referents": {
         "missingLabel": "MISSING",
+        "swipeHint": "SWIPE TO SEE MORE →",
         "items": [
           { "name": "Museo del Prado", "label": "EXHIBITS", "domina": "Deep curatorial content and a reference-grade digitized collection.", "falta": "Only its own museum. Limited booking and planning.", "placardTitle": "Institutional app", "placardSubtitle": "One museum, one island" },
           { "name": "Reina Sofía", "label": "EXHIBITS", "domina": "Its own activity calendar and good room information.", "falta": "No cross-discovery or comparison between venues.", "placardTitle": "Institutional app", "placardSubtitle": "Another silo" },

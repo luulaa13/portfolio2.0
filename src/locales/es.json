@@ -246,6 +246,7 @@
       },
       "referents": {
         "missingLabel": "LE FALTA",
+        "swipeHint": "DESLIZA PARA VER MÁS →",
         "items": [
           { "name": "Museo del Prado", "label": "EXPONE", "domina": "Contenido curatorial profundo y colección digitalizada de referencia.", "falta": "Solo su propio museo. Reserva y planificación limitadas.", "placardTitle": "App institucional", "placardSubtitle": "Un museo, una isla" },
           { "name": "Reina Sofía", "label": "EXPONE", "domina": "Agenda de actividades propia y buena información de salas.", "falta": "Sin descubrimiento cruzado ni comparación entre centros.", "placardTitle": "App institucional", "placardSubtitle": "Otro silo más" },

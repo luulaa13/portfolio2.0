@@ -71,6 +71,7 @@ export default function ArtMusPage(): JSX.Element {
   const personaCardsRef = useRef<HTMLDivElement | null>(null);
   const referentsSectionRef = useRef<HTMLElement | null>(null);
   const referentsTrackRef = useRef<HTMLDivElement | null>(null);
+  const referentsWrapRef = useRef<HTMLDivElement | null>(null);
   const architectureSectionRef = useRef<HTMLElement | null>(null);
   const architectureCardsRef = useRef<HTMLDivElement | null>(null);
   const brandSectionRef = useRef<HTMLElement | null>(null);
@@ -128,6 +129,7 @@ export default function ArtMusPage(): JSX.Element {
     returnObjects: true,
   }) as {
     missingLabel: string;
+    swipeHint: string;
     items: ArtmusReferent[];
   };
 
@@ -418,6 +420,16 @@ export default function ArtMusPage(): JSX.Element {
         if (!referentsTrackRef.current) return;
         gsap.set(referentsTrackRef.current, { clearProps: "x" });
       });
+
+      // pista de scroll horizontal nativo (móvil): desaparece en cuanto el usuario desliza
+      const wrap = referentsWrapRef.current;
+      if (wrap) {
+        const onFirstScroll = () => {
+          wrap.classList.add("has-scrolled");
+          wrap.removeEventListener("scroll", onFirstScroll);
+        };
+        wrap.addEventListener("scroll", onFirstScroll, { passive: true });
+      }
 
       gsap.fromTo(
         architectureSectionRef.current?.querySelectorAll(
@@ -760,7 +772,7 @@ export default function ArtMusPage(): JSX.Element {
           </div>
         </div>
 
-        <div className="artmus-referents-track-wrap">
+        <div className="artmus-referents-track-wrap" ref={referentsWrapRef}>
           <div className="artmus-referents-track" ref={referentsTrackRef}>
             {referentsData.items.map((referent, i) => (
               <div className="artmus-referent-item" key={i}>
@@ -811,6 +823,9 @@ export default function ArtMusPage(): JSX.Element {
             ))}
           </div>
         </div>
+        <p className="artmus-swipe-hint" aria-hidden="true">
+          {referentsData.swipeHint}
+        </p>
       </section>
 
       <section

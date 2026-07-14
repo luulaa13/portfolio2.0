@@ -239,7 +239,7 @@
 
 @media (max-width: 768px){
     .artmus-divider{
-        margin:0 auto 40px;
+        margin:56px auto 40px;
     }
 
     .artmus-room-heading{
@@ -281,6 +281,8 @@
     display:flex;
     flex-direction:column;
     gap:16px;
+    min-width:0;
+    flex:1;
 }
 
 .artmus-room-title{
@@ -651,9 +653,14 @@
 }
 
 .artmus-referents-track-wrap{
+    position:relative;
     overflow:hidden;
     margin-top:80px;
     padding:48px 0 24px;
+}
+
+.artmus-swipe-hint{
+    display:none;
 }
 
 .artmus-referents-track{
@@ -789,6 +796,24 @@
     .artmus-referents-track-wrap{
         margin-top:48px;
         overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+    }
+
+    .artmus-referents-track-wrap::after{
+        content:"";
+        position:absolute;
+        top:0;
+        right:0;
+        bottom:0;
+        width:56px;
+        background:linear-gradient(to right, transparent, var(--pared, #F7F6F1));
+        pointer-events:none;
+        opacity:1;
+        transition:opacity .4s ease;
+    }
+
+    .artmus-referents-track-wrap.has-scrolled::after{
+        opacity:0;
     }
 
     .artmus-referents-track{
@@ -803,6 +828,28 @@
     .artmus-referent-card{
         min-height:300px;
         padding:22px 20px;
+    }
+
+    .artmus-swipe-hint{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+
+        margin:4px 24px 0;
+
+        font-family:"Space Mono", monospace;
+        font-size:0.7rem;
+        letter-spacing:0.12em;
+        text-transform:uppercase;
+        color:rgba(42, 52, 98, 0.55);
+
+        opacity:1;
+        transition:opacity .4s ease;
+    }
+
+    .artmus-referents-track-wrap.has-scrolled + .artmus-swipe-hint{
+        opacity:0;
     }
 }
 
