@@ -26,7 +26,7 @@ export const PROJECTS: Project[] = [
     num: 2,
     name: 'Pausa Breve',
     tag: 'FIGMA · UX/UI· BRANDING',
-    status: 'done',
+    status: 'wip',
     url: '#',
     // video: '/previews/vena-viva.mp4',  // loop mudo 4–6s del hero en vivo
     // thumb: '/previews/vena-viva.jpg',  // poster / fallback estático
