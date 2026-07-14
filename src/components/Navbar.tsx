@@ -1,5 +1,5 @@
 import "./style/Navbar.css";
-import logo from "../assets/avatar.ico";
+
 
 import { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
