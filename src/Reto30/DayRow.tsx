@@ -1,3 +1,4 @@
+import type { ElementType } from 'react';
 import type { Project } from './types';
 
 export const pad = (n: number): string => String(n).padStart(2, '0');
@@ -8,12 +9,23 @@ interface DayRowProps {
   project: Project;
   onHoverStart: (project: Project) => void;
   onHoverEnd: () => void;
+  /**
+   * Componente de enlace de tu router para navegación SPA sin recarga.
+   * Debe aceptar `href` (adapta React Router con un wrapper de una línea
+   * — ver README). Por defecto: <a> nativo.
+   */
+  linkAs?: ElementType;
 }
 
-export function DayRow({ project, onHoverStart, onHoverEnd }: DayRowProps) {
+export function DayRow({
+  project,
+  onHoverStart,
+  onHoverEnd,
+  linkAs: LinkAs = 'a',
+}: DayRowProps) {
   const { num, name, tag, status, url } = project;
   return (
-    <a
+    <LinkAs
       href={url}
       className={`day day--${status}`}
       onMouseEnter={() => onHoverStart(project)}
@@ -32,7 +44,7 @@ export function DayRow({ project, onHoverStart, onHoverEnd }: DayRowProps) {
       </span>
       <span className="d-arrow">→</span>
       <span className="divider" />
-    </a>
+    </LinkAs>
   );
 }
 

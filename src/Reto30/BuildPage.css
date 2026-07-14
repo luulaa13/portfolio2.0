@@ -1,0 +1,217 @@
+/* =========================================================
+   BuildPage — estilos scoped bajo .buildpage
+   Comparte tokens con Reto30 (mismo sistema, misma paleta).
+   ========================================================= */
+
+.buildpage {
+  --bg: #ffffff;
+  --ink: #131415;
+  --dim: #75787a;
+  --line: #e8e8e4;
+  --accent: #c9951a;
+  --done: #2fa14e;
+  --sans: 'Archivo', system-ui, sans-serif;
+  --mono: 'Space Mono', monospace;
+
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16.5px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+.buildpage *,
+.buildpage *::before,
+.buildpage *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.buildpage ::selection { background: var(--accent); color: #fff; }
+.buildpage a { color: inherit; }
+.buildpage .wrap { width: min(1080px, calc(100% - 48px)); margin: 0 auto; }
+.buildpage .label {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim);
+}
+
+/* ---------- top bar ---------- */
+.buildpage .topbar { border-bottom: 1px solid var(--line); }
+.buildpage .topbar-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 0;
+}
+.buildpage .topbar a {
+  text-decoration: none; font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.2em; color: var(--dim); transition: color 0.3s;
+  display: inline-flex; gap: 10px; align-items: center;
+}
+.buildpage .topbar a:hover { color: var(--accent); }
+.buildpage .b-count {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+  color: var(--ink); font-weight: 700;
+}
+.buildpage .b-count b { color: var(--dim); font-weight: 400; }
+
+/* ---------- hero ---------- */
+.buildpage .b-hero { padding: 9vh 0 6vh; }
+.buildpage .b-chips { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 3vh; }
+.buildpage .chip {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em;
+  padding: 8px 16px; border-radius: 24px;
+  display: inline-flex; gap: 9px; align-items: center;
+}
+.buildpage .chip--done { background: rgba(47, 161, 78, 0.1); color: var(--done); }
+.buildpage .chip--done .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--done); }
+.buildpage .chip--wip { border: 1px solid var(--accent); color: var(--accent); }
+.buildpage .chip--wip .dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+  animation: buildpage-pulse 1.4s ease-in-out infinite;
+}
+@keyframes buildpage-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.7); }
+}
+.buildpage .chip--meta { border: 1px solid var(--line); color: var(--dim); }
+.buildpage .b-title {
+  font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em;
+  font-size: clamp(48px, 10vw, 132px); line-height: 0.9;
+}
+.buildpage .b-title .row { display: block; overflow: hidden; }
+.buildpage .b-title .row span { display: inline-block; transform: translateY(112%); }
+.buildpage .b-tagline {
+  margin-top: 3vh; font-size: clamp(17px, 2.2vw, 23px);
+  color: var(--dim); max-width: 30em;
+  opacity: 0; transform: translateY(20px);
+}
+.buildpage .b-ctas {
+  display: flex; gap: 14px; flex-wrap: wrap; margin-top: 4vh;
+  opacity: 0; transform: translateY(16px);
+}
+.buildpage .btn {
+  text-decoration: none; font-weight: 700; font-size: 15px;
+  padding: 15px 30px; border-radius: 40px;
+  display: inline-flex; gap: 10px; align-items: center;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s,
+    border-color 0.3s, color 0.3s;
+}
+.buildpage .btn--primary { background: var(--accent); color: #fff; }
+.buildpage .btn--primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(91, 108, 255, 0.35);
+}
+.buildpage .btn--ghost { border: 1px solid var(--line); color: var(--ink); }
+.buildpage .btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---------- browser frame ---------- */
+.buildpage .browser {
+  margin-top: 4vh;
+  border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+  box-shadow: 0 30px 80px rgba(19, 20, 21, 0.12);
+  opacity: 0; transform: translateY(44px);
+}
+.buildpage .browser .bar {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 16px; background: #fafaf8; border-bottom: 1px solid var(--line);
+}
+.buildpage .browser .dots { display: flex; gap: 6px; }
+.buildpage .browser .dots i {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--line); display: block;
+}
+.buildpage .browser .url {
+  flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+  color: var(--dim); padding: 8px 14px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.buildpage .browser .open {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em;
+  color: var(--dim); text-decoration: none; white-space: nowrap;
+  transition: color 0.3s;
+}
+.buildpage .browser .open:hover { color: var(--accent); }
+.buildpage .browser iframe {
+  display: block; width: 100%; aspect-ratio: 16 / 10;
+  border: 0; background: #0d0f10;
+}
+.buildpage .browser-note {
+  margin-top: 14px; font-family: var(--mono); font-size: 10.5px;
+  letter-spacing: 0.14em; color: var(--dim); text-align: center;
+}
+
+/* ---------- los tres bloques ---------- */
+.buildpage .blocks { padding: 12vh 0; }
+.buildpage .block {
+  display: grid; grid-template-columns: 200px 1fr; gap: 40px;
+  padding: 6vh 0; border-top: 1px solid var(--line);
+  opacity: 0; transform: translateY(30px);
+}
+.buildpage .bk-num {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.22em;
+  color: var(--accent); font-weight: 700;
+}
+.buildpage .bk-num em {
+  display: block; font-style: normal; color: var(--dim); font-weight: 400;
+  margin-top: 6px; letter-spacing: 0.18em; font-size: 10.5px;
+}
+.buildpage .block h2 {
+  font-weight: 900; text-transform: uppercase; letter-spacing: -0.015em;
+  font-size: clamp(22px, 3vw, 34px); margin-bottom: 18px;
+}
+.buildpage .block p {
+  color: #3d4045; max-width: 38em;
+  font-size: clamp(15.5px, 1.8vw, 18px);
+}
+.buildpage .block p + p { margin-top: 14px; }
+.buildpage .stack-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+.buildpage .stack-row span {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em;
+  border: 1px solid var(--line); border-radius: 20px;
+  padding: 7px 14px; color: var(--ink);
+}
+
+/* ---------- nav prev/next ---------- */
+.buildpage .b-nav { border-top: 1px solid var(--line); }
+.buildpage .b-nav-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.buildpage .b-nav a,
+.buildpage .b-nav .locked,
+.buildpage .b-nav .first {
+  padding: 44px 8px; text-decoration: none;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.buildpage .b-nav a:hover .n-name { color: var(--accent); transform: translateX(8px); }
+.buildpage .n-name {
+  font-weight: 900; text-transform: uppercase;
+  font-size: clamp(20px, 3vw, 34px); letter-spacing: -0.015em;
+  transition: color 0.3s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.buildpage .n-note { color: var(--dim); font-size: 15px; max-width: 26em; }
+.buildpage .b-nav .right,
+.buildpage .b-nav .locked {
+  border-left: 1px solid var(--line);
+  align-items: flex-end; text-align: right;
+}
+.buildpage .b-nav .locked .n-name { color: #d3d3ce; }
+.buildpage footer { border-top: 1px solid var(--line); padding: 32px 0; }
+.buildpage .foot-inner {
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 760px) {
+  .buildpage .block { grid-template-columns: 1fr; gap: 14px; padding: 5vh 0; }
+  .buildpage .b-nav-grid { grid-template-columns: 1fr; }
+  .buildpage .b-nav .right,
+  .buildpage .b-nav .locked {
+    border-left: none; border-top: 1px solid var(--line);
+    align-items: flex-start; text-align: left;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .buildpage .b-title .row span,
+  .buildpage .b-tagline,
+  .buildpage .b-ctas,
+  .buildpage .browser,
+  .buildpage .block { opacity: 1 !important; transform: none !important; }
+  .buildpage .chip--wip .dot { animation: none; }
+}

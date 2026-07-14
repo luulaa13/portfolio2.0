@@ -65,13 +65,24 @@ export const FloatingPreview = forwardRef<FloatingPreviewHandle>(
     return (
       <div ref={el} className="preview" aria-hidden="true">
         <span className="pv-num">{project ? `BUILD ${pad(project.num)}` : ''}</span>
-        {project?.thumb ? (
+        {project?.video ? (
+          <video
+            key={project.video}
+            className="pv-img"
+            src={project.video}
+            poster={project.thumb}
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        ) : project?.thumb ? (
           <img className="pv-img" src={project.thumb} alt="" />
         ) : (
           <span className="pv-body">
-            [ SLOT — CAPTURA ]
+            [ SLOT — PREVIEW ]
             <br />
-            AÑADE `thumb` AL PROYECTO
+            AÑADE `video` O `thumb`
           </span>
         )}
       </div>

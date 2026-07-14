@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef } from 'react';
+import { useLayoutEffect, useMemo, useRef, type ElementType } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PROJECTS, TOTAL_BUILDS, LOCKED_TEASERS } from './projects';
@@ -9,7 +9,12 @@ import './Reto30.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Reto30() {
+interface Reto30Props {
+  /** Componente de enlace del router (navegación SPA). Ver README. */
+  linkAs?: ElementType;
+}
+
+export default function Reto30({ linkAs }: Reto30Props = {}) {
   const root = useRef<HTMLDivElement>(null);
   const doneCountEl = useRef<HTMLSpanElement>(null);
   const pctEl = useRef<HTMLSpanElement>(null);
@@ -127,6 +132,7 @@ export default function Reto30() {
             <DayRow
               key={p.num}
               project={p}
+              linkAs={linkAs}
               onHoverStart={handleHoverStart}
               onHoverEnd={handleHoverEnd}
             />

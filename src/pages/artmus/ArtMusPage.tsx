@@ -83,6 +83,7 @@ export default function ArtMusPage(): JSX.Element {
   const wireLayerRef = useRef<HTMLDivElement | null>(null);
   const phoneHandleRef = useRef<HTMLDivElement | null>(null);
   const draggingRef = useRef(false);
+ 
 
   const rooms = t("caseStudies.artmus.rooms", { returnObjects: true }) as {
     problem: { number: string; title: string; eyebrow: string; lede: string };
