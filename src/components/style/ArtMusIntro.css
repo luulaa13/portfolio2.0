@@ -113,23 +113,193 @@
     right:-22px;
 }
 
-@media (max-width: 768px){
+/* ---------- Tablet ---------- */
+@media (max-width: 1024px) {
+
     .artmus-hero-rect{
-        width:min(280px, 70vw);
-        border-radius:12px;
+        width:min(520px,85vw);
+        border-radius:14px;
+    }
+
+    .artmus-hero-rect-content{
+        padding:22px 30px 0;
+    }
+
+    .artmus-hero-rect-top{
+        margin-bottom:22px;
+        padding-bottom:12px;
+    }
+
+    .artmus-hero-rect-logo-a,
+    .artmus-hero-rect-logo-m{
+        font-size:20px;
+    }
+
+    .artmus-hero-rect-text{
+        font-size:.8rem;
+        line-height:1.7;
+    }
+
+    .artmus-hero-rect-stamp{
+        right:16px;
+        bottom:20px;
+
+        font-size:12px;
+        padding:6px 12px;
     }
 
     .artmus-hero-rect::before,
     .artmus-hero-rect::after{
-        width:20px;
-        height:20px;
+        width:28px;
+        height:28px;
     }
 
     .artmus-hero-rect::before{
-        left:-10px;
+        left:-14px;
     }
 
     .artmus-hero-rect::after{
-        right:-10px;
+        right:-14px;
     }
+
+}
+
+
+/* ---------- Mobile ---------- */
+@media (max-width:768px){
+
+    .artmus-intro{
+        padding:24px;
+    }
+
+    .artmus-hero-rect{
+
+        width:100%;
+        max-width:360px;
+        aspect-ratio:1.55;
+
+        border-radius:12px;
+
+    }
+
+    .artmus-hero-rect-content{
+
+        padding:18px 20px 0;
+
+    }
+
+    .artmus-hero-rect-top{
+
+        margin-bottom:18px;
+        padding-bottom:10px;
+
+    }
+
+    .artmus-hero-rect-logo-a,
+    .artmus-hero-rect-logo-m{
+
+        font-size:18px;
+
+    }
+
+    .artmus-hero-rect-number{
+
+        font-size:11px;
+
+    }
+
+    .artmus-hero-rect-text{
+
+        font-size:.72rem;
+        line-height:1.55;
+        letter-spacing:.04em;
+
+    }
+
+    .artmus-hero-rect-stamp{
+
+        right:14px;
+        bottom:16px;
+
+        padding:5px 9px;
+
+        border-width:2px;
+
+        font-size:10px;
+        letter-spacing:.16em;
+
+    }
+
+    .artmus-hero-rect::before,
+    .artmus-hero-rect::after{
+
+        width:18px;
+        height:18px;
+
+    }
+
+    .artmus-hero-rect::before{
+
+        left:-9px;
+
+    }
+
+    .artmus-hero-rect::after{
+
+        right:-9px;
+
+    }
+
+}
+
+
+/* ---------- Teléfonos pequeños ---------- */
+@media (max-width:420px){
+
+    .artmus-intro{
+
+        padding:18px;
+
+    }
+
+    .artmus-hero-rect{
+
+        max-width:none;
+        width:100%;
+
+    }
+
+    .artmus-hero-rect-content{
+
+        padding:16px 16px 0;
+
+    }
+
+    .artmus-hero-rect-logo-a,
+    .artmus-hero-rect-logo-m{
+
+        font-size:16px;
+
+    }
+
+    .artmus-hero-rect-number{
+
+        font-size:10px;
+
+    }
+
+    .artmus-hero-rect-text{
+
+        font-size:.64rem;
+        line-height:1.45;
+
+    }
+
+    .artmus-hero-rect-stamp{
+
+        font-size:9px;
+        padding:4px 8px;
+
+    }
+
 }
