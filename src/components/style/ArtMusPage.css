@@ -861,12 +861,74 @@
     margin:64px 140px 0;
 }
 
-.artmus-architecture-card{
+ .artmus-architecture-card{
+    display:flex;
+    flex-direction:column;
+
     min-height:180px;
     padding:28px;
 
     background:#FFFFFF;
-    border:1.5px solid rgba(42, 52, 98, 0.3);
+    border:1.5px solid rgba(42,52,98,.3);
+
+    overflow:hidden;
+}
+
+.artmus-architecture-card-title,
+.artmus-architecture-card-detail{
+    overflow-wrap:anywhere;
+    word-break:break-word;
+    hyphens:auto;
+}
+
+@media (max-width:768px){
+
+    .artmus-architecture-card{
+        min-height:auto;
+    }
+
+}
+
+
+.artmus-work-phone{
+    overflow:hidden;
+    transform:translateZ(0);
+    -webkit-transform:translateZ(0);
+}
+
+.artmus-work-phone-screen{
+    overflow:hidden;
+    border-radius:22px;
+
+    -webkit-mask-image:-webkit-radial-gradient(white, black);
+}
+
+
+
+@media (max-width:430px){
+
+    .artmus-architecture-card{
+        padding:22px;
+    }
+
+    .artmus-architecture-card-title{
+        font-size:1.15rem;
+    }
+
+    .artmus-architecture-card-detail{
+        font-size:.9rem;
+        line-height:1.45;
+    }
+
+    .artmus-work-phone{
+        border-radius:30px;
+        padding:12px;
+    }
+
+    .artmus-work-phone-screen{
+        border-radius:18px;
+    }
+
 }
 
 .artmus-architecture-card-letter{
