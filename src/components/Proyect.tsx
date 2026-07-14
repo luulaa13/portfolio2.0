@@ -53,7 +53,7 @@ export default function Proyect(): JSX.Element {
       <div className="projects-footer">
         <span className="projects-count">{t("projects.count")}</span>
 
-        <Link to="/projects" className="projects-cta">
+        <Link to="/build-log" className="projects-cta">
           {t("projects.exploreMore")}
           <span>→</span>
         </Link>

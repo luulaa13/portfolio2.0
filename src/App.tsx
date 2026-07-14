@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Loader from "./components/Loader";
 import CustomCursor from "./components/CustomCursor";
 import Home from "./pages/Home";
-import AllProjects from "./pages/AllProjects";
+import BuildLog from "./Reto30/Reto30";
 import ArtMusPage from "./pages/artmus/ArtMusPage";
 import NextPage from "./pages/next/NextPage";
 
@@ -21,16 +21,21 @@ function ScrollToTop() {
 
 function App() {
   const [bootDone, setBootDone] = useState(false);
+  const { pathname } = useLocation();
+
+  const hideNavbar = pathname === "/build-log";
 
   return (
     <>
-      {!bootDone && <Loader onDone={() => setBootDone(true)} />}
-      <CustomCursor />
-      <Navbar />
+       {!bootDone && <Loader onDone={() => setBootDone(true)} />}
+
+       {bootDone && <CustomCursor />}
+       
+       {!hideNavbar && <Navbar />}
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home ready={bootDone} />} />
-        <Route path="/projects" element={<AllProjects />} />
+        <Route path="/build-log" element={<BuildLog />} />
         <Route
           path="/projects/artmus"
           element={<ArtMusPage />}
@@ -40,6 +45,8 @@ function App() {
           path="/projects/next"
           element={<NextPage />}
         />
+
+     
       </Routes>
     </>
   );

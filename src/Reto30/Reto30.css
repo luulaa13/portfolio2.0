@@ -1,0 +1,220 @@
+/* =========================================================
+   Reto30 — estilos scoped bajo .reto30
+   Tokens: cambia las variables y toda la pieza se retiñe.
+   Fuentes: añade en tu index.html →
+   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+   ========================================================= */
+
+.reto30 {
+  --bg: #ffffff;
+  --ink: #131415;
+  --dim: #75787a;
+  --line: #e8e8e4;
+  --accent: #c9951a;
+  --done: #2fa14e;
+  --sans: 'Archivo', system-ui, sans-serif;
+  --mono: 'Space Mono', monospace;
+
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16.5px;
+  line-height: 1.55;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+.reto30 *,
+.reto30 *::before,
+.reto30 *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.reto30 ::selection { background: var(--accent); color: var(--ink); }
+
+.reto30 .wrap { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+.reto30 .label {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim);
+}
+.reto30 .label--accent { color: var(--accent); }
+
+/* ---------- header ---------- */
+.reto30 header { padding: 16vh 0 8vh; }
+.reto30 .head-eyebrow { display: flex; gap: 26px; flex-wrap: wrap; margin-bottom: 3.5vh; }
+.reto30 .head-title {
+  font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em;
+  font-size: clamp(46px, 9.5vw, 140px); line-height: 0.9;
+}
+.reto30 .head-title .row { display: block; overflow: hidden; }
+.reto30 .head-title .row span { display: inline-block; transform: translateY(112%); }
+.reto30 .head-title .acc { color: var(--accent); }
+.reto30 .head-sub {
+  margin-top: 3.5vh; max-width: 36em; color: var(--dim);
+  font-size: clamp(15px, 1.8vw, 19px); line-height: 1.6;
+  opacity: 0; transform: translateY(20px);
+}
+.reto30 .head-sub b { color: var(--ink); font-weight: 500; }
+
+/* progreso global */
+.reto30 .progress {
+  margin-top: 6vh; display: grid;
+  grid-template-columns: auto 1fr auto; gap: 26px; align-items: center;
+  opacity: 0;
+}
+.reto30 .progress .big {
+  font-weight: 900; font-size: clamp(30px, 4.5vw, 56px);
+  letter-spacing: -0.02em; font-variant-numeric: tabular-nums;
+}
+.reto30 .progress .big .of { color: var(--dim); font-size: 0.55em; font-weight: 700; }
+.reto30 .p-track { height: 4px; background: var(--line); border-radius: 4px; overflow: hidden; }
+.reto30 .p-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--done), var(--accent));
+  border-radius: 4px;
+}
+.reto30 .p-pct { font-family: var(--mono); font-size: 13px; color: var(--dim); letter-spacing: 0.1em; }
+
+/* ---------- timeline list ---------- */
+.reto30 .lista { padding-bottom: 16vh; }
+.reto30 .day {
+  position: relative;
+  display: grid;
+  grid-template-columns: 110px 1fr auto auto;
+  gap: 26px; align-items: center;
+  padding: 34px 8px;
+  text-decoration: none; color: inherit;
+  cursor: pointer;
+}
+.reto30 .divider {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: var(--line);
+  transform: scaleX(0); transform-origin: left;
+}
+.reto30 .d-num {
+  font-family: var(--mono); font-weight: 700;
+  font-size: clamp(18px, 2.4vw, 26px); color: var(--dim);
+  transition: color 0.35s; font-variant-numeric: tabular-nums;
+}
+.reto30 .d-name {
+  font-weight: 900; text-transform: uppercase; letter-spacing: -0.015em;
+  font-size: clamp(22px, 4vw, 52px); line-height: 1;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s;
+}
+.reto30 .d-tag {
+  display: block; margin-top: 8px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--dim); font-weight: 400;
+}
+.reto30 .d-status {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.2em;
+  padding: 8px 16px; border-radius: 24px; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 9px;
+}
+.reto30 .d-status .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+.reto30 .d-arrow {
+  font-family: var(--mono); font-weight: 700;
+  font-size: clamp(20px, 2.6vw, 32px); color: var(--line);
+  transition: color 0.35s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* hover */
+.reto30 .day:hover .d-name,
+.reto30 .day:focus-visible .d-name { transform: translateX(16px); }
+.reto30 .day:hover .d-num,
+.reto30 .day:focus-visible .d-num { color: var(--accent); }
+.reto30 .day:hover .d-arrow,
+.reto30 .day:focus-visible .d-arrow { color: var(--accent); transform: translateX(8px); }
+
+/* estados */
+.reto30 .day--done .d-status { background: rgba(47, 161, 78, 0.1); color: var(--done); }
+.reto30 .day--done .d-status .dot { background: var(--done); }
+.reto30 .day--wip .d-status { border: 1px solid var(--accent); color: var(--accent); }
+.reto30 .day--wip .d-status .dot {
+  background: var(--accent);
+  animation: reto30-pulse 1.4s ease-in-out infinite;
+}
+@keyframes reto30-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.7); }
+}
+.reto30 .day--wip::before {
+  content: ''; position: absolute; left: -24px; top: 20%; bottom: 20%;
+  width: 3px; background: var(--accent); border-radius: 3px;
+}
+.reto30 .day--locked { cursor: default; opacity: 0.9; }
+.reto30 .day--locked .d-name,
+.reto30 .day--locked .d-num { color: #d3d3ce; }
+.reto30 .day--locked .d-status { border: 1px dashed var(--line); color: var(--dim); }
+.reto30 .day--locked .d-arrow { visibility: hidden; }
+.reto30 .day--locked:hover .d-name { transform: none; }
+.reto30 .day--locked:hover .d-num { color: #d3d3ce; }
+
+/* fila resumen de restantes */
+.reto30 .rest {
+  position: relative;
+  display: flex; justify-content: space-between; align-items: center; gap: 20px;
+  padding: 38px 8px;
+}
+.reto30 .r-txt {
+  font-family: var(--mono); font-size: clamp(13px, 1.6vw, 15px);
+  letter-spacing: 0.16em; color: var(--dim); text-transform: uppercase;
+}
+.reto30 .r-txt b { color: var(--ink); font-weight: 700; }
+.reto30 .r-dots {
+  display: flex; gap: 7px; flex-wrap: wrap;
+  justify-content: flex-end; max-width: 46%;
+}
+.reto30 .r-dots i {
+  width: 8px; height: 8px; border-radius: 50%;
+  border: 1px solid var(--line); display: block;
+}
+
+/* ---------- preview flotante (desktop) ---------- */
+.reto30 .preview {
+  position: fixed; top: 0; left: 0; z-index: 50; pointer-events: none;
+  width: 250px; aspect-ratio: 4 / 3; border-radius: 8px;
+  background: #fafaf8; border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; scale: 0.85;
+  box-shadow: 0 24px 60px rgba(19, 20, 21, 0.16);
+  overflow: hidden;
+}
+.reto30 .pv-num {
+  position: absolute; top: 12px; left: 14px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.2em; color: var(--accent);
+}
+.reto30 .pv-img { width: 100%; height: 100%; object-fit: cover; }
+.reto30 .pv-body {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+  color: var(--dim); text-align: center; line-height: 2; padding: 0 18px;
+}
+@media (hover: none), (max-width: 900px) {
+  .reto30 .preview { display: none; }
+}
+
+/* ---------- footer ---------- */
+.reto30 footer { border-top: 1px solid var(--line); padding: 34px 0; }
+.reto30 .foot-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 760px) {
+  .reto30 .day {
+    grid-template-columns: 56px 1fr;
+    grid-template-rows: auto auto;
+    gap: 8px 18px; padding: 26px 4px;
+  }
+  .reto30 .d-status { grid-column: 2; justify-self: start; margin-top: 4px; }
+  .reto30 .d-arrow { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); }
+  .reto30 .day:hover .d-arrow { transform: translateY(-50%) translateX(6px); }
+  .reto30 .day--wip::before { left: -14px; }
+  .reto30 .r-dots { display: none; }
+}
+
+/* ---------- reduced motion: todo visible sin JS ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .reto30 .head-title .row span,
+  .reto30 .head-sub,
+  .reto30 .progress { opacity: 1 !important; transform: none !important; }
+  .reto30 .divider { transform: scaleX(1) !important; }
+  .reto30 .day--wip .d-status .dot { animation: none; }
+  .reto30 .p-fill { width: var(--p, 0%); }
+}
