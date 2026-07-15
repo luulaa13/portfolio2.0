@@ -86,10 +86,17 @@ body {
     letter-spacing: 0.12em;
     text-transform: uppercase;
     padding: 6px 10px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 999px;
-    color: rgba(255, 255, 255, 0.75);
-    transition: all 0.25s ease;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.18);
+}
+
+@media (max-width:768px){
+    .project-tags span{
+        background: rgba(0,0,0,.6);
+    }
 }
 
 .project-tags span:hover {

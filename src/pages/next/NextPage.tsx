@@ -1267,7 +1267,10 @@ console.log(build.statusChips);
         {/* Mira hacia atrás */}
       </section>
 
-      <section className="case-section" data-section="10"></section>
+
+      <section className="case-section" data-section="10">
+      
+      </section>
     </main>
   );
 }
