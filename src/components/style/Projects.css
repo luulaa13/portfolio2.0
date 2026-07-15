@@ -85,12 +85,22 @@ body {
   text-transform: uppercase;
 
   padding: 6px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 999px;
 
-  color: rgba(255, 255, 255, 0.75);
+  color: #fff;
 
-  transition: all 0.25s ease;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  border: 1px solid rgba(255,255,255,.15);
+}
+
+@media (max-width:768px){
+  .project-tags span{
+      background: rgba(0,0,0,.55);
+      border-color: rgba(255,255,255,.25);
+  }
 }
 
 .project-tags span:hover {
@@ -147,24 +157,23 @@ body {
 }
 
 /* botón esquina */
-.project-action {
-  position: absolute;
-  right: 50px;
-  bottom: 18px;
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #c9951a;
-  backdrop-filter: blur(10px);
-  color: white;
-  font-size: 14px;
-  opacity: 0;
-  transform: translateY(8px) scale(0.9);
-  transition: all 0.25s ease;
-  z-index: 5;
+.project-action{
+    width:48px;
+    height:48px;
+    background:#c9951a;
+    color:#fff;
+    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    border:1px solid rgba(255,255,255,.15);
+}
+
+
+@media (max-width:768px){
+.project-action{
+    opacity:1;
+    transform:none;
+    right:24px;
+    bottom:24px;
+}
 }
 
 /* hover */
