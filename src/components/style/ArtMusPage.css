@@ -237,6 +237,22 @@
     }
 }
 
+
+@media (max-width:768px){
+
+    .artmus-room-heading{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:16px;
+        padding:48px 24px 0;
+    }
+
+    .artmus-room-number{
+        margin-top:0;
+    }
+
+}
+
 @media (max-width: 768px){
     .artmus-divider{
         margin:56px auto 40px;
