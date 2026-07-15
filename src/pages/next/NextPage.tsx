@@ -1063,56 +1063,7 @@ export default function NextPage(): JSX.Element {
       </section>
 
       <section className="case-section" data-section="10">
-        <div className="artmus-divider" />
-
-        <header className="ending__hero">
-          <h1>
-            {ending.heroLine1}
-            <br />
-            {ending.heroConnector} <span>{ending.heroAccent}</span>
-          </h1>
-        </header>
-
-        <article className="ticket-card">
-          <div>
-            <h3>{ending.ticketTitle}</h3>
-
-            <p>{ending.ticketSubtitle}</p>
-          </div>
-
-          <div className="ticket-card__stamp">
-            {[...Array(6)].map((_, i) => (
-              <span key={i} />
-            ))}
-          </div>
-        </article>
-
-        <article
-          className="next-card"
-          onClick={() => navigate("/projects/artmus")}
-          role="link"
-          tabIndex={0}
-          data-cursor={t("cursor.next")}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") navigate("/projects/artmus");
-          }}
-        >
-          <div>
-            <small>{ending.nextLabel}</small>
-
-            <h2 className="next-logo">
-              <span className="logo-text">
-                artMus
-              </span>
-
-              <img className="logo-hover" src={nextLogo} alt="NEXT" />
-            </h2>
-
-            <p>{ending.nextDescription}</p>
-          </div>
-
-          <button>→</button>
-        </article>
+      
       </section>
     </main>
   );
