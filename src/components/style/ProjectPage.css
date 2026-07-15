@@ -1550,94 +1550,142 @@
 /* ==========================================================
    MIRA ATRÁS
    ========================================================== */
+/* ==========================================================
+   MIRA ATRÁS
+   ========================================================== */
 
-.mira-atras-section{
-  padding-block:22vh;
+.mira-atras-section {
+  padding-block: 20vh;
 }
 
-.mira-atras-timeline{
-  position:relative;
-  padding:48px 0 10px;
+.mira-atras-timeline {
+  margin-top: 5rem;
 }
 
-.mira-atras-rail{
-  position:absolute;
-  top:50px;
-  left:0;
-  right:0;
-  height:2px;
-  background:var(--color-border);
-  overflow:hidden;
+/* No se usa la línea horizontal */
+.mira-atras-rail,
+.mira-atras-rail-fill {
+  display: none;
 }
 
-.mira-atras-rail-fill{
-  position:absolute;
-  top:0;
-  left:0;
-  height:100%;
-  width:0%;
-  background:var(--color-accent);
+.mira-atras-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
 }
 
-.mira-atras-items{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:20px;
-  position:relative;
+.mira-atras-item {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  column-gap: 2rem;
+  align-items: start;
+
+  opacity: 0.18;
+
+  transition:
+    opacity .5s ease,
+    transform .5s ease;
 }
 
-.mira-atras-item{
-  position:relative;
-  padding-top:36px;
-  opacity:.3;
-  transition:opacity .45s ease;
+.mira-atras-item.is-active {
+  opacity: 1;
 }
 
-.mira-atras-item.is-active{
-  opacity:1;
-}
+.mira-atras-item-marker {
+  grid-column: 1;
+  grid-row: 1 / span 2;
 
-.mira-atras-item-marker{
-  position:absolute;
-  top:-4px;
-  left:0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 
-  font-size:24px;
-  line-height:1;
-  font-weight:700;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
 
-  color:var(--color-border);
+  color: var(--color-border);
 
   transition:
     color .45s ease,
     transform .45s ease;
 }
 
-.mira-atras-item.is-active .mira-atras-item-marker{
-  color:var(--color-accent);
-  transform:translateX(3px);
+.mira-atras-item.is-active .mira-atras-item-marker {
+  color: var(--color-accent);
+  transform: translateX(3px);
 }
 
-.mira-atras-item-label{
-  display:block;
-  margin-bottom:10px;
+.mira-atras-item-label {
+  grid-column: 2;
 
-  font-size:.72rem;
-  text-transform:uppercase;
-  letter-spacing:.18em;
+  display: block;
 
-  color:var(--color-muted);
+  margin-bottom: 1rem;
+
+  font-size: 0.82rem;
+  font-weight: 500;
+
+  text-transform: uppercase;
+  letter-spacing: .28em;
+
+  color: var(--color-muted);
 }
 
-.mira-atras-item-text{
-  margin:0;
+.mira-atras-item-text {
+  grid-column: 2;
 
-  font-size:.95rem;
-  line-height:1.6;
+  margin: 0;
 
-  color:var(--color-text);
+  max-width: 28ch;
+
+  font-size: clamp(1.5rem, 2vw, 2.35rem);
+  font-weight: 500;
+  line-height: 1.25;
+
+  color: var(--color-text);
 }
 
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 900px) {
+
+  .mira-atras-items {
+    gap: 3rem;
+  }
+
+  .mira-atras-item {
+    grid-template-columns: 22px 1fr;
+    column-gap: 1.25rem;
+  }
+
+  .mira-atras-item-marker {
+    font-size: 1.5rem;
+  }
+
+  .mira-atras-item-label {
+    font-size: 0.72rem;
+    letter-spacing: .22em;
+  }
+
+  .mira-atras-item-text {
+    max-width: 100%;
+    font-size: clamp(1.15rem, 4vw, 1.6rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mira-atras-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .mira-atras-item-marker {
+    transform: none !important;
+  }
+}
 
 /* ==========================================================
    CIERRE
