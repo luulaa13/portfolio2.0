@@ -2,6 +2,7 @@ import { Fragment, useEffect, useRef, useState, type JSX } from "react";
 import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "react-router-dom";
 import NextIntro from "./NextIntro";
 import CaseStudyNavbar from "./CaseStudyNavbar";
 import nextLogo from "../../assets/next-logo.png";
@@ -10,6 +11,9 @@ import "../../components/style/ProjectPage.css";
 import type { FormEvent } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Ruta interna del siguiente case study — constante, no traducible
+const ARTMUS_ROUTE = "/projects/artmus";
 
 // El frame mide 3.6/1, así que 36 columnas x 10 filas da celdas cuadradas
 const identidadGridCols = Array.from(
@@ -44,6 +48,7 @@ type SiguientePasoCard = { number: string; title: string; detail: string };
 type GridColumn = { title: string; detail: string };
 type ColorRow = { label: string; value: string };
 type BuildStatusChip = { label: string; done: boolean };
+type MiraAtrasItem = { label: string; text: string };
 
 export default function NextPage(): JSX.Element {
   const { t } = useTranslation();
@@ -64,7 +69,11 @@ export default function NextPage(): JSX.Element {
   const buildSectionRef = useRef<HTMLElement | null>(null);
   const buildStatusRef = useRef<HTMLDivElement | null>(null);
   const buildWaitlistRef = useRef<HTMLDivElement | null>(null);
-
+  const miraAtrasSectionRef = useRef<HTMLElement | null>(null);
+  const miraAtrasTimelineRef = useRef<HTMLDivElement | null>(null);
+  const cierreSectionRef = useRef<HTMLElement | null>(null);
+  const cierreHeadlineRef = useRef<HTMLDivElement | null>(null);
+  const nextProjectRef = useRef<HTMLAnchorElement | null>(null);
 
   const hero = t("caseStudies.next.hero", { returnObjects: true }) as {
     tags: string[];
@@ -158,7 +167,6 @@ export default function NextPage(): JSX.Element {
     };
   };
 
-
   const build = t("caseStudies.next.build", { returnObjects: true }) as {
     number: string;
     title: string;
@@ -177,9 +185,24 @@ export default function NextPage(): JSX.Element {
       linkedinUrl: string;
     };
   };
-console.log(build);
-console.log(build.statusChips);
 
+  const miraAtras = t("caseStudies.next.miraAtras", {
+    returnObjects: true,
+  }) as {
+    number: string;
+    title: string;
+    eyebrow: string;
+    lede: string;
+    items: MiraAtrasItem[];
+  };
+
+  const cierre = t("caseStudies.next.cierre", { returnObjects: true }) as {
+    headlineLine1: string;
+    headlineLine2Accent: string;
+    nextEyebrow: string;
+    nextTitle: string;
+    nextDescription: string;
+  };
 
   const [waitlistState, setWaitlistState] = useState<"idle" | "sent">("idle");
 
@@ -663,6 +686,103 @@ console.log(build.statusChips);
             scrollTrigger: {
               trigger: buildWaitlistRef.current,
               start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Entrada del encabezado de MIRA HACIA ATRÁS
+      gsap.fromTo(
+        miraAtrasSectionRef.current?.querySelectorAll(
+          ".chapter-divider, .chapter-heading, .chapter-lede"
+        ) ?? [],
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: miraAtrasSectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
+
+      // La línea de tiempo se rellena y los hitos se iluminan según el scroll
+      if (miraAtrasTimelineRef.current) {
+        const timeline = miraAtrasTimelineRef.current;
+        const railFill = timeline.querySelector(".mira-atras-rail-fill");
+        const items = timeline.querySelectorAll(".mira-atras-item");
+
+        if (railFill) {
+          gsap.fromTo(
+            railFill,
+            { width: "0%" },
+            {
+              width: "100%",
+              ease: "none",
+              scrollTrigger: {
+                trigger: timeline,
+                start: "top 70%",
+                end: "bottom 45%",
+                scrub: true,
+              },
+            }
+          );
+        }
+
+        ScrollTrigger.create({
+          trigger: timeline,
+          start: "top 70%",
+          end: "bottom 45%",
+          scrub: true,
+          onUpdate: (self) => {
+            const lit = Math.ceil(self.progress * items.length);
+            items.forEach((item, i) =>
+              item.classList.toggle("lit", i < lit)
+            );
+          },
+        });
+      }
+
+      // Titular de CIERRE, línea a línea
+      if (cierreHeadlineRef.current) {
+        gsap.fromTo(
+          cierreHeadlineRef.current.querySelectorAll(
+            ".cierre-headline-line span"
+          ),
+          { y: "112%" },
+          {
+            y: 0,
+            duration: 1.1,
+            stagger: 0.12,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: cierreHeadlineRef.current,
+              start: "top 75%",
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Tarjeta del siguiente proyecto
+      if (nextProjectRef.current) {
+        gsap.fromTo(
+          nextProjectRef.current,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: nextProjectRef.current,
+              start: "top 88%",
               once: true,
             },
           }
@@ -1251,13 +1371,85 @@ console.log(build.statusChips);
         <div className="chapter-divider"></div>
       </section>
 
-      <section className="case-section" data-section="9">
-        {/* Mira hacia atrás */}
+      <section
+        className="case-section mira-atras-section"
+        data-section="9"
+        ref={miraAtrasSectionRef}
+      >
+        <div className="chapter-divider"></div>
+        <div className="chapter-heading">
+          <span className="chapter-number">{miraAtras.number}</span>
+          <div className="chapter-heading-text">
+            <h2 className="chapter-title">{miraAtras.title}</h2>
+            <p className="chapter-eyebrow">{miraAtras.eyebrow}</p>
+          </div>
+        </div>
+
+        <p className="chapter-col chapter-lede">{miraAtras.lede}</p>
+
+        <div className="mira-atras-timeline" ref={miraAtrasTimelineRef}>
+          <div className="mira-atras-rail">
+            <div className="mira-atras-rail-fill"></div>
+          </div>
+
+          <div className="mira-atras-items">
+            {miraAtras.items.map((item) => (
+              <div className="mira-atras-item" key={item.label}>
+                <span className="mira-atras-item-marker" aria-hidden="true">
+                  ›
+                </span>
+                <span className="mira-atras-item-label">{item.label}</span>
+                <p className="mira-atras-item-text">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="chapter-divider"></div>
       </section>
 
+      <section
+        className="case-section cierre-section"
+        data-section="10"
+        ref={cierreSectionRef}
+      >
+        <div className="cierre-headline" ref={cierreHeadlineRef}>
+          <h2 className="cierre-headline-line">
+            <span>{cierre.headlineLine1}</span>
+          </h2>
+          <h2 className="cierre-headline-line">
+            <span className="cierre-headline-accent">
+              {cierre.headlineLine2Accent}
+            </span>
+          </h2>
+        </div>
 
-      <section className="case-section" data-section="10">
-      
+        <Link
+          className="cierre-next-project"
+          to={ARTMUS_ROUTE}
+          ref={nextProjectRef}
+        >
+          <div className="cierre-next-project-copy">
+            <span className="chapter-number">{cierre.nextEyebrow}</span>
+            <div className="cierre-next-project-title">
+              {cierre.nextTitle}
+            </div>
+            <p className="cierre-next-project-description">
+              {cierre.nextDescription}
+            </p>
+          </div>
+
+          <span className="cierre-next-project-arrow" aria-hidden="true">
+            <svg width="14" height="18" viewBox="0 0 14 18" fill="none">
+              <path
+                d="M2 2 L11 9 L2 16"
+                stroke="currentColor"
+                strokeWidth="2.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+        </Link>
       </section>
     </main>
   );
