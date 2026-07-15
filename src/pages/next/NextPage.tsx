@@ -8,6 +8,7 @@ import nextLogo from "../../assets/next-logo.png";
 import phoneHero from "../../assets/phoneHero-next.png";
 import "../../components/style/ProjectPage.css";
 import { useNavigate } from "react-router-dom";
+import type { FormEvent } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,6 +44,7 @@ type SiguientePasoLine = { text: string; accent?: boolean };
 type SiguientePasoCard = { number: string; title: string; detail: string };
 type GridColumn = { title: string; detail: string };
 type ColorRow = { label: string; value: string };
+type BuildStatusChip = { label: string; done: boolean };
 
 export default function NextPage(): JSX.Element {
   const { t } = useTranslation();
@@ -60,6 +62,9 @@ export default function NextPage(): JSX.Element {
   const identidadColorRowsRef = useRef<HTMLDivElement | null>(null);
   const identidadToneCardsRef = useRef<HTMLDivElement | null>(null);
   const identidadMisuseCardsRef = useRef<HTMLDivElement | null>(null);
+  const buildSectionRef = useRef<HTMLElement | null>(null);
+  const buildStatusRef = useRef<HTMLDivElement | null>(null);
+  const buildWaitlistRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
 
   const hero = t("caseStudies.next.hero", { returnObjects: true }) as {
@@ -154,7 +159,6 @@ export default function NextPage(): JSX.Element {
     };
   };
 
-
   const ending = t("caseStudies.artmus.ending", {
     returnObjects: true,
   }) as {
@@ -167,6 +171,39 @@ export default function NextPage(): JSX.Element {
     nextDescription: string;
   };
 
+  const build = t("caseStudies.next.build", { returnObjects: true }) as {
+    number: string;
+    title: string;
+    eyebrow: string;
+    lede: string;
+    statusChips: BuildStatusChip[];
+    waitlist: {
+      title: string;
+      text: string;
+      emailPlaceholder: string;
+      submitLabel: string;
+      note: string;
+      successText: string;
+      openLabel: string;
+      linkedinText: string;
+      linkedinUrl: string;
+    };
+  };
+console.log(build);
+console.log(build.statusChips);
+
+
+  const [waitlistState, setWaitlistState] = useState<"idle" | "sent">("idle");
+
+  const handleWaitlistSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // const email = new FormData(e.currentTarget).get("email");
+
+    // Conecta aquí tu proveedor real (Formspree, Buttondown, Mailchimp…):
+    // fetch("https://formspree.io/f/XXXXX", { method: "POST", body: new FormData(e.currentTarget) });
+
+    setWaitlistState("sent");
+  };
 
   const identidadColorRows = identidad.color.rows.map((row, i) => ({
     ...row,
@@ -584,6 +621,65 @@ export default function NextPage(): JSX.Element {
             "-=0.3"
           );
       }
+
+      // Entrada del encabezado de EN CONSTRUCCIÓN
+      gsap.fromTo(
+        buildSectionRef.current?.querySelectorAll(
+          ".chapter-divider, .chapter-heading, .chapter-lede"
+        ) ?? [],
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: buildSectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
+
+      // Chips de estado
+      if (buildStatusRef.current) {
+        gsap.fromTo(
+          buildStatusRef.current.querySelectorAll(".build-status-chip"),
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: buildStatusRef.current,
+              start: "top 88%",
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Tarjeta de waitlist
+      if (buildWaitlistRef.current) {
+        gsap.fromTo(
+          buildWaitlistRef.current,
+          { opacity: 0, y: 44 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: buildWaitlistRef.current,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
     });
 
     return () => ctx.revert();
@@ -969,7 +1065,6 @@ export default function NextPage(): JSX.Element {
         </div>
 
         <p className="identidad-contrast">
-         
           {identidad.color.contrastBefore}{" "}
           <span className="identidad-contrast-pass">
             {identidad.color.contrastPass}
@@ -1036,13 +1131,37 @@ export default function NextPage(): JSX.Element {
         </h3>
 
         <div className="identidad-misuse-cards" ref={identidadMisuseCardsRef}>
-          {identidad.misuse.labels.map((label) => (
-            <div className="identidad-misuse-card" key={label}>
-              <img
-                src={nextLogo}
-                alt={identidad.misuse.logoAlt}
-                className="identidad-misuse-logo"
-              />
+          {identidad.misuse.labels.map((label, index) => (
+            <div
+              className={`identidad-misuse-card misuse-${index + 1}`}
+              key={label}
+            >
+              {/* La cuarta no lleva imagen */}
+              {index !== 2 && index !== 3 && (
+                <img
+                  src={nextLogo}
+                  alt={identidad.misuse.logoAlt}
+                  className="identidad-misuse-logo"
+                />
+              )}
+
+              {/* Texto de fondo en la tercera */}
+              {index === 2 && (
+                <div className="misuse-logo-stack">
+                  <img src={nextLogo} className="logo logo-orange" alt="" />
+                  <img
+                    src={nextLogo}
+                    alt={identidad.misuse.logoAlt}
+                    className="logo logo-main"
+                  />
+                </div>
+              )}
+
+              {/* Texto diferente en la cuarta */}
+              {index === 3 && (
+                <span className="misuse-custom-logo">Next&gt;</span>
+              )}
+
               <span className="identidad-misuse-badge">✕</span>
               <span className="identidad-misuse-label">{label}</span>
             </div>
@@ -1054,66 +1173,101 @@ export default function NextPage(): JSX.Element {
         {/* Transformación */}
       </section>
 
-      <section className="case-section" data-section="8">
-        {/* En construcción */}
+      <section
+        className="case-section under-construction-section"
+        data-section="8"
+        ref={buildSectionRef}
+      >
+        <div className="chapter-divider"></div>
+        <div className="chapter-heading">
+          <span className="chapter-number">{build.number}</span>
+          <div className="chapter-heading-text">
+            <h2 className="chapter-title">{build.title}</h2>
+            <p className="chapter-eyebrow">{build.eyebrow}</p>
+          </div>
+        </div>
+
+        <p className="chapter-col chapter-lede">{build.lede}</p>
+
+        <div className="build-status-row" ref={buildStatusRef}>
+          {build.statusChips.map((chip) => (
+            <span
+              className={`build-status-chip${
+                chip.done ? " build-status-chip--done" : " build-status-chip--wip"
+              }`}
+              key={chip.label}
+            >
+              {chip.done ? (
+                "✓"
+              ) : (
+                <span className="build-status-pulse" aria-hidden="true" />
+              )}
+              {chip.label}
+            </span>
+          ))}
+        </div>
+
+        <div className="build-waitlist" ref={buildWaitlistRef}>
+          <div className="build-waitlist-copy">
+            <h3 className="build-waitlist-title">{build.waitlist.title}</h3>
+            <p className="build-waitlist-text">{build.waitlist.text}</p>
+          </div>
+
+          <div className="build-waitlist-form-col">
+            {waitlistState === "idle" ? (
+              <>
+                <form
+                  className="build-waitlist-form"
+                  onSubmit={handleWaitlistSubmit}
+                >
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder={build.waitlist.emailPlaceholder}
+                    aria-label={build.waitlist.emailPlaceholder}
+                  />
+                  <button type="submit">{build.waitlist.submitLabel}</button>
+                </form>
+                <p className="build-waitlist-note">{build.waitlist.note}</p>
+              </>
+            ) : (
+              <p className="build-waitlist-success">
+                {build.waitlist.successText}
+              </p>
+            )}
+
+            <div className="build-waitlist-open">
+              <span className="chapter-number">
+                {build.waitlist.openLabel}
+              </span>
+              <a
+                href={build.waitlist.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {build.waitlist.linkedinText}
+                <svg width="10" height="13" viewBox="0 0 14 18" fill="none">
+                  <path
+                    d="M2 2 L11 9 L2 16"
+                    stroke="currentColor"
+                    strokeWidth="2.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="chapter-divider"></div>
       </section>
 
       <section className="case-section" data-section="9">
         {/* Mira hacia atrás */}
       </section>
 
-      <section className="case-section" data-section="10">
-        <div className="artmus-divider" />
-
-        <header className="ending__hero">
-          <h1>
-            {ending.heroLine1}
-            <br />
-            {ending.heroConnector} <span>{ending.heroAccent}</span>
-          </h1>
-        </header>
-
-        <article className="ticket-card">
-          <div>
-            <h3>{ending.ticketTitle}</h3>
-
-            <p>{ending.ticketSubtitle}</p>
-          </div>
-
-          <div className="ticket-card__stamp">
-            {[...Array(6)].map((_, i) => (
-              <span key={i} />
-            ))}
-          </div>
-        </article>
-
-        <article
-          className="next-card"
-          onClick={() => navigate("/projects/artmus")}
-          role="link"
-          tabIndex={0}
-          data-cursor={t("cursor.next")}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") navigate("/projects/artmus");
-          }}
-        >
-          <div>
-            <small>{ending.nextLabel}</small>
-
-            <h2 className="next-logo">
-              <span className="logo-text">
-                artMus
-              </span>
-
-              <img className="logo-hover" src={nextLogo} alt="NEXT" />
-            </h2>
-
-            <p>{ending.nextDescription}</p>
-          </div>
-
-          <button>→</button>
-        </article>
-      </section>
+      <section className="case-section" data-section="10"></section>
     </main>
   );
 }

@@ -431,7 +431,42 @@
           "labels": ["NO ROTAR", "NO DEFORMAR", "NO AÑADIR EFECTOS", "NO CAMBIAR TIPOGRAFÍA"],
           "logoAlt": "Uso incorrecto del logo NEXT"
         }
+      },
+       "build": {
+    "number": "07 / 08",
+    "title": "En construcción",
+    "eyebrow": "EL PRODUCTO ESTÁ VIVO — LANZAMIENTO PREVISTO EN 2026",
+    "lede": "NEXT está en desarrollo activo, construido igual que se usa: un siguiente paso cada vez. La estrategia completa y las métricas se contarán aquí cuando la app esté en el store — con resultados reales, no promesas.",
+    "statusChips": [
+      {
+        "label": "RESEARCH · N=34",
+        "done": true
+      },
+      {
+        "label": "MARCA Y SISTEMA",
+        "done": true
+      },
+      {
+        "label": "DISEÑO DE PRODUCTO",
+        "done": true
+      },
+      {
+        "label": "DESARROLLO EN CURSO",
+        "done": false
       }
+    ],
+    "waitlist": {
+      "title": "Sé de los primeros en empezar por lo siguiente.",
+      "text": "Únete a la lista de espera y te avisaré el día del lanzamiento — y de nada más.",
+      "emailPlaceholder": "tu@email.com",
+      "submitLabel": "Unirme ›",
+      "note": "SIN SPAM. SOLO EL LANZAMIENTO.",
+      "successText": "Estás dentro. Tu siguiente paso llegará pronto ›",
+      "openLabel": "O SIGUE EL PROCESO EN ABIERTO",
+      "linkedinText": "Estoy compartiendo el desarrollo de NEXT en LinkedIn",
+      "linkedinUrl": "https://www.linkedin.com/in/luciauxui/"
+    }
+  }
     }
   },
   "reto30": {

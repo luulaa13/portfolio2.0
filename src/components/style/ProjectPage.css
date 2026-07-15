@@ -704,13 +704,7 @@
     margin:48px 140px 0;
 }
 
-.identidad-misuse-card{
-    position:relative;
-    aspect-ratio:1 / 1;
-    background:#17191A;
-    border:1px solid rgba(242, 241, 233, 0.15);
-    overflow:hidden;
-}
+
 
 .identidad-misuse-logo{
     position:absolute;
@@ -1256,4 +1250,298 @@
   margin: 0 auto 64px;
 
   background: rgba(255, 255, 255, 0.15);
+}
+
+
+
+.identidad-misuse-card {
+  position: relative;
+  aspect-ratio:1 / 1;
+  display: flex;
+  justify-content: center;
+  background:#17191A;
+  border:1px solid rgba(242, 241, 233, 0.15);
+  align-items: center;
+  overflow: hidden;
+}
+/* Imagen */
+.identidad-misuse-logo {
+  position: absolute;
+  top: 40%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+}
+/* 1. Rotada */
+.misuse-1 .identidad-misuse-logo {
+  transform: rotate(-20deg);
+}
+
+/* 2. Deformada */
+.misuse-2 .identidad-misuse-logo {
+  transform: scaleX(1.4) scaleY(.8);
+}
+
+.misuse-background-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 4rem;
+  font-weight: 900;
+  color: orange;
+  opacity: .2;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.misuse-3 .identidad-misuse-logo {
+  position: relative;
+  z-index: 1;
+}
+/* 4. Sustituir logo */
+.misuse-custom-logo {
+  font-family: "Bebas Neue", sans-serif; /* o la fuente que quieras */
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -.04em;
+}
+
+
+.misuse-logo-stack {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+}
+
+.misuse-logo-stack .logo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+}
+
+/* Capa naranja */
+.logo-orange {
+  filter: brightness(0) saturate(100%) invert(61%) sepia(91%) saturate(1098%)
+    hue-rotate(349deg) brightness(101%) contrast(101%);
+  transform: translate(6px, -2px);
+  opacity: .9;
+}
+
+/* Logo original */
+.logo-main {
+  z-index: 2;
+}
+
+
+
+
+.under-construction-section {
+  background: #17191a;
+  color: #f2f1e9;
+}
+ 
+/* ---------- chips de estado ---------- */
+.build-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+
+  margin: 5vh 0 9vh;
+
+  padding-left: clamp(32px, 7vw, 72px);
+  padding-right: clamp(16px, 4vw, 40px);
+
+  width: 100%;
+  box-sizing: border-box;
+}
+ 
+.build-status-chip {
+  font-family: var(--mono-font, monospace);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  padding: 10px 18px;
+  border-radius: 26px;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  opacity: 0; /* animado por GSAP */
+}
+ 
+.build-status-chip--done {
+  background: rgba(179, 255, 0, 0.1);
+  color: #b3ff00;
+}
+ 
+.build-status-chip--wip {
+  border: 1px solid #ff5c34;
+  color: #ff5c34;
+}
+ 
+.build-status-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff5c34;
+  display: inline-block;
+  animation: build-pulse 1.4s ease-in-out infinite;
+}
+ 
+@keyframes build-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.7); }
+}
+ 
+/* ---------- tarjeta de waitlist ---------- */
+.build-waitlist {
+  background: #b3ff00;
+  color: #17191a;
+  border-radius: 4px;
+  padding: clamp(34px, 5vw, 64px);
+  /* Espacio respecto a los laterales */
+  margin-inline: clamp(20px, 4vw, 48px);
+  display: grid;
+  
+  gap: 44px;
+  align-items: center;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+.build-waitlist-title {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  font-size: clamp(28px, 4.4vw, 56px);
+  line-height: 0.98;
+}
+ 
+.build-waitlist-text {
+  margin-top: 16px;
+  color: #3a4410;
+  font-size: 16px;
+  max-width: 26em;
+}
+ 
+.build-waitlist-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+ 
+.build-waitlist-form input {
+  flex: 1;
+  min-width: 220px;
+  background: rgba(23, 25, 26, 0.06);
+  border: 1.5px solid rgba(23, 25, 26, 0.35);
+  border-radius: 12px;
+  padding: 16px 18px;
+  font-family: var(--mono-font, monospace);
+  font-size: 14px;
+  color: #17191a;
+  outline: none;
+  transition: border-color 0.3s;
+}
+ 
+.build-waitlist-form input::placeholder { color: #5d6d10; }
+.build-waitlist-form input:focus { border-color: #17191a; }
+ 
+.build-waitlist-form button {
+  background: #17191a;
+  color: #f2f1e9;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 12px;
+  padding: 16px 28px;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+ 
+.build-waitlist-form button:hover { transform: translateX(4px); }
+ 
+.build-waitlist-note {
+  margin-top: 14px;
+  font-family: var(--mono-font, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  color: #5d6d10;
+}
+ 
+.build-waitlist-success {
+  font-weight: 900;
+  font-size: clamp(20px, 2.6vw, 30px);
+  letter-spacing: -0.01em;
+}
+ 
+.build-waitlist-open {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(23, 25, 26, 0.2);
+}
+ 
+.build-waitlist-open .chapter-number {
+  color: #5d6d10;
+  display: block;
+  margin-bottom: 8px;
+}
+ 
+.build-waitlist-open a {
+  color: #17191a;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+}
+ 
+.build-waitlist-open a svg {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+ 
+.build-waitlist-open a:hover svg { transform: translateX(6px); }
+ 
+@media (max-width: 900px) {
+  .build-waitlist {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-inline: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .build-waitlist {
+    margin-inline: 16px;
+    padding: 28px 22px;
+  }
+}
+
+@media (max-width: 900px) {
+  .build-status-row {
+    gap: 10px;
+    padding-inline: 24px;
+    margin: 4vh 0 7vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .build-status-row {
+    gap: 8px;
+    padding-inline: 16px;
+    margin: 3vh 0 6vh;
+  }
+
+  .build-status-chip {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    padding: 9px 14px;
+  }
 }
