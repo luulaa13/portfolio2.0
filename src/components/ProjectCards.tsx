@@ -99,6 +99,7 @@ export default function ProjectCards(): JSX.Element {
 
         <div className="project-action">
          <span>↗</span>
+         </div>
       </div>
 
       {zooming && (
