@@ -1796,3 +1796,45 @@
         height:48px;
     }
 }
+
+
+/* =======================================================
+   PORTÁTILES (13"-14")
+======================================================= */
+
+@media (max-width:1366px){
+
+    .artmus-room-title{
+        font-size:3rem;
+    }
+
+    .artmus-room-lede{
+        margin:48px 48px 0;
+    }
+
+    .artmus-stat-cards,
+    .artmus-persona-cards,
+    .artmus-architecture-cards,
+    .artmus-palette,
+    .artmus-voice-cards,
+    .artmus-work-columns,
+    .artmus-work-shots{
+        margin-left:48px;
+        margin-right:48px;
+    }
+
+    .artmus-flow-row{
+        margin-left:48px;
+        margin-right:48px;
+    }
+
+    .artmus-referents-track{
+        padding-left:48px;
+        padding-right:48px;
+    }
+
+    .artmus-work-columns{
+        gap:40px;
+    }
+
+}
