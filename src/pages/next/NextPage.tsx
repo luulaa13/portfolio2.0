@@ -7,7 +7,6 @@ import CaseStudyNavbar from "./CaseStudyNavbar";
 import nextLogo from "../../assets/next-logo.png";
 import phoneHero from "../../assets/phoneHero-next.png";
 import "../../components/style/ProjectPage.css";
-import { useNavigate } from "react-router-dom";
 import type { FormEvent } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
