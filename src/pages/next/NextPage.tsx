@@ -74,6 +74,7 @@ export default function NextPage(): JSX.Element {
   const cierreSectionRef = useRef<HTMLElement | null>(null);
   const cierreHeadlineRef = useRef<HTMLDivElement | null>(null);
   const nextProjectRef = useRef<HTMLAnchorElement | null>(null);
+ 
 
   const hero = t("caseStudies.next.hero", { returnObjects: true }) as {
     tags: string[];
@@ -108,6 +109,8 @@ export default function NextPage(): JSX.Element {
     quoteText: string;
     quoteAttribution: string;
   };
+
+  
 
   const paisaje = t("caseStudies.next.paisaje", { returnObjects: true }) as {
     number: string;
@@ -712,42 +715,44 @@ export default function NextPage(): JSX.Element {
         }
       );
 
-      // La línea de tiempo se rellena y los hitos se iluminan según el scroll
-      if (miraAtrasTimelineRef.current) {
-        const timeline = miraAtrasTimelineRef.current;
-        const railFill = timeline.querySelector(".mira-atras-rail-fill");
-        const items = timeline.querySelectorAll(".mira-atras-item");
+// Timeline
+if (miraAtrasTimelineRef.current) {
+  const timeline = miraAtrasTimelineRef.current;
+  const railFill = timeline.querySelector(".mira-atras-rail-fill");
+  const items = timeline.querySelectorAll<HTMLElement>(".mira-atras-item");
 
-        if (railFill) {
-          gsap.fromTo(
-            railFill,
-            { width: "0%" },
-            {
-              width: "100%",
-              ease: "none",
-              scrollTrigger: {
-                trigger: timeline,
-                start: "top 70%",
-                end: "bottom 45%",
-                scrub: true,
-              },
-            }
-          );
-        }
-
-        ScrollTrigger.create({
+  if (railFill) {
+    gsap.fromTo(
+      railFill,
+      { width: "0%" },
+      {
+        width: "100%",
+        ease: "none",
+        scrollTrigger: {
           trigger: timeline,
           start: "top 70%",
           end: "bottom 45%",
           scrub: true,
-          onUpdate: (self) => {
-            const lit = Math.ceil(self.progress * items.length);
-            items.forEach((item, i) =>
-              item.classList.toggle("lit", i < lit)
-            );
-          },
-        });
+        },
       }
+    );
+  }
+
+  ScrollTrigger.create({
+    trigger: timeline,
+    start: "top 70%",
+    end: "bottom 45%",
+    scrub: true,
+
+    onUpdate: ({ progress }) => {
+      const active = Math.floor(progress * items.length);
+
+      items.forEach((item, index) => {
+        item.classList.toggle("is-active", index <= active);
+      });
+    },
+  });
+}
 
       // Titular de CIERRE, línea a línea
       if (cierreHeadlineRef.current) {
@@ -1368,7 +1373,7 @@ export default function NextPage(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="chapter-divider"></div>
+        
       </section>
 
       <section
@@ -1404,7 +1409,7 @@ export default function NextPage(): JSX.Element {
             ))}
           </div>
         </div>
-        <div className="chapter-divider"></div>
+       
       </section>
 
       <section
@@ -1412,6 +1417,7 @@ export default function NextPage(): JSX.Element {
         data-section="10"
         ref={cierreSectionRef}
       >
+         <div className="chapter-divider"></div>
         <div className="cierre-headline" ref={cierreHeadlineRef}>
           <h2 className="cierre-headline-line">
             <span>{cierre.headlineLine1}</span>
