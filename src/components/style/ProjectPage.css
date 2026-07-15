@@ -1545,3 +1545,207 @@
     padding: 9px 14px;
   }
 }
+
+
+/* =========================================================
+   Añadir a ProjectPage.css — secciones "Mira hacia atrás" y "Cierre"
+   Mismos colores que el resto: pizarra #17191A, papel #F2F1E9,
+   lima #B3FF00, coral #FF5C34
+   (ajusta a tus custom properties si las tienes)
+   ========================================================= */
+
+.mira-atras-section {
+  background: #17191a;
+  color: #f2f1e9;
+}
+
+/* ---------- timeline ---------- */
+.mira-atras-timeline {
+  position: relative;
+  margin-top: 8vh;
+  padding-top: 40px;
+}
+
+.mira-atras-rail {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #293032;
+}
+
+.mira-atras-rail-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%; /* animado por GSAP */
+  background: #b3ff00;
+}
+
+.mira-atras-items {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  position: relative;
+}
+
+.mira-atras-item {
+  padding-top: 34px;
+  position: relative;
+  opacity: 0.25;
+  transition: opacity 0.4s ease;
+}
+
+.mira-atras-item-marker {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1;
+  color: #293032;
+  transition: color 0.4s ease;
+}
+
+.mira-atras-item.lit {
+  opacity: 1;
+}
+
+.mira-atras-item.lit .mira-atras-item-marker {
+  color: #b3ff00;
+}
+
+.mira-atras-item-label {
+  display: block;
+  font-family: var(--mono-font, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8e918b;
+  margin-bottom: 8px;
+}
+
+.mira-atras-item-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #f2f1e9;
+}
+
+@media (max-width: 768px) {
+  .mira-atras-items {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .mira-atras-rail,
+  .mira-atras-rail-fill {
+    display: none;
+  }
+
+  .mira-atras-item {
+    padding-top: 0;
+    padding-left: 30px;
+  }
+
+  .mira-atras-item-marker {
+    top: 0;
+  }
+}
+
+/* ---------- cierre ---------- */
+.cierre-section {
+  background: #f2f1e9;
+  color: #17191a;
+  padding-top: 12vh;
+  padding-bottom: 12vh;
+}
+
+.cierre-headline {
+  overflow: hidden;
+}
+
+.cierre-headline-line {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  font-size: clamp(44px, 8.6vw, 132px);
+  line-height: 0.96;
+  overflow: hidden;
+}
+
+.cierre-headline-line span {
+  display: inline-block;
+  transform: translateY(112%);
+}
+
+.cierre-headline-accent {
+  color: #ff5c34;
+}
+
+/* tarjeta del siguiente proyecto — portal hacia la identidad de Artmus */
+.cierre-next-project {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-top: 10vh;
+  padding: 32px 30px;
+  border: 1px solid #d8d6cb;
+  border-radius: 3px;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0; /* animado por GSAP */
+}
+
+.cierre-next-project-copy .chapter-number {
+  color: #8e918b;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.cierre-next-project-title {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  font-size: clamp(26px, 4vw, 50px);
+  color: #17191a;
+  transition: color 0.4s ease;
+}
+
+.cierre-next-project-description {
+  margin-top: 8px;
+  font-size: 14.5px;
+  color: #75787a;
+  max-width: 34em;
+}
+
+.cierre-next-project-arrow {
+  color: #b3ff00;
+  flex-shrink: 0;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cierre-next-project-arrow svg path {
+  stroke: #17191a;
+  transition: stroke 0.4s ease;
+}
+
+.cierre-next-project:hover .cierre-next-project-arrow {
+  transform: translateX(10px);
+}
+
+.cierre-next-project:hover .cierre-next-project-title {
+  color: #ff5c34;
+}
+
+@media (max-width: 760px) {
+  .cierre-next-project {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
