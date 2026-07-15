@@ -65,7 +65,7 @@ export default function NextPage(): JSX.Element {
   const buildSectionRef = useRef<HTMLElement | null>(null);
   const buildStatusRef = useRef<HTMLDivElement | null>(null);
   const buildWaitlistRef = useRef<HTMLDivElement | null>(null);
-  const navigate = useNavigate();
+
 
   const hero = t("caseStudies.next.hero", { returnObjects: true }) as {
     tags: string[];
@@ -159,17 +159,6 @@ export default function NextPage(): JSX.Element {
     };
   };
 
-  const ending = t("caseStudies.artmus.ending", {
-    returnObjects: true,
-  }) as {
-    heroLine1: string;
-    heroConnector: string;
-    heroAccent: string;
-    ticketTitle: string;
-    ticketSubtitle: string;
-    nextLabel: string;
-    nextDescription: string;
-  };
 
   const build = t("caseStudies.next.build", { returnObjects: true }) as {
     number: string;
