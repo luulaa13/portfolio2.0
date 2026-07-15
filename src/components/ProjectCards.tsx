@@ -101,7 +101,7 @@ export default function ProjectCards(): JSX.Element {
          <span>↗</span>
          </div>
       </div>
-      </div>
+     
 
       {zooming && (
         <div
