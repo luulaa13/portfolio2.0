@@ -45,6 +45,18 @@
     height:330px;
     margin:64px 0 0 80px;
 }
+@media (max-width:768px){
+
+    .artmus-work-shots{
+        grid-template-columns:1fr;
+        justify-items:center;
+    }
+
+    .artmus-work-shot{
+        width:min(220px,70vw);
+    }
+
+}
 
 @media (min-width: 1025px) and (max-width: 1440px){
     .artmus-hero-logo-wrap{
