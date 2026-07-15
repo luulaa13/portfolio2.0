@@ -98,15 +98,7 @@ export default function ProjectCards(): JSX.Element {
         </div>
 
         <div className="project-action">
-          <svg viewBox="0 0 24 24" width="16" height="16">
-        <path
-            d="M7 17L17 7M17 7H9M17 7V15"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"/>
-          </svg>
-        </div>
+         <span>↗</span>
       </div>
 
       {zooming && (
