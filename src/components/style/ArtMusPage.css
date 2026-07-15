@@ -1465,6 +1465,22 @@
     }
 }
 
+
+@media (max-width:768px){
+
+    .artmus-work-phone{
+        width:min(260px, 70vw);
+        padding:12px;
+        border-radius:28px;
+    }
+
+    .artmus-work-phone-screen{
+        border-radius:18px;
+    }
+
+}
+
+
 :root{
     --blue:#2F376C;
     --lime:#C9D61E;
