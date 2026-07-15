@@ -466,7 +466,27 @@
       "linkedinText": "Estoy compartiendo el desarrollo de NEXT en LinkedIn",
       "linkedinUrl": "https://www.linkedin.com/in/luciauxui/"
     }
-  }
+  },
+  "miraAtras": {
+  "number": "07 / 08",
+  "title": "Mira hacia atrás",
+  "eyebrow": "EL RECORRIDO HASTA AQUÍ",
+  "lede": "Así es como NEXT mide el progreso — y así es como se ha construido este case study.",
+  "items": [
+    { "label": "INICIO", "text": "Llegaste sin contexto. Solo un nombre: NEXT." },
+    { "label": "TRAS LA INVESTIGACIÓN", "text": "Viste por qué el 72% se bloquea con regularidad." },
+    { "label": "TRAS EL PANORAMA", "text": "Descubriste el hueco que nadie cubre." },
+    { "label": "TRAS LA IDENTIDAD", "text": "Conociste la marca detrás del producto." },
+    { "label": "AHORA", "text": "Sabes por qué existe NEXT — y por dónde va." }
+  ]
+},
+"cierre": {
+  "headlineLine1": "¿Cuál es tu",
+  "headlineLine2Accent": "siguiente paso?",
+  "nextEyebrow": "SIGUIENTE PROYECTO · CASE STUDY 02 · APP · CULTURA",
+  "nextTitle": "Artmus",
+  "nextDescription": "Todos los museos en un solo lugar: planifica visitas, descubre exposiciones y compra entradas."
+}
     }
   },
   "reto30": {
