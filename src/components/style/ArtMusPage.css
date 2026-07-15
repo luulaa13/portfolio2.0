@@ -45,18 +45,7 @@
     height:330px;
     margin:64px 0 0 80px;
 }
-@media (max-width:768px){
 
-    .artmus-work-shots{
-        grid-template-columns:1fr;
-        justify-items:center;
-    }
-
-    .artmus-work-shot{
-        width:min(220px,70vw);
-    }
-
-}
 
 @media (min-width: 1025px) and (max-width: 1440px){
     .artmus-hero-logo-wrap{
@@ -1471,26 +1460,31 @@
     }
 }
 
-@media (max-width: 640px){
-    .artmus-work-shots{
-        grid-template-columns:1fr;
-    }
-}
-
-
 @media (max-width:768px){
 
+    .artmus-work-shots{
+        grid-template-columns:1fr;
+        justify-items:center;
+        gap:28px;
+        margin:56px 24px 0;
+    }
+    .artmus-work-shot{
+        width:min(220px,70vw);
+    }
+
+}
+
+@media (max-width:768px){
     .artmus-work-phone{
-        width:min(260px, 70vw);
+        width:min(250px,68vw);
         padding:12px;
         border-radius:28px;
     }
-
     .artmus-work-phone-screen{
         border-radius:18px;
     }
-
 }
+
 
 
 :root{
