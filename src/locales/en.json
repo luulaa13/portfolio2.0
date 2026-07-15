@@ -432,7 +432,7 @@
           "logoAlt": "Incorrect use of the NEXT logo"
         }
       },
-           "build": {
+    "build": {
     "number": "07 / 08",
     "title": "Under construction",
     "eyebrow": "THE PRODUCT IS LIVE — LAUNCH PLANNED FOR 2026",
@@ -466,6 +466,41 @@
       "linkedinText": "I'm sharing NEXT's development on LinkedIn",
       "linkedinUrl": "https://www.linkedin.com/in/luciauxui/"
     }
+  },
+   "miraAtras": {
+    "number": "07 / 08",
+    "title": "Look back",
+    "eyebrow": "THE JOURNEY SO FAR",
+    "lede": "This is how NEXT measures progress — always looking back from the starting point. It's also how this case study was built.",
+    "items": [
+      {
+        "label": "START",
+        "text": "You arrived with no context. Just a name: NEXT."
+      },
+      {
+        "label": "AFTER THE RESEARCH",
+        "text": "You saw why 72% get stuck with some regularity — and that it isn't laziness, it's a lack of structure."
+      },
+      {
+        "label": "AFTER THE LANDSCAPE",
+        "text": "You discovered the gap no single competitor fully covers."
+      },
+      {
+        "label": "AFTER THE IDENTITY",
+        "text": "You met the brand behind the product: the chevron, the system, the tone."
+      },
+      {
+        "label": "NOW",
+        "text": "You know why NEXT exists — and where it's headed."
+      }
+    ]
+  },
+  "cierre": {
+    "headlineLine1": "What's your",
+    "headlineLine2Accent": "next step?",
+    "nextEyebrow": "NEXT PROJECT · CASE STUDY 02 · APP · CULTURE",
+    "nextTitle": "Artmus",
+    "nextDescription": "Every museum in one place: plan visits, discover exhibitions, and buy tickets."
   }
     }
   },
