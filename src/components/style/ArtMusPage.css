@@ -1422,15 +1422,16 @@
 
 .artmus-work-shots{
     display:grid;
-    grid-template-columns:repeat(3, minmax(0, 340px));
+    grid-template-columns:repeat(3, minmax(0,340px));
     justify-content:center;
     gap:32px;
-
     margin:140px 140px 0;
 }
 
 .artmus-work-shot{
-    aspect-ratio:9 / 19;
+    width:100%;
+    max-width:340px;
+    aspect-ratio:9/19;
 
     padding:14px;
     background:#2A3462;
@@ -1446,66 +1447,50 @@
     border-radius:20px;
 }
 
-@media (min-width: 1025px) and (max-width: 1440px){
+@media (min-width:1025px) and (max-width:1440px){
     .artmus-work-shots{
         margin:100px 72px 0;
     }
 }
 
 @media (max-width:1024px){
-
     .artmus-work-shots{
-        grid-template-columns:repeat(2,minmax(220px,280px));
-        justify-content:center;
-        gap:24px;
-        margin:64px 24px 0;
-    }
-
-}
-
-
-@media (max-width:768px){
-
-    .artmus-work-shots{
-        display:grid;
-        grid-template-columns:repeat(2, minmax(130px, 165px));
+        grid-template-columns:repeat(2,minmax(0,280px));
         justify-content:center;
         gap:20px;
         margin:56px 24px 0;
     }
-
-    .artmus-work-shot{
-        width:100%;
-        padding:10px;
-        border-radius:24px;
-    }
-
 }
 
 @media (max-width:768px){
 
-    .artmus-work-phone{
-        width:min(200px,56vw);
+    .artmus-work-shots{
+        grid-template-columns:1fr;
+        justify-items:center;
+        gap:32px;
+        margin:56px 24px 0;
+    }
 
-        padding:10px;
-        border-radius:26px;
+    .artmus-work-shot{
+        width:min(290px,78vw);
+        max-width:none;
+        padding:12px;
+        border-radius:28px;
+    }
+
+    .artmus-work-shot img{
+        border-radius:18px;
+    }
+
+    .artmus-work-phone{
+        width:min(290px,78vw);
+        padding:12px;
+        border-radius:28px;
     }
 
     .artmus-work-phone-screen{
-        border-radius:16px;
+        border-radius:18px;
     }
-
-}
-
-/* iPhone 12 Pro, 13 Pro, 14 Pro, 15 Pro... */
-@media (max-width:430px){
-
-    .artmus-work-shots{
-        grid-template-columns:repeat(2, minmax(130px, 155px));
-        gap:16px;
-        margin:48px 16px 0;
-    }
-
 }
 
 :root{
