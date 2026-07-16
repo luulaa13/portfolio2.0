@@ -15,7 +15,8 @@ export const BUILDS: BuildDetail[] = [
     date: 'JUL 2026',
     stack: ['REACT', 'GSAP + SCROLLTRIGGER', 'CSS', 'VERCEL'],
     liveUrl: 'https://vena-viva.vercel.app/',
-    // repoUrl: 'https://github.com/tu-usuario/vena-viva',
+     repoUrl: 'https://github.com/luulaa13/VenaViva',
+    // instagramUrl: 'https://www.instagram.com/p/xxxxxxxxxxx/',
   },
 ];
 

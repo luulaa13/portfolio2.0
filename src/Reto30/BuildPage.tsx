@@ -117,6 +117,11 @@ export default function BuildPage({
                 {t('reto30.buildPage.ctaRepo')}
               </a>
             )}
+            {build.instagramUrl && (
+              <a className="btn btn--ghost" href={build.instagramUrl} target="_blank" rel="noopener noreferrer">
+                {t('reto30.buildPage.ctaInstagram')}
+              </a>
+            )}
           </div>
         </div>
       </header>

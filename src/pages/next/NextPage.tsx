@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import NextIntro from "./NextIntro";
 import CaseStudyNavbar from "./CaseStudyNavbar";
 import nextLogo from "../../assets/next-logo.png";
+import artmusLogo2 from "../../assets/artmus-logo2.png";
 import phoneHero from "../../assets/phoneHero-next.png";
 import "../../components/style/ProjectPage.css";
 import type { FormEvent } from "react";
@@ -14,6 +15,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Ruta interna del siguiente case study — constante, no traducible
 const ARTMUS_ROUTE = "/projects/artmus";
+
+/**
+ * URL de acción del formulario de Brevo (Contactos → Formularios →
+ * crea uno → pestaña "Compartir" → código HTML). Tiene esta forma:
+ *   https://xxxxxxxx.sibforms.com/serve/MUIFxxxxxxxxxxxxxxxxxxxxxxxx
+ * Sustituye el placeholder de abajo por la tuya antes de publicar.
+ */
+const BREVO_ACTION_URL =
+  "https://5ce21add.sibforms.com/serve/MUIFAGATxkURcjfVfBPVuAK72x5XdRCxVfJSsjOXGe_4dBpUduhmYor_MBrO4iW2b4vyXmk7RAKKcRa-4pQC7eHNsHFUN8S6KTpfLqkMXYi7moaeNT-NzCBBEv2pqZNBZX70T1wS_C-3XJyEB6MuWFZwc6bY_7eM4RlpBAHHgarZn8PDCCQzBTF6gYQgKS84vpaUL9kyo-hLlpBqBA==";
+const BREVO_HIDDEN_FRAME = "brevo-waitlist-frame";
 
 // El frame mide 3.6/1, así que 36 columnas x 10 filas da celdas cuadradas
 const identidadGridCols = Array.from(
@@ -51,7 +62,7 @@ type BuildStatusChip = { label: string; done: boolean };
 type MiraAtrasItem = { label: string; text: string };
 
 export default function NextPage(): JSX.Element {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [introDone, setIntroDone] = useState(false);
   const metaSectionRef = useRef<HTMLElement | null>(null);
   const caidaSectionRef = useRef<HTMLElement | null>(null);
@@ -181,6 +192,7 @@ export default function NextPage(): JSX.Element {
       text: string;
       emailPlaceholder: string;
       submitLabel: string;
+      submittingLabel: string;
       note: string;
       successText: string;
       openLabel: string;
@@ -207,16 +219,26 @@ export default function NextPage(): JSX.Element {
     nextDescription: string;
   };
 
-  const [waitlistState, setWaitlistState] = useState<"idle" | "sent">("idle");
+  const [waitlistState, setWaitlistState] = useState<
+    "idle" | "sending" | "sent"
+  >("idle");
 
   const handleWaitlistSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // const email = new FormData(e.currentTarget).get("email");
+    // No hacemos preventDefault: el <form> manda un POST real y nativo
+    // a Brevo, apuntando a un iframe oculto para no salir de la página.
+    // Al ser un envío de formulario (no fetch/XHR) no hay problema de CORS,
+    // pero tampoco podemos leer la respuesta de Brevo — por eso el "sent"
+    // es optimista, igual que en el resto de integraciones de este tipo.
+    if (e.currentTarget.querySelector<HTMLInputElement>(
+      'input[name="email_address_check"]'
+    )?.value) {
+      // Honeypot relleno → bot. Abortamos sin avisar.
+      e.preventDefault();
+      return;
+    }
 
-    // Conecta aquí tu proveedor real (Formspree, Buttondown, Mailchimp…):
-    // fetch("https://formspree.io/f/XXXXX", { method: "POST", body: new FormData(e.currentTarget) });
-
-    setWaitlistState("sent");
+    setWaitlistState("sending");
+    window.setTimeout(() => setWaitlistState("sent"), 900);
   };
 
   const identidadColorRows = identidad.color.rows.map((row, i) => ({
@@ -745,10 +767,15 @@ if (miraAtrasTimelineRef.current) {
     scrub: true,
 
     onUpdate: ({ progress }) => {
-      const active = Math.floor(progress * items.length);
-
       items.forEach((item, index) => {
-        item.classList.toggle("is-active", index <= active);
+        const itemProgress = gsap.utils.clamp(
+          0,
+          1,
+          progress * items.length - index
+        );
+
+        item.style.setProperty("--progress", itemProgress.toString());
+        item.classList.toggle("is-active", itemProgress >= 1);
       });
     },
   });
@@ -1327,20 +1354,43 @@ if (miraAtrasTimelineRef.current) {
           </div>
 
           <div className="build-waitlist-form-col">
-            {waitlistState === "idle" ? (
+            {waitlistState !== "sent" ? (
               <>
                 <form
                   className="build-waitlist-form"
+                  action={BREVO_ACTION_URL}
+                  method="POST"
+                  target={BREVO_HIDDEN_FRAME}
                   onSubmit={handleWaitlistSubmit}
                 >
                   <input
                     type="email"
-                    name="email"
+                    name="EMAIL"
+                    autoComplete="off"
                     required
                     placeholder={build.waitlist.emailPlaceholder}
                     aria-label={build.waitlist.emailPlaceholder}
                   />
-                  <button type="submit">{build.waitlist.submitLabel}</button>
+                  <input
+                    type="hidden"
+                    name="locale"
+                    value={i18n.language.slice(0, 2)}
+                  />
+                  {/* Honeypot: campo invisible para humanos, si un bot lo rellena abortamos el envío */}
+                  <input
+                    type="text"
+                    name="email_address_check"
+                    defaultValue=""
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="build-waitlist-honeypot"
+                    aria-hidden="true"
+                  />
+                  <button type="submit" disabled={waitlistState === "sending"}>
+                    {waitlistState === "sending"
+                      ? build.waitlist.submittingLabel
+                      : build.waitlist.submitLabel}
+                  </button>
                 </form>
                 <p className="build-waitlist-note">{build.waitlist.note}</p>
               </>
@@ -1349,6 +1399,12 @@ if (miraAtrasTimelineRef.current) {
                 {build.waitlist.successText}
               </p>
             )}
+            <iframe
+              name={BREVO_HIDDEN_FRAME}
+              title="waitlist-submit"
+              className="build-waitlist-hidden-frame"
+              aria-hidden="true"
+            />
 
             <div className="build-waitlist-open">
               <span className="chapter-number">
@@ -1437,7 +1493,14 @@ if (miraAtrasTimelineRef.current) {
           <div className="cierre-next-project-copy">
             <span className="chapter-number">{cierre.nextEyebrow}</span>
             <div className="cierre-next-project-title">
-              {cierre.nextTitle}
+              <span className="cierre-next-project-title-text">
+                {cierre.nextTitle}
+              </span>
+              <img
+                className="cierre-next-project-logo"
+                src={artmusLogo2}
+                alt={cierre.nextTitle}
+              />
             </div>
             <p className="cierre-next-project-description">
               {cierre.nextDescription}

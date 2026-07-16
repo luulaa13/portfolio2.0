@@ -460,6 +460,7 @@
       "text": "Join the waitlist and I'll let you know the day it launches — and nothing else.",
       "emailPlaceholder": "your@email.com",
       "submitLabel": "Join ›",
+      "submittingLabel": "Joining…",
       "note": "NO SPAM. JUST THE LAUNCH.",
       "successText": "You're in. Your next step is coming soon ›",
       "openLabel": "OR FOLLOW THE PROCESS IN THE OPEN",
@@ -468,7 +469,7 @@
     }
   },
    "miraAtras": {
-    "number": "07 / 08",
+    "number": "08 / 08",
     "title": "Look back",
     "eyebrow": "THE JOURNEY SO FAR",
     "lede": "This is how NEXT measures progress — always looking back from the starting point. It's also how this case study was built.",
@@ -498,7 +499,7 @@
   "cierre": {
     "headlineLine1": "What's your",
     "headlineLine2Accent": "next step?",
-    "nextEyebrow": "NEXT PROJECT · CASE STUDY 02 · APP · CULTURE",
+    "nextEyebrow": "NEXT PROJECT · CASE STUDY 01 · APP · CULTURE",
     "nextTitle": "Artmus",
     "nextDescription": "Every museum in one place: plan visits, discover exhibitions, and buy tickets."
   }
@@ -546,6 +547,7 @@
       "buildCountTotal": "/ {{total}}",
       "ctaLive": "View live ›",
       "ctaRepo": "Repository",
+      "ctaInstagram": "View on Instagram",
       "browserOpen": "OPEN ↗",
       "iframeTitle": "{{name}} — live site",
       "browserNote": "REAL SITE EMBEDDED — INTERACT WITH IT, OR OPEN IT FULL SCREEN ↗",

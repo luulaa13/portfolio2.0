@@ -460,6 +460,7 @@
       "text": "Únete a la lista de espera y te avisaré el día del lanzamiento — y de nada más.",
       "emailPlaceholder": "tu@email.com",
       "submitLabel": "Unirme ›",
+      "submittingLabel": "Uniéndote…",
       "note": "SIN SPAM. SOLO EL LANZAMIENTO.",
       "successText": "Estás dentro. Tu siguiente paso llegará pronto ›",
       "openLabel": "O SIGUE EL PROCESO EN ABIERTO",
@@ -468,7 +469,7 @@
     }
   },
   "miraAtras": {
-  "number": "07 / 08",
+  "number": "08 / 08",
   "title": "Mira hacia atrás",
   "eyebrow": "EL RECORRIDO HASTA AQUÍ",
   "lede": "Así es como NEXT mide el progreso — y así es como se ha construido este case study.",
@@ -483,7 +484,7 @@
 "cierre": {
   "headlineLine1": "¿Cuál es tu",
   "headlineLine2Accent": "siguiente paso?",
-  "nextEyebrow": "SIGUIENTE PROYECTO · CASE STUDY 02 · APP · CULTURA",
+  "nextEyebrow": "SIGUIENTE PROYECTO · CASE STUDY 01 · APP · CULTURA",
   "nextTitle": "Artmus",
   "nextDescription": "Todos los museos en un solo lugar: planifica visitas, descubre exposiciones y compra entradas."
 }
@@ -531,6 +532,7 @@
       "buildCountTotal": "/ {{total}}",
       "ctaLive": "Ver en vivo ›",
       "ctaRepo": "Repositorio",
+      "ctaInstagram": "Ver en Instagram",
       "browserOpen": "ABRIR ↗",
       "iframeTitle": "{{name}} — sitio en vivo",
       "browserNote": "SITIO REAL EMBEBIDO — INTERACTÚA CON ÉL, O ÁBRELO A PANTALLA COMPLETA ↗",

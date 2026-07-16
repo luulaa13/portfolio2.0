@@ -20,4 +20,5 @@ export interface BuildDetail extends Project {
   stack: string[];
   liveUrl: string;
   repoUrl?: string;
+  instagramUrl?: string;
 }
