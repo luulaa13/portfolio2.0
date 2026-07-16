@@ -349,6 +349,7 @@
         "number": "03/08",
         "title": "EL PAISAJE",
         "eyebrow": "CADA REFERENTE DOMINA UNA PIEZA. NADIE LAS REÚNE.",
+        "swipeHint": "DESLIZA PARA VER MÁS →",
         "cards": [
           { "title": "Duolingo", "subtitle": "DOMINA", "phrase": "Gamificación, rachas y hábito diario. Retención excelente.", "footer": "LE FALTA", "detail": "No te lleva hacia tu meta personal. Un solo dominio." },
           { "title": "Notion", "subtitle": "DOMINA", "phrase": "Organización y estructura flexible. Todo cabe.", "footer": "LE FALTA", "detail": "Estructura sin impulso ni constancia. Nadie te empuja." },
@@ -492,6 +493,7 @@
   },
   "reto30": {
     "header": {
+      "back": "← VOLVER AL INICIO",
       "eyebrowLine1": "RETO PERSONAL",
       "eyebrowLine2": "2026 — EN CURSO",
       "eyebrowLine3": "30 BUILDS · SIN FECHA LÍMITE",
@@ -568,18 +570,19 @@
           "Lo elegí como primer build porque une las tres patas del reto: dirección de arte (el mundo visual de cada manantial), frontend (React + GSAP con scroll-driven animation) y narrativa de producto (contar un origen es contar una propuesta de valor)."
         ],
         "decision": {
-          "title": "Fijar la botella en pantalla sin depender de una librería externa",
+          "title": "No prometer trazabilidad: construirla como el producto",
           "body": [
-            "El problema: la botella tenía que quedarse fija en pantalla mientras fondo y texto cambiaban entre los tres manantiales — pero sin meter una librería de animación externa solo para eso.",
-            "Lo que probé: mi primer instinto fue usar IntersectionObserver, que ya tenía funcionando para los fade-in del resto de la página. Pero un observer solo te dice \"visible / no visible\", no una posición continua — y para decidir cuál de las tres etapas tocaba mostrar dentro de una sección de 340vh necesitaba saber cuánto se había scrolleado, no solo si.",
-            "Lo que elegí: position: sticky para el pin, y un hook propio (useScrollStage) que calcula el progreso con getBoundingClientRect() dentro de un scroll listener con requestAnimationFrame, actualizando el estado de React solo cuando el índice activo cambia realmente (no en cada píxel). El trade-off: pierdo el scrub suave \"de serie\" que te da algo como GSAP ScrollTrigger — tuve que ajustar a mano las transiciones de opacidad y easing. A cambio, cero dependencias nuevas y control total de cuándo React vuelve a renderizar."
+            "El brief pedía branding para un agua con \"trazabilidad total por botella\", y la decisión clave fue no tratar esa promesa como un claim, sino como el producto entero. En vez de una landing que hablara de trazabilidad, construí un verificador funcional: introduces el código de tu botella y la web abre su expediente real — manantial, coordenadas, análisis del lote, ciclo del vidrio.",
+            "Esa decisión arrastró todas las demás: la web dejó de ser una landing al uso y se convirtió en un \"Archivo de Origen\", donde cada manantial es un documento numerado, la tipografía es monoespaciada porque el dato es la estética, y hasta la animación de entrada (máquina de escribir, coordenadas que ruedan como contadores, titular que se estampa como un sello) refuerza la misma idea.",
+            "El trade-off fue renunciar a los códigos visuales seguros del agua premium — serifas elegantes, mucho aire, fotografía contemplativa — a cambio de una web que nadie más en el reto podía tener, porque nace de la funcionalidad y no del moodboard."
           ]
         },
         "learned": {
-          "title": "Separar el DOM del estado — y no confundir el efecto con la jerarquía",
+          "title": "Encontrar el concepto antes que el efecto",
           "body": [
-            "Aprendí a separar lo que necesita volver a renderizar React de lo que solo necesita tocar el DOM directamente: el parallax del hero y el fondo de la sección de manantiales nunca pasan por setState en cada frame de scroll, solo cuando cambia el estado real (qué manantial toca mostrar). Esa distinción fue la diferencia entre un scroll fluido y uno con tirones.",
-            "Y una de proceso: tener el efecto técnico funcionando (parallax, pin, cutouts reales de las botellas) no bastaba — hasta que no revisé la composición completa (jerarquía, ritmo, espaciado) el sitio seguía sin convencer, aunque cada pieza suelta funcionara bien. La lección: un efecto bien resuelto no salva un layout sin jerarquía clara — primero se decide qué debe mirar el usuario primero, y el efecto se construye alrededor de eso, no al revés."
+            "Lo más valioso no fue técnico, sino de proceso: pasé por tres direcciones visuales completas antes de llegar a la buena, y aprendí que \"no me convence\" casi nunca significa \"cambia los colores\" — significa que la ejecución es genérica aunque las piezas sean correctas. La versión que funcionó no llegó añadiendo efectos, sino cuando encontré un concepto (el archivo) capaz de justificar cada decisión, desde el border-radius cero hasta el sello giratorio.",
+            "En lo técnico, me quedo con una distinción que marcó la diferencia de rendimiento: separar lo que necesita re-renderizar React (el estado de la fase de intro, el resultado del verificador) de lo que solo necesita tocar el DOM (el parallax por scroll y ratón, que va directo por refs y requestAnimationFrame).",
+            "Y una última: iterar rápido con un HTML autocontenido y portar a React solo al final resultó mucho más eficiente que refactorizar componentes en cada cambio de dirección."
           ]
         }
       }

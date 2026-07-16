@@ -35,6 +35,16 @@
 }
 .reto30 .label--accent { color: var(--accent); }
 
+/* ---------- top bar ---------- */
+.reto30 .topbar { border-bottom: 1px solid var(--line); }
+.reto30 .topbar-inner { display: flex; align-items: center; padding: 22px 0; }
+.reto30 .topbar a {
+  text-decoration: none; font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.2em; color: var(--dim); transition: color 0.3s;
+  display: inline-flex; gap: 10px; align-items: center;
+}
+.reto30 .topbar a:hover { color: var(--accent); }
+
 /* ---------- header ---------- */
 .reto30 header { padding: 16vh 0 8vh; }
 .reto30 .head-eyebrow { display: flex; gap: 26px; flex-wrap: wrap; margin-bottom: 3.5vh; }

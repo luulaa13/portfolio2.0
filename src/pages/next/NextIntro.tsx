@@ -29,6 +29,7 @@ export default function NextIntro({ onDone }: NextIntroProps): JSX.Element | nul
     gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
     gsap.set(text, { opacity: 0, y: 16 });
 
+    window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
 
     const tl = gsap.timeline({

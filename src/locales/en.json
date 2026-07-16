@@ -349,6 +349,7 @@
         "number": "03/08",
         "title": "THE LANDSCAPE",
         "eyebrow": "EVERY COMPETITOR MASTERS ONE PIECE. NO ONE BRINGS THEM TOGETHER.",
+        "swipeHint": "SWIPE TO SEE MORE →",
         "cards": [
           { "title": "Duolingo", "subtitle": "MASTERS", "phrase": "Gamification, streaks, and daily habit. Excellent retention.", "footer": "WHAT IT LACKS", "detail": "Doesn't move you toward your personal goal. One domain only." },
           { "title": "Notion", "subtitle": "MASTERS", "phrase": "Organization and flexible structure. Everything fits.", "footer": "WHAT IT LACKS", "detail": "Structure without momentum or consistency. No one pushes you." },
@@ -507,6 +508,7 @@
   },
   "reto30": {
     "header": {
+      "back": "← BACK TO HOME",
       "eyebrowLine1": "PERSONAL CHALLENGE",
       "eyebrowLine2": "2026 — IN PROGRESS",
       "eyebrowLine3": "30 BUILDS · NO DEADLINE",
@@ -583,16 +585,19 @@
           "I picked it as my first build because it brings together the three legs of the challenge: art direction (the visual world of each spring), frontend (React + GSAP with scroll-driven animation) and product storytelling (telling an origin is telling a value proposition)."
         ],
         "decision": {
-          "title": "[ Customize: your key decision ]",
+          "title": "Turn the traceability promise into the product, not a claim",
           "body": [
-            "One single design or technical decision, told honestly: how you structured the three springs with ScrollTrigger, why pin + scrub instead of viewport-based animations, how you solved the performance of some effect, or what you dropped and why.",
-            "Suggested format: the problem in one sentence → what you tried → what you chose and its trade-off."
+            "The brief asked for branding for a water brand with \"full per-bottle traceability,\" and the key decision was to treat that promise not as a claim, but as the entire product. Instead of a landing page that talked about traceability, I built a working verifier: you enter your bottle's code and the site opens its real file — spring, coordinates, batch analysis, glass cycle.",
+            "That decision pulled every other one along with it: the site stopped being a typical landing page and became an \"Origin Archive,\" where each spring is a numbered document, the typeface is monospaced because the data is the aesthetic, and even the intro animation (typewriter effect, coordinates rolling like counters, a headline that stamps itself into place) reinforces the same idea.",
+            "The trade-off was giving up the safe visual codes of premium water branding — elegant serifs, lots of white space, contemplative photography — in exchange for a site no one else in the challenge could have, because it's born from functionality, not a moodboard."
           ]
         },
         "learned": {
-          "title": "[ Customize: what you're taking away ]",
+          "title": "Find the concept before the effect",
           "body": [
-            "One or two honest sentences — technical, process-related, or about judgment calls. This is what turns the challenge into a story of progression instead of a list of links."
+            "The most valuable lesson wasn't technical but about process: I went through three complete visual directions before landing on the right one, and I learned that \"I'm not convinced\" almost never means \"change the colors\" — it means the execution is generic even if the individual pieces are correct. The version that worked didn't arrive by adding effects, but when I found a concept (the archive) able to justify every decision, from the zero border-radius to the spinning stamp.",
+            "On the technical side, I'm keeping one distinction that made a real performance difference: separating what needs to re-render React (the intro phase state, the verifier result) from what only needs to touch the DOM directly (the scroll- and mouse-driven parallax, which goes straight through refs and requestAnimationFrame).",
+            "And one last thing: iterating fast with a self-contained HTML file and porting to React only at the end turned out to be far more efficient than refactoring components on every direction change."
           ]
         }
       }

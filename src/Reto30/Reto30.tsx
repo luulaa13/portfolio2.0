@@ -15,7 +15,7 @@ interface Reto30Props {
   linkAs?: ElementType;
 }
 
-export default function Reto30({ linkAs }: Reto30Props = {}) {
+export default function Reto30({ linkAs: LinkAs = 'a' }: Reto30Props = {}) {
   const { t } = useTranslation();
   const root = useRef<HTMLDivElement>(null);
   const doneCountEl = useRef<HTMLSpanElement>(null);
@@ -101,6 +101,12 @@ export default function Reto30({ linkAs }: Reto30Props = {}) {
 
   return (
     <div className="reto30" ref={root}>
+      <div className="topbar">
+        <div className="wrap topbar-inner">
+          <LinkAs href="/">{t('reto30.header.back')}</LinkAs>
+        </div>
+      </div>
+
       <header>
         <div className="wrap">
           <div className="head-eyebrow">
@@ -135,7 +141,7 @@ export default function Reto30({ linkAs }: Reto30Props = {}) {
             <DayRow
               key={p.num}
               project={p}
-              linkAs={linkAs}
+              linkAs={LinkAs}
               onHoverStart={handleHoverStart}
               onHoverEnd={handleHoverEnd}
             />

@@ -162,8 +162,13 @@
 }
 
 .paisaje-track-wrap{
+    position:relative;
     overflow:hidden;
     margin-top:80px;
+}
+
+.paisaje-swipe-hint{
+    display:none;
 }
 
 .paisaje-track{
@@ -277,8 +282,27 @@
         overflow-y:hidden;
         -webkit-overflow-scrolling:touch;
         scroll-snap-type:x mandatory;
+        touch-action:pan-x;
+        overscroll-behavior-x:contain;
 
         margin-top:48px;
+    }
+
+    .paisaje-track-wrap::after{
+        content:"";
+        position:absolute;
+        top:0;
+        right:0;
+        bottom:0;
+        width:56px;
+        background:linear-gradient(to right, transparent, #17191A);
+        pointer-events:none;
+        opacity:1;
+        transition:opacity .4s ease;
+    }
+
+    .paisaje-track-wrap.has-scrolled::after{
+        opacity:0;
     }
 
     .paisaje-track{
@@ -290,6 +314,28 @@
         width:80vw;
         height:50vh;
         scroll-snap-align:center;
+    }
+
+    .paisaje-swipe-hint{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+
+        margin:16px 24px 0;
+
+        font-family:"Space Mono", monospace;
+        font-size:0.7rem;
+        letter-spacing:0.12em;
+        text-transform:uppercase;
+        color:rgba(242, 241, 233, 0.5);
+
+        opacity:1;
+        transition:opacity .4s ease;
+    }
+
+    .paisaje-track-wrap.has-scrolled + .paisaje-swipe-hint{
+        opacity:0;
     }
 }
 
@@ -1029,6 +1075,10 @@
         margin:40px 0 0 24px;
         max-width:none;
         padding-right:24px;
+    }
+
+    .meta-section{
+        padding-bottom:64px;
     }
 }
 

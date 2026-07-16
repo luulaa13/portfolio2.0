@@ -69,6 +69,7 @@ export default function NextPage(): JSX.Element {
   const caidaCardsRef = useRef<HTMLDivElement | null>(null);
   const paisajeSectionRef = useRef<HTMLElement | null>(null);
   const paisajeTrackRef = useRef<HTMLDivElement | null>(null);
+  const paisajeWrapRef = useRef<HTMLDivElement | null>(null);
   const siguientePasoSectionRef = useRef<HTMLElement | null>(null);
   const siguientePasoStatementRef = useRef<HTMLDivElement | null>(null);
   const identidadSectionRef = useRef<HTMLElement | null>(null);
@@ -128,6 +129,7 @@ export default function NextPage(): JSX.Element {
     title: string;
     eyebrow: string;
     cards: PaisajeCard[];
+    swipeHint: string;
   };
 
   const siguientePaso = t("caseStudies.next.siguientePaso", {
@@ -390,6 +392,18 @@ export default function NextPage(): JSX.Element {
         gsap.set(paisajeTrackRef.current, { clearProps: "x" });
       });
 
+      // pista de scroll horizontal nativo (móvil): desaparece en cuanto el usuario desliza
+      const paisajeWrap = paisajeWrapRef.current;
+      if (paisajeWrap) {
+        const onFirstPaisajeScroll = () => {
+          paisajeWrap.classList.add("has-scrolled");
+          paisajeWrap.removeEventListener("scroll", onFirstPaisajeScroll);
+        };
+        paisajeWrap.addEventListener("scroll", onFirstPaisajeScroll, {
+          passive: true,
+        });
+      }
+
       // Entrada del encabezado de EL SIGUIENTE PASO
       gsap.fromTo(
         siguientePasoSectionRef.current?.querySelectorAll(
@@ -485,7 +499,7 @@ export default function NextPage(): JSX.Element {
           )
           .fromTo(
             identidadLogoMarkRef.current,
-            { y: 220, opacity: 0 },
+            { y: Math.min(220, frame.getBoundingClientRect().height * 0.55), opacity: 0 },
             { y: 0, opacity: 1, duration: 0.9, ease: "back.out(1.4)" },
             "-=0.2"
           );
@@ -828,8 +842,12 @@ if (miraAtrasTimelineRef.current) {
   useEffect(() => {
     if (!introDone) return;
 
+    window.scrollTo(0, 0);
     ScrollTrigger.refresh();
-    document.fonts?.ready.then(() => ScrollTrigger.refresh());
+    document.fonts?.ready.then(() => {
+      window.scrollTo(0, 0);
+      ScrollTrigger.refresh();
+    });
   }, [introDone]);
 
   return (
@@ -1030,7 +1048,7 @@ if (miraAtrasTimelineRef.current) {
           </div>
         </div>
 
-        <div className="paisaje-track-wrap">
+        <div className="paisaje-track-wrap" ref={paisajeWrapRef}>
           <div className="paisaje-track" ref={paisajeTrackRef}>
             {paisaje.cards.map((card) => (
               <div className="paisaje-card" key={card.title}>
@@ -1047,6 +1065,9 @@ if (miraAtrasTimelineRef.current) {
             ))}
           </div>
         </div>
+        <p className="paisaje-swipe-hint" aria-hidden="true">
+          {paisaje.swipeHint}
+        </p>
       </section>
 
       <section

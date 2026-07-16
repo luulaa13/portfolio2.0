@@ -242,8 +242,12 @@ export default function ArtMusPage(): JSX.Element {
   useEffect(() => {
     if (!introDone) return;
 
+    window.scrollTo(0, 0);
     ScrollTrigger.refresh();
-    document.fonts?.ready.then(() => ScrollTrigger.refresh());
+    document.fonts?.ready.then(() => {
+      window.scrollTo(0, 0);
+      ScrollTrigger.refresh();
+    });
   }, [introDone]);
 
   useEffect(() => {

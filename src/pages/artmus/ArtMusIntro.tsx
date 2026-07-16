@@ -20,11 +20,15 @@ export default function ArtMusIntro({ onDone }: ArtMusIntroProps): JSX.Element |
   }, [onDone]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "hidden";
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         delay: 0.2,
         onComplete: () => {
           setDone(true);
+          document.body.style.overflow = "";
           onDoneRef.current?.();
         },
       });
@@ -58,7 +62,10 @@ export default function ArtMusIntro({ onDone }: ArtMusIntroProps): JSX.Element |
         });
     });
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      document.body.style.overflow = "";
+    };
   }, []);
 
   if (done) return null;
