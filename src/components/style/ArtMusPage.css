@@ -1468,28 +1468,19 @@
     .artmus-work-shots{
         grid-template-columns:1fr;
         justify-items:center;
-        gap:32px;
-        margin:56px 24px 0;
+        gap:24px;
+        margin:48px 20px 0;
     }
 
     .artmus-work-shot{
-        width:min(260px,78vw);
-        padding:12px;
-        border-radius:28px;
+        width:100%;
+        max-width:280px;
+        padding:10px;
+        border-radius:26px;
     }
 
     .artmus-work-shot img{
         border-radius:16px;
-    }
-
-    .artmus-work-phone{
-        width:min(260px,78vw);
-        padding:12px;
-        border-radius:28px;
-    }
-
-    .artmus-work-phone-screen{
-        border-radius:18px;
     }
 
 }
