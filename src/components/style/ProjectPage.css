@@ -1677,20 +1677,24 @@
         flex-direction:column;
         align-items:stretch;
     }
-
-   .build-waitlist-form input{
-    height:56px;
-    padding:0 18px;
-
-    font-size:1rem;
-    border-radius:12px;
 }
 
-.build-waitlist-form button{
-    height:56px;
-    font-size:1rem;
-    border-radius:12px;
-}
+
+@media (max-width:768px){
+
+    .build-waitlist-form input{
+        min-height:54px;
+        padding:0 18px;
+        font-size:16px; /* evita el zoom de Safari */
+        border-radius:12px;
+    }
+
+    .build-waitlist-form button{
+        min-height:46px;
+        padding:0 18px;
+        font-size:15px;
+        border-radius:12px;
+    }
 
 }
 
