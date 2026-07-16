@@ -159,6 +159,20 @@
         margin:64px 24px 0;
         padding-bottom:80px;
     }
+
+    .siguiente-paso-cards{
+        grid-template-columns:1fr;
+        gap:16px;
+        margin:0 24px 64px;
+    }
+
+    .siguiente-paso-card{
+        min-height:0;
+    }
+
+    .siguiente-paso-card-detail{
+        max-width:none;
+    }
 }
 
 .paisaje-track-wrap{
@@ -425,8 +439,8 @@
 }
 
 @media (max-width: 768px){
-    .identidad-subhead{
-        margin:40px 24px 0;
+    .chapter-number.identidad-subhead{
+        margin:64px 24px 0;
     }
 }
 
