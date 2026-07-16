@@ -433,6 +433,21 @@
           "logoAlt": "Incorrect use of the NEXT logo"
         }
       },
+      "transformacion": {
+        "number": "06 / 08",
+        "title": "The transformation",
+        "eyebrow": "SELECTED WIREFRAMES FROM THE PROCESS",
+        "lede": "NEXT hasn't shipped yet, so this isn't the full journey or the final screens — just a few wireframes showing the design process without giving away the whole experience.",
+        "wireframeTag": "WIREFRAME",
+        "finalTag": "FINAL PRODUCT",
+        "note": "Currently in development. Some screens and features have been left out until launch.",
+        "screens": [
+          { "label": "ONBOARDING" },
+          { "label": "PROGRESS" },
+          { "label": "SIGN UP" },
+          { "label": "INTRO" }
+        ]
+      },
     "build": {
     "number": "07 / 08",
     "title": "Under construction",

@@ -1,4 +1,11 @@
-import { Fragment, useEffect, useRef, useState, type JSX } from "react";
+import {
+  Fragment,
+  useEffect,
+  useRef,
+  useState,
+  type JSX,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,6 +15,11 @@ import CaseStudyNavbar from "./CaseStudyNavbar";
 import nextLogo from "../../assets/next-logo.png";
 import artmusLogo2 from "../../assets/artmus-logo2.png";
 import phoneHero from "../../assets/phoneHero-next.png";
+import onboardingWireframe from "../../assets/Onboarding1Wireframe.png";
+import onboardingFinal from "../../assets/Onboarding1.png";
+import progressWireframe from "../../assets/ProgressWireframe.png";
+import signupFinal from "../../assets/SignupNext.png";
+import introFinal from "../../assets/intro.png";
 import "../../components/style/ProjectPage.css";
 import type { FormEvent } from "react";
 
@@ -58,6 +70,7 @@ type SiguientePasoLine = { text: string; accent?: boolean };
 type SiguientePasoCard = { number: string; title: string; detail: string };
 type GridColumn = { title: string; detail: string };
 type ColorRow = { label: string; value: string };
+type TransformacionScreen = { label: string };
 type BuildStatusChip = { label: string; done: boolean };
 type MiraAtrasItem = { label: string; text: string };
 
@@ -78,6 +91,12 @@ export default function NextPage(): JSX.Element {
   const identidadColorRowsRef = useRef<HTMLDivElement | null>(null);
   const identidadToneCardsRef = useRef<HTMLDivElement | null>(null);
   const identidadMisuseCardsRef = useRef<HTMLDivElement | null>(null);
+  const transformacionSectionRef = useRef<HTMLElement | null>(null);
+  const transformacionGridRef = useRef<HTMLDivElement | null>(null);
+  const onboardingScreenRef = useRef<HTMLDivElement | null>(null);
+  const onboardingWireLayerRef = useRef<HTMLDivElement | null>(null);
+  const onboardingHandleRef = useRef<HTMLDivElement | null>(null);
+  const onboardingDraggingRef = useRef(false);
   const buildSectionRef = useRef<HTMLElement | null>(null);
   const buildStatusRef = useRef<HTMLDivElement | null>(null);
   const buildWaitlistRef = useRef<HTMLDivElement | null>(null);
@@ -183,6 +202,19 @@ export default function NextPage(): JSX.Element {
     };
   };
 
+  const transformacion = t("caseStudies.next.transformacion", {
+    returnObjects: true,
+  }) as {
+    number: string;
+    title: string;
+    eyebrow: string;
+    lede: string;
+    wireframeTag: string;
+    finalTag: string;
+    note: string;
+    screens: TransformacionScreen[];
+  };
+
   const build = t("caseStudies.next.build", { returnObjects: true }) as {
     number: string;
     title: string;
@@ -220,6 +252,47 @@ export default function NextPage(): JSX.Element {
     nextTitle: string;
     nextDescription: string;
   };
+
+  const updateOnboardingReveal = (clientX: number) => {
+    const el = onboardingScreenRef.current;
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    const pct = Math.min(
+      100,
+      Math.max(0, ((clientX - rect.left) / rect.width) * 100)
+    );
+
+    if (onboardingWireLayerRef.current) {
+      onboardingWireLayerRef.current.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+    }
+    if (onboardingHandleRef.current) {
+      onboardingHandleRef.current.style.left = `${pct}%`;
+    }
+  };
+
+  const handleOnboardingPointerDown = (e: ReactPointerEvent) => {
+    e.preventDefault();
+    onboardingDraggingRef.current = true;
+    updateOnboardingReveal(e.clientX);
+  };
+
+  useEffect(() => {
+    const handleMove = (e: PointerEvent) => {
+      if (!onboardingDraggingRef.current) return;
+      updateOnboardingReveal(e.clientX);
+    };
+    const handleUp = () => {
+      onboardingDraggingRef.current = false;
+    };
+
+    window.addEventListener("pointermove", handleMove);
+    window.addEventListener("pointerup", handleUp);
+    return () => {
+      window.removeEventListener("pointermove", handleMove);
+      window.removeEventListener("pointerup", handleUp);
+    };
+  }, []);
 
   const [waitlistState, setWaitlistState] = useState<
     "idle" | "sending" | "sent"
@@ -670,6 +743,46 @@ export default function NextPage(): JSX.Element {
             },
             "-=0.3"
           );
+      }
+
+      // Entrada del encabezado de LA TRANSFORMACIÓN
+      gsap.fromTo(
+        transformacionSectionRef.current?.querySelectorAll(
+          ".chapter-divider, .chapter-heading, .chapter-lede"
+        ) ?? [],
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: transformacionSectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
+
+      // Entrada escalonada de los pares wireframe/producto
+      if (transformacionGridRef.current) {
+        gsap.fromTo(
+          transformacionGridRef.current.querySelectorAll(".transformacion-screen"),
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: transformacionGridRef.current,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
       }
 
       // Entrada del encabezado de EN CONSTRUCCIÓN
@@ -1328,10 +1441,109 @@ if (miraAtrasTimelineRef.current) {
             </div>
           ))}
         </div>
+         <div className="chapter-divider"></div>
       </section>
 
-      <section className="case-section" data-section="7">
-        {/* Transformación */}
+      <section
+        className="case-section transformacion-section"
+        data-section="7"
+        ref={transformacionSectionRef}
+      >
+        <div className="chapter-divider"></div>
+        <div className="chapter-heading">
+          <span className="chapter-number">{transformacion.number}</span>
+          <div className="chapter-heading-text">
+            <h2 className="chapter-title">{transformacion.title}</h2>
+            <p className="chapter-eyebrow">{transformacion.eyebrow}</p>
+          </div>
+        </div>
+
+        <p className="chapter-col chapter-lede">{transformacion.lede}</p>
+
+        <div className="transformacion-grid" ref={transformacionGridRef}>
+          <div className="transformacion-screen">
+            <span className="transformacion-screen-label">
+              {transformacion.screens[0].label}
+            </span>
+
+            <div
+              className="transformacion-slider"
+              ref={onboardingScreenRef}
+              onPointerDown={handleOnboardingPointerDown}
+            >
+              <div className="transformacion-slider-layer transformacion-slider-layer--final">
+                <img
+                  src={onboardingFinal}
+                  alt={`${transformacion.screens[0].label} — ${transformacion.finalTag}`}
+                  className="transformacion-slider-img"
+                  draggable={false}
+                />
+              </div>
+
+              <div
+                className="transformacion-slider-layer transformacion-slider-layer--wire"
+                ref={onboardingWireLayerRef}
+                style={{ clipPath: "inset(0 50% 0 0)" }}
+              >
+                <img
+                  src={onboardingWireframe}
+                  alt={`${transformacion.screens[0].label} — ${transformacion.wireframeTag}`}
+                  className="transformacion-slider-img"
+                  draggable={false}
+                />
+              </div>
+
+              <div
+                className="transformacion-slider-handle"
+                ref={onboardingHandleRef}
+                style={{ left: "50%" }}
+              >
+                <span className="transformacion-slider-grip">‹ ›</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="transformacion-screen">
+            <span className="transformacion-screen-label">
+              {transformacion.screens[1].label}
+            </span>
+
+            <div className="transformacion-slot">
+              <img
+                src={progressWireframe}
+                alt={`${transformacion.screens[1].label} — ${transformacion.wireframeTag}`}
+              />
+            </div>
+          </div>
+
+          <div className="transformacion-screen">
+            <span className="transformacion-screen-label">
+              {transformacion.screens[2].label}
+            </span>
+
+            <div className="transformacion-slot">
+              <img
+                src={signupFinal}
+                alt={`${transformacion.screens[2].label} — ${transformacion.finalTag}`}
+              />
+            </div>
+          </div>
+
+          <div className="transformacion-screen">
+            <span className="transformacion-screen-label">
+              {transformacion.screens[3].label}
+            </span>
+
+            <div className="transformacion-slot">
+              <img
+                src={introFinal}
+                alt={`${transformacion.screens[3].label} — ${transformacion.finalTag}`}
+              />
+            </div>
+          </div>
+        </div>
+
+        <p className="transformacion-note">{transformacion.note}</p>
       </section>
 
       <section
