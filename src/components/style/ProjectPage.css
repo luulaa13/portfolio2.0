@@ -522,6 +522,13 @@
         aspect-ratio:4 / 3;
         margin:64px auto 48px;
     }
+
+    /* el grid de 36 columnas está pensado para el frame ancho de escritorio;
+       en el frame 4:3 móvil se deja 1 de cada 3 líneas (12 columnas) para
+       que las celdas queden proporcionadas en vez de una rejilla apretada */
+    .identidad-grid-line--v:not(:nth-of-type(3n)){
+        display:none;
+    }
 }
 
 .identidad-grid-columns{
