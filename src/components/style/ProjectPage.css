@@ -788,6 +788,28 @@
     }
 }
 
+
+@media (max-width:768px){
+
+    .identidad-misuse-cards{
+        grid-template-columns:repeat(2,1fr);
+        gap:16px;
+        margin:32px 24px 0;
+    }
+
+    .identidad-misuse-logo{
+        width:34%;
+        max-width:72px;
+
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+
+        object-fit:contain;
+    }
+
+}
+
 .caida-cards{
     display:grid;
     grid-template-columns:repeat(4, 1fr);
