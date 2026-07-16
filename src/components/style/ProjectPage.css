@@ -1678,10 +1678,19 @@
         align-items:stretch;
     }
 
-    .build-waitlist-form input,
-    .build-waitlist-form button{
-        width:100%;
-    }
+   .build-waitlist-form input{
+    height:56px;
+    padding:0 18px;
+
+    font-size:1rem;
+    border-radius:12px;
+}
+
+.build-waitlist-form button{
+    height:56px;
+    font-size:1rem;
+    border-radius:12px;
+}
 
 }
 
