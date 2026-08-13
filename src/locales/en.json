@@ -26,7 +26,7 @@
     },
     "items": {
       "artmus": "Artmus app",
-      "next": "NEXT app"
+      "ondea": "ONDEA app"
     },
     "allPage": {
       "eyebrow": "Full archive",
@@ -100,7 +100,21 @@
       "projects": "Projects",
       "stack": "Stack",
       "about": "About me",
+      "diario": "Notes",
       "contact": "Contact"
+    }
+  },
+  "diario": {
+    "back": "← BACK HOME",
+    "backToList": "← BACK TO NOTES",
+    "eyebrow": "Personal notes",
+    "title": "Notes",
+    "subtitle": "Loose notes on what I'm building, learning and thinking about.",
+    "empty": "No notes yet — check back soon.",
+    "streak": {
+      "labelOne": "week in a row",
+      "labelOther": "weeks in a row",
+      "rule": "Weekly submission is the program's one non-negotiable rule — making it public means breaking it isn't only on me."
     }
   },
   "about": {
@@ -312,14 +326,14 @@
       "hero": {
         "tags": ["PRODUCT DESIGN", "2026", "UX RESEARCH → IA → BRAND → UI"],
         "caseLabel": "CASE STUDY 02",
-        "logoAlt": "NEXT",
+        "logoAlt": "ONDEA",
         "headline": "Progress starts with",
         "headlineHighlight": "what's next",
         "bodyLine1": "An app that turns any",
         "bodyLine2": "goal into a daily action with",
         "bodyLine3": "visible progress.",
         "scrollLabel": "START WITH WHAT'S NEXT",
-        "phoneAlt": "NEXT interface"
+        "phoneAlt": "ONDEA interface"
       },
       "meta": {
         "number": "01/08",
@@ -355,7 +369,7 @@
           { "title": "Notion", "subtitle": "MASTERS", "phrase": "Organization and flexible structure. Everything fits.", "footer": "WHAT IT LACKS", "detail": "Structure without momentum or consistency. No one pushes you." },
           { "title": "Habitica", "subtitle": "MASTERS", "phrase": "Reward and game mechanics. Very addictive for the right profile.", "footer": "WHAT IT LACKS", "detail": "The game hides real progress. Can feel childish." },
           { "title": "Streaks", "subtitle": "MASTERS", "phrase": "Consistency and streak tracking. Radical simplicity.", "footer": "WHAT IT LACKS", "detail": "Tracking isn't the same as progressing. No direction." },
-          { "title": "NEXT", "subtitle": "BRINGS IT ALL TOGETHER", "phrase": "Daily action + evidence + momentum + community, built around your goal.", "footer": "THE PIECE NO ONE BRINGS TOGETHER", "detail": "The next step, with direction." }
+          { "title": "ONDEA", "subtitle": "BRINGS IT ALL TOGETHER", "phrase": "Daily action + evidence + momentum + community, built around your goal.", "footer": "THE PIECE NO ONE BRINGS TOGETHER", "detail": "The next step, with direction." }
         ]
       },
       "siguientePaso": {
@@ -382,7 +396,7 @@
         "number": "05/08",
         "title": "THE IDENTITY",
         "eyebrow": "ANATOMY OF AN ARROW",
-        "lede": "The insight became a brand first. NEXT + chevron = the next step: energy (lime) with direction (the arrow). One single gesture, reused everywhere after that — bullets, progress, pattern, product.",
+        "lede": "The insight became a brand first. ONDEA + chevron = the next step: energy (lime) with direction (the arrow). One single gesture, reused everywhere after that — bullets, progress, pattern, product.",
         "logo": {
           "subhead": "01 · LOGO — CONSTRUCTION",
           "title": "Engineering, not drawing.",
@@ -430,14 +444,14 @@
           "subhead": "04 · LOGO — INCORRECT USES",
           "title": "What we never do.",
           "labels": ["DON'T ROTATE", "DON'T DISTORT", "DON'T ADD EFFECTS", "DON'T CHANGE TYPEFACE"],
-          "logoAlt": "Incorrect use of the NEXT logo"
+          "logoAlt": "Incorrect use of the ONDEA logo"
         }
       },
       "transformacion": {
         "number": "06 / 08",
         "title": "The transformation",
         "eyebrow": "SELECTED WIREFRAMES FROM THE PROCESS",
-        "lede": "NEXT hasn't shipped yet, so this isn't the full journey or the final screens — just a few wireframes showing the design process without giving away the whole experience.",
+        "lede": "ONDEA hasn't shipped yet, so this isn't the full journey or the final screens — just a few wireframes showing the design process without giving away the whole experience.",
         "wireframeTag": "WIREFRAME",
         "finalTag": "FINAL PRODUCT",
         "note": "Currently in development. Some screens and features have been left out until launch.",
@@ -452,7 +466,7 @@
     "number": "07 / 08",
     "title": "Under construction",
     "eyebrow": "THE PRODUCT IS LIVE — LAUNCH PLANNED FOR 2026",
-    "lede": "NEXT is in active development, built the same way it's meant to be used: one next step at a time. The full strategy and metrics will be shared here once the app is live on the store — with real results, not promises.",
+    "lede": "ONDEA is in active development, built the same way it's meant to be used: one next step at a time. The full strategy and metrics will be shared here once the app is live on the store — with real results, not promises.",
     "statusChips": [
       {
         "label": "RESEARCH · N=34",
@@ -472,15 +486,15 @@
       }
     ],
     "waitlist": {
-      "title": "Be among the first to start with what's next.",
-      "text": "Join the waitlist and I'll let you know the day it launches — and nothing else.",
+      "title": "Want to try it before launch?",
+      "text": "Join the Android beta and I'll invite you as soon as there's a spot.",
       "emailPlaceholder": "your@email.com",
       "submitLabel": "Join ›",
       "submittingLabel": "Joining…",
-      "note": "NO SPAM. JUST THE LAUNCH.",
-      "successText": "You're in. Your next step is coming soon ›",
+      "note": "ANDROID ONLY, FOR NOW.",
+      "successText": "You're in. I'll email you when the beta opens ›",
       "openLabel": "OR FOLLOW THE PROCESS IN THE OPEN",
-      "linkedinText": "I'm sharing NEXT's development on LinkedIn",
+      "linkedinText": "I'm sharing ONDEA's development on LinkedIn",
       "linkedinUrl": "https://www.linkedin.com/in/luciauxui/"
     }
   },
@@ -488,11 +502,11 @@
     "number": "08 / 08",
     "title": "Look back",
     "eyebrow": "THE JOURNEY SO FAR",
-    "lede": "This is how NEXT measures progress — always looking back from the starting point. It's also how this case study was built.",
+    "lede": "This is how ONDEA measures progress — always looking back from the starting point. It's also how this case study was built.",
     "items": [
       {
         "label": "START",
-        "text": "You arrived with no context. Just a name: NEXT."
+        "text": "You arrived with no context. Just a name: ONDEA."
       },
       {
         "label": "AFTER THE RESEARCH",
@@ -508,7 +522,7 @@
       },
       {
         "label": "NOW",
-        "text": "You know why NEXT exists — and where it's headed."
+        "text": "You know why ONDEA exists — and where it's headed."
       }
     ]
   },

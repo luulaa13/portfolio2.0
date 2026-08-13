@@ -11,6 +11,9 @@ import { BUILDS } from "./Reto30/builds";
 import { PROJECTS } from "./Reto30/projects";
 import ArtMusPage from "./pages/artmus/ArtMusPage";
 import NextPage from "./pages/next/NextPage";
+import Diario from "./pages/diario/Diario";
+import DiarioEntryPage from "./pages/diario/DiarioEntryPage";
+import { getDiarioEntryBySlug } from "./pages/diario/entries";
 
 /* Link de React Router adaptado (su Link usa `to`, el componente pide `href`) */
 const RouterLink = ({ href, ...rest }: ComponentProps<"a">) => (
@@ -34,6 +37,14 @@ function BuildRoute() {
       linkAs={RouterLink}
     />
   );
+}
+
+/* Ruta dinámica: /diario/mi-entrada... */
+function DiarioRoute() {
+  const { slug } = useParams();
+  const entry = getDiarioEntryBySlug(slug ?? "");
+  if (!entry) return <Diario />; // slug desconocido → listado
+  return <DiarioEntryPage entry={entry} />;
 }
 
 function ScrollToTop() {
@@ -84,7 +95,9 @@ useEffect(() => {
         <Route path="/build-log" element={<BuildLog linkAs={RouterLink} />} />
         <Route path="/build-log/:slug" element={<BuildRoute />} />
         <Route path="/projects/artmus" element={<ArtMusPage />} />
-        <Route path="/projects/next" element={<NextPage />} />
+        <Route path="/projects/ondea" element={<NextPage />} />
+        <Route path="/diario" element={<Diario />} />
+        <Route path="/diario/:slug" element={<DiarioRoute />} />
       </Routes>
     </>
   );

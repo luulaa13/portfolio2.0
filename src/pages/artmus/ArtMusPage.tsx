@@ -1080,12 +1080,12 @@ export default function ArtMusPage(): JSX.Element {
 
         <article
           className="next-card"
-          onClick={() => navigate("/projects/next")}
+          onClick={() => navigate("/projects/ondea")}
           role="link"
           tabIndex={0}
           data-cursor={t("cursor.next")}
           onKeyDown={(e) => {
-            if (e.key === "Enter") navigate("/projects/next");
+            if (e.key === "Enter") navigate("/projects/ondea");
           }}
         >
           <div>
@@ -1093,10 +1093,10 @@ export default function ArtMusPage(): JSX.Element {
 
             <h2 className="next-logo">
               <span className="logo-text">
-                NEXT<span className="arrow">›</span>
+                ONDEA<span className="arrow">›</span>
               </span>
 
-              <img className="logo-hover" src={nextLogo} alt="NEXT" />
+              <img className="logo-hover" src={nextLogo} alt="ONDEA" />
             </h2>
 
             <p>{ending.nextDescription}</p>

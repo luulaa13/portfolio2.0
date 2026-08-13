@@ -3,13 +3,14 @@ import "./style/Navbar.css";
 
 import { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Menu } from "lucide-react";
 import LanguageSwitch from "./LanguageSwitch";
 
 function Navbar() {
   const { t } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
   const isProjectPage = location.pathname.startsWith("/projects/");
 
   const [commandOpen, setCommandOpen] = useState(false);
@@ -24,6 +25,7 @@ function Navbar() {
     { label: t("nav.actions.projects"), href: "#projects" },
     { label: t("nav.actions.stack"), href: "#stack" },
     { label: t("nav.actions.about"), href: "#about" },
+    { label: t("nav.actions.diario"), href: "/diario" },
     {
     label: "Newsletter",
     href: "https://luciauxui.substack.com/",
@@ -39,6 +41,8 @@ function Navbar() {
 const handleNavigate = (item: (typeof actions)[number]) => {
   if (item.external) {
     window.open(item.href, "_blank", "noopener,noreferrer");
+  } else if (item.href.startsWith("/")) {
+    navigate(item.href);
   } else {
     document.querySelector(item.href)?.scrollIntoView({
       behavior: "smooth",

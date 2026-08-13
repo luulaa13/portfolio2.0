@@ -26,7 +26,7 @@
     },
     "items": {
       "artmus": "Artmus app",
-      "next": "NEXT app"
+      "ondea": "ONDEA app"
     },
     "allPage": {
       "eyebrow": "Archivo completo",
@@ -100,7 +100,21 @@
       "projects": "Proyectos",
       "stack": "Stack",
       "about": "Sobre mí",
+      "diario": "Diario",
       "contact": "Contacto"
+    }
+  },
+  "diario": {
+    "back": "← VOLVER AL INICIO",
+    "backToList": "← VOLVER AL DIARIO",
+    "eyebrow": "Notas personales",
+    "title": "Diario",
+    "subtitle": "Apuntes sueltos sobre lo que voy construyendo, aprendiendo y pensando.",
+    "empty": "Todavía no hay notas — vuelve pronto.",
+    "streak": {
+      "labelOne": "semana seguida",
+      "labelOther": "semanas seguidas",
+      "rule": "El envío semanal es la única regla innegociable del programa — que sea público hace que romperla no sea solo cosa mía."
     }
   },
    "about": {
@@ -312,14 +326,14 @@
       "hero": {
         "tags": ["PRODUCT DESIGN", "2026", "UX RESEARCH → IA → BRAND → UI"],
         "caseLabel": "CASE STUDY 02",
-        "logoAlt": "NEXT",
+        "logoAlt": "ONDEA",
         "headline": "Progress starts with",
         "headlineHighlight": "what's next",
         "bodyLine1": "Una app que convierte cualquier",
         "bodyLine2": "meta en una acción diaria con",
         "bodyLine3": "progreso visible.",
         "scrollLabel": "EMPIEZA POR LO SIGUIENTE",
-        "phoneAlt": "Interfaz de NEXT"
+        "phoneAlt": "Interfaz de ONDEA"
       },
       "meta": {
         "number": "01/08",
@@ -355,7 +369,7 @@
           { "title": "Notion", "subtitle": "DOMINA", "phrase": "Organización y estructura flexible. Todo cabe.", "footer": "LE FALTA", "detail": "Estructura sin impulso ni constancia. Nadie te empuja." },
           { "title": "Habitica", "subtitle": "DOMINA", "phrase": "Recompensa y mecánica de juego. Muy adictivo para cierto perfil.", "footer": "LE FALTA", "detail": "El juego tapa el progreso real. Puede sentirse infanti" },
           { "title": "Streaks", "subtitle": "DOMINA", "phrase": "Constancia y registro de rachas. Simplicidad radical.", "footer": "LE FALTA", "detail": "Registrar no es lo mismo que avanzar. Sin rumbo." },
-          { "title": "NEXT", "subtitle": "INTEGRA TODO", "phrase": "Acción diaria + evidencia + momentum + comunidad, en torno a tu meta.", "footer": "LA PIEZA QUE NADIE REÚNE", "detail": "El siguiente paso, con rumbo." }
+          { "title": "ONDEA", "subtitle": "INTEGRA TODO", "phrase": "Acción diaria + evidencia + momentum + comunidad, en torno a tu meta.", "footer": "LA PIEZA QUE NADIE REÚNE", "detail": "El siguiente paso, con rumbo." }
         ]
       },
       "siguientePaso": {
@@ -382,7 +396,7 @@
         "number": "05/08",
         "title": "LA IDENTIDAD",
         "eyebrow": "ANATOMÍA DE UNA FLECHA",
-        "lede": "El insight se convirtió primero en marca. NEXT + chevron = el siguiente paso: energía (lima) con rumbo (la dirección). Un único gesto que después se reutiliza en todo — viñetas, progreso, patrón, producto.",
+        "lede": "El insight se convirtió primero en marca. ONDEA + chevron = el siguiente paso: energía (lima) con rumbo (la dirección). Un único gesto que después se reutiliza en todo — viñetas, progreso, patrón, producto.",
         "logo": {
           "subhead": "01 · LOGO — CONSTRUCCIÓN",
           "title": "Ingeniería, no dibujo.",
@@ -430,14 +444,14 @@
           "subhead": "04 · LOGO — USOS INCORRECTOS",
           "title": "Lo que nunca hacemos.",
           "labels": ["NO ROTAR", "NO DEFORMAR", "NO AÑADIR EFECTOS", "NO CAMBIAR TIPOGRAFÍA"],
-          "logoAlt": "Uso incorrecto del logo NEXT"
+          "logoAlt": "Uso incorrecto del logo ONDEA"
         }
       },
       "transformacion": {
         "number": "06 / 08",
         "title": "La transformación",
         "eyebrow": "WIREFRAMES SELECCIONADOS DEL PROCESO",
-        "lede": "NEXT todavía no ha salido a producción, así que esto no es el recorrido completo ni las pantallas finales — son algunos wireframes que muestran el proceso de diseño sin adelantar toda la experiencia.",
+        "lede": "ONDEA todavía no ha salido a producción, así que esto no es el recorrido completo ni las pantallas finales — son algunos wireframes que muestran el proceso de diseño sin adelantar toda la experiencia.",
         "wireframeTag": "WIREFRAME",
         "finalTag": "PRODUCTO FINAL",
         "note": "Actualmente en desarrollo. Algunas pantallas y funcionalidades se han omitido hasta el lanzamiento.",
@@ -452,7 +466,7 @@
     "number": "07 / 08",
     "title": "En construcción",
     "eyebrow": "EL PRODUCTO ESTÁ VIVO — LANZAMIENTO PREVISTO EN 2026",
-    "lede": "NEXT está en desarrollo activo, construido igual que se usa: un siguiente paso cada vez. La estrategia completa y las métricas se contarán aquí cuando la app esté en el store — con resultados reales, no promesas.",
+    "lede": "ONDEA está en desarrollo activo, construido igual que se usa: un siguiente paso cada vez. La estrategia completa y las métricas se contarán aquí cuando la app esté en el store — con resultados reales, no promesas.",
     "statusChips": [
       {
         "label": "RESEARCH · N=34",
@@ -472,15 +486,15 @@
       }
     ],
     "waitlist": {
-      "title": "Sé de los primeros en empezar por lo siguiente.",
-      "text": "Únete a la lista de espera y te avisaré el día del lanzamiento — y de nada más.",
+      "title": "¿Quieres probarla antes del lanzamiento?",
+      "text": "Únete a la beta de Android y te invitaré en cuanto haya hueco.",
       "emailPlaceholder": "tu@email.com",
       "submitLabel": "Unirme ›",
       "submittingLabel": "Uniéndote…",
-      "note": "SIN SPAM. SOLO EL LANZAMIENTO.",
-      "successText": "Estás dentro. Tu siguiente paso llegará pronto ›",
+      "note": "SOLO ANDROID, POR AHORA.",
+      "successText": "Estás dentro. Te escribiré cuando se abra la beta ›",
       "openLabel": "O SIGUE EL PROCESO EN ABIERTO",
-      "linkedinText": "Estoy compartiendo el desarrollo de NEXT en LinkedIn",
+      "linkedinText": "Estoy compartiendo el desarrollo de ONDEA en LinkedIn",
       "linkedinUrl": "https://www.linkedin.com/in/luciauxui/"
     }
   },
@@ -488,13 +502,13 @@
   "number": "08 / 08",
   "title": "Mira hacia atrás",
   "eyebrow": "EL RECORRIDO HASTA AQUÍ",
-  "lede": "Así es como NEXT mide el progreso — y así es como se ha construido este case study.",
+  "lede": "Así es como ONDEA mide el progreso — y así es como se ha construido este case study.",
   "items": [
-    { "label": "INICIO", "text": "Llegaste sin contexto. Solo un nombre: NEXT." },
+    { "label": "INICIO", "text": "Llegaste sin contexto. Solo un nombre: ONDEA." },
     { "label": "TRAS LA INVESTIGACIÓN", "text": "Viste por qué el 72% se bloquea con regularidad." },
     { "label": "TRAS EL PANORAMA", "text": "Descubriste el hueco que nadie cubre." },
     { "label": "TRAS LA IDENTIDAD", "text": "Conociste la marca detrás del producto." },
-    { "label": "AHORA", "text": "Sabes por qué existe NEXT — y por dónde va." }
+    { "label": "AHORA", "text": "Sabes por qué existe ONDEA — y por dónde va." }
   ]
 },
 "cierre": {

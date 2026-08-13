@@ -11,17 +11,17 @@ export default function ProjectCards(): JSX.Element {
 
   const [zooming, setZooming] = useState(false);
   const [zoomTarget, setZoomTarget] = useState<{
-    slug: "artmus" | "next";
+    slug: "artmus" | "ondea";
     color: string;
   } | null>(null);
   const zoomOverlayRef = useRef<HTMLDivElement | null>(null);
 
-  const zoomColors: Record<"artmus" | "next", string> = {
+  const zoomColors: Record<"artmus" | "ondea", string> = {
     artmus: "#2A3462",
-    next: "#050505",
+    ondea: "#050505",
   };
 
-  const openProject = (slug: "artmus" | "next") => {
+  const openProject = (slug: "artmus" | "ondea") => {
     setZoomTarget({ slug, color: zoomColors[slug] });
     setZooming(true);
   };
@@ -76,7 +76,7 @@ export default function ProjectCards(): JSX.Element {
 
       <div
         className="project-card project-2"
-        onClick={() => openProject("next")}
+        onClick={() => openProject("ondea")}
         data-cursor={t("cursor.view")}
       >
         <div
@@ -87,7 +87,7 @@ export default function ProjectCards(): JSX.Element {
         <div className="project-content">
           <span className="project-meta">02 — {t("projects.project")}</span>
 
-          {t("projects.items.next")}
+          {t("projects.items.ondea")}
 
           <div className="project-tags">
             <span>{t("projects.tags.uxui")}</span>

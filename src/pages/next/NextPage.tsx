@@ -1280,7 +1280,7 @@ if (miraAtrasTimelineRef.current) {
 
           <img
             src={nextLogo}
-            alt="NEXT"
+            alt="ONDEA"
             className="identidad-logo-mark"
             ref={identidadLogoMarkRef}
           />

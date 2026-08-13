@@ -1,0 +1,218 @@
+.diario-page {
+  background: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.diario-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 140px 80px 40px;
+}
+
+.diario-back {
+  margin-bottom: 40px;
+
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.55);
+  text-decoration: none;
+
+  transition: color 0.25s ease;
+}
+
+.diario-back:hover {
+  color: #c9951a;
+}
+
+.diario-eyebrow {
+  font-family: "Space Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c9951a;
+}
+
+.diario-title {
+  margin: 16px 0 0;
+
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(2.6rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: #0a0a0a;
+}
+
+.diario-subtitle {
+  margin: 20px 0 0;
+  max-width: 620px;
+
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+  color: rgba(17, 17, 17, 0.65);
+}
+
+.diario-streak {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  margin-top: 40px;
+  padding: 20px 26px;
+  max-width: 620px;
+
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: 12px;
+  background: rgba(201, 149, 26, 0.05);
+}
+
+.diario-streak-num {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1;
+  color: #c9951a;
+  font-variant-numeric: tabular-nums;
+}
+
+.diario-streak-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.diario-streak-label {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0a0a0a;
+}
+
+.diario-streak-rule {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.diario-list {
+  flex: 1;
+  padding: 20px 80px 120px;
+  display: flex;
+  flex-direction: column;
+}
+
+.diario-row {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  align-items: center;
+  gap: 24px;
+
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+
+  text-decoration: none;
+  color: inherit;
+}
+
+.diario-date {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.55);
+
+  transition: color 0.25s ease;
+}
+
+.diario-entry-title {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 600;
+  color: #0a0a0a;
+
+  transition: transform 0.35s ease;
+}
+
+.diario-arrow {
+  font-family: "Space Mono", monospace;
+  color: rgba(17, 17, 17, 0.35);
+
+  transition: color 0.25s ease, transform 0.35s ease;
+}
+
+.diario-row:hover .diario-entry-title {
+  transform: translateX(10px);
+}
+
+.diario-row:hover .diario-arrow {
+  color: #c9951a;
+  transform: translateX(6px);
+}
+
+.diario-row:hover .diario-date {
+  color: #c9951a;
+}
+
+.diario-empty {
+  padding: 60px 0;
+
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 1.05rem;
+  color: rgba(17, 17, 17, 0.5);
+}
+
+.diario-entry-body {
+  flex: 1;
+  max-width: 720px;
+  padding: 20px 80px 120px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.diario-entry-body p {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  line-height: 1.75;
+  color: rgba(10, 10, 10, 0.82);
+}
+
+@media (max-width: 768px) {
+  .diario-header {
+    padding: 110px 24px 24px;
+  }
+
+  .diario-back {
+    margin-bottom: 28px;
+  }
+
+  .diario-streak {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 28px;
+    padding: 18px 20px;
+  }
+
+  .diario-list {
+    padding: 12px 24px 80px;
+  }
+
+  .diario-entry-body {
+    padding: 12px 24px 80px;
+  }
+
+  .diario-row {
+    grid-template-columns: 70px 1fr auto;
+    gap: 14px;
+    padding: 20px 0;
+  }
+}

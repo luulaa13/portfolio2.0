@@ -7,7 +7,7 @@ const INTERACTIVE_SELECTOR =
 
 function themeFromPath(pathname: string): string {
   if (pathname.startsWith("/projects/artmus")) return "theme-artmus";
-  if (pathname.startsWith("/projects/next")) return "theme-next";
+  if (pathname.startsWith("/projects/ondea")) return "theme-next";
   return "theme-home";
 }
 
